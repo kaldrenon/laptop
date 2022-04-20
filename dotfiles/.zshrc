@@ -356,16 +356,5 @@ cleave() {
   cleaver ${md}.md && open ${html}.html
 }
 
-# export NVM_DIR=~/.nvm
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-#
-# PATH=$PATH:$HOME/.rvm/bin
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-#
-# if [[ -e "$(pwd)/.ruby-version" ]] ; then
-#   rvm use $(cat .ruby-version) > /dev/null;
-# fi
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 export PATH="$HOME/.bin:$PATH"
 source /Users/afallows/.asdf/asdf.sh
