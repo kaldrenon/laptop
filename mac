@@ -174,21 +174,37 @@ fi
 fancy_echo "-- Doing Kal's Custom Stuff Now --"
 
 # Symlink dotfiles
+fancy_echo "Symlink dotfiles"
 #vimrc
+ln -s ${pwd}/dotfiles/.vimrc ~/.vimrc
 #zshrc
+ln -s ${pwd}/dotfiles/.zshrc ~/.zshrc
 #tmux.conf
+ln -s ${pwd}/dotfiles/..tmux.conf ~/..tmux.conf
 #gitconfig githelpers
+ln -s ${pwd}/dotfiles/.gitconfig ~/.gitconfig
+ln -s ${pwd}/dotfiles/.githelpers ~/.githelpers
+#gittemplate
+ln -s ${pwd}/gittemplate ~/.git_template
 
 # Symlink scripts
+fancy_echo "Symlink scripts"
 # antigen
+ln -s ${pwd}/scripts/antigen.zsh ~/antigen.zsh
 # tmuxinator
+ln -s ${pwd}/scripts/tmuxinator.zsh ~/.config/
 
 # Set up Nvim
+fancy_echo "Install neovim"
 pip3 install neovim
 mkdir -p ~/.config/nvim
 ln -s ${pwd}/dotfiles/.vimrc ~/.config/nvim/init.vim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # run PlugInstall
+fancy_echo "Install neovim plugins"
+nvim -c PlugInstall -c qa
 
-# set up tmuxinator
+# download desktop apps
+fancy_echo "Download desktop installers"
+wget https://desktop.docker.com/mac/main/amd64/Docker.dmg
