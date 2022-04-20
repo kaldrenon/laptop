@@ -1,0 +1,8 @@
+#!/bin/bash
+
+HOOK_DIR=$(pwd)/.git/hooks/post-checkout.d/*
+
+for sub_hook in ${HOOK_DIR}
+do
+  source ${sub_hook}
+done
