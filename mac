@@ -102,6 +102,10 @@ if ! command -v brew >/dev/null; then
     export PATH="/usr/local/bin:$PATH"
 fi
 
+#
+# Fix Brew path issue
+#
+
 if brew list | grep -Fq brew-cask; then
   fancy_echo "Uninstalling old Homebrew-Cask ..."
   brew uninstall --force brew-cask
@@ -134,9 +138,6 @@ brew "parity"
 # GitHub
 brew "gh"
 
-# Image manipulation
-brew "imagemagick"
-
 # Programming language prerequisites and package managers
 brew "libyaml" # should come after openssl
 brew "coreutils"
@@ -146,6 +147,9 @@ cask "gpg-suite"
 # Databases
 brew "postgres", restart_service: :changed
 brew "redis", restart_service: :changed
+
+brew neovim
+brew node
 EOF
 
 fancy_echo "Update heroku binary ..."
@@ -201,3 +205,20 @@ if [ -f "$HOME/.laptop.local" ]; then
   # shellcheck disable=SC1090
   . "$HOME/.laptop.local"
 fi
+
+#
+# Custom Scripting
+#
+
+
+# Symlink dotfiles
+
+# Set up Nvim
+pip3 install neovim
+mkdir -p ~/.config/nvim
+ln -s ${pwd}/dotfiles/.vimrc ~/.config/nvim/init.vim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+# run PlugInstall
+
+# set up tmuxinator
