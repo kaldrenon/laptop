@@ -13,6 +13,7 @@ brew "the_silver_searcher"
 brew "tmux"
 brew "vim"
 brew "watchman"
+brew "wget"
 brew "zsh"
 
 # Heroku
@@ -32,5 +33,5 @@ cask "gpg-suite"
 brew "postgres", restart_service: :changed
 brew "redis", restart_service: :changed
 
-brew neovim
-brew node
+# Software
+brew "neovim"
