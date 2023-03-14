@@ -111,8 +111,6 @@ alias pax="ps ax | ag"
 alias p='python3'
 alias pip='pip3'
 
-alias crawl="/Users/afallows/Dropbox/games/crawl.app/Contents/Resources/crawl"
-
 # NeoVim
 HOST_OS=`uname`
 
@@ -155,6 +153,10 @@ else
   VIM_BIN="nvim"
 fi
 
+if [[ -a "${HOME}/.bin/nvim.appimage" ]]; then
+  VIM_BIN="~/.bin/nvim.appimage"
+fi
+
 
 EDITOR="${VIM_BIN}"
 export EDITOR
@@ -168,7 +170,7 @@ if [ ${HAS_HUB} != "hub not found" ]; then
   alias git="hub"
 fi
 
-alias dotfiles="cd ~/home && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
+alias dotfiles="cd ~ && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
 alias muxen="cd ~/.config/tmuxinator/ && ${VIM_BIN} -o *.yml"
 
 alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
@@ -357,4 +359,4 @@ cleave() {
 }
 
 export PATH="$HOME/.bin:$PATH"
-source /Users/afallows/.asdf/asdf.sh
+source /home/afallows/.asdf/asdf.sh

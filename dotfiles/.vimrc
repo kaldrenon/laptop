@@ -107,9 +107,9 @@ filetype plugin indent on
 
 if (has("termguicolors"))
   set termguicolors
-  execute 'colorscheme spacegray'
+  execute 'colorscheme pencil'
 else
-  for cs in ['spacegray', 'pencil', 'hybrid', 'wombat256mod', 'wombat256', 'default']
+  for cs in ['pencil', 'spacegray', 'hybrid', 'wombat256mod', 'wombat256', 'default']
     try
       execute 'colorscheme' cs
       break
@@ -119,7 +119,7 @@ else
 endif
 
 "Set options for plugins
-let g:python3_host_prog='/usr/local/bin/python3'
+let g:python3_host_prog='/usr/bin/python3'
 let g:pymode_python = 'python3'
 
 let g:airline_theme='oceanicnext'

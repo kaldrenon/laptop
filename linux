@@ -1,0 +1,160 @@
+#!/bin/bash
+
+# Welcome to the thoughtbot laptop script!
+# Be prepared to turn your laptop (or desktop, no haters here)
+# into an awesome development machine.
+
+fancy_echo() {
+  local fmt="$1"; shift
+
+  # shellcheck disable=SC2059
+  printf "\\n$fmt\\n" "$@"
+}
+
+append_to_zshrc() {
+  local text="$1" zshrc
+  local skip_new_line="${2:-0}"
+
+  if [ -w "$HOME/.zshrc.local" ]; then
+    zshrc="$HOME/.zshrc.local"
+  else
+    zshrc="$HOME/.zshrc"
+  fi
+
+  if ! grep -Fqs "$text" "$zshrc"; then
+    if [ "$skip_new_line" -eq 1 ]; then
+      printf "%s\\n" "$text" >> "$zshrc"
+    else
+      printf "\\n%s\\n" "$text" >> "$zshrc"
+    fi
+  fi
+}
+
+# shellcheck disable=SC2154
+trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
+
+set -e
+
+if [ ! -d "$HOME/.bin/" ]; then
+  mkdir "$HOME/.bin"
+fi
+
+# shellcheck disable=SC2016
+append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
+
+HOMEBREW_PREFIX="/usr/local"
+
+update_shell() {
+  local shell_path;
+  shell_path="$(command -v zsh)"
+
+  fancy_echo "Changing your shell to zsh ..."
+  if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
+    fancy_echo "Adding '$shell_path' to /etc/shells"
+    sudo sh -c "echo $shell_path >> /etc/shells"
+  fi
+  sudo chsh -s "$shell_path" "$USER"
+}
+
+case "$SHELL" in
+  */zsh)
+    if [ "$(command -v zsh)" != '/usr/local/bin/zsh' ] ; then
+      update_shell
+    fi
+    ;;
+  *)
+    update_shell
+    ;;
+esac
+
+fancy_echo "Configuring asdf version manager ..."
+if [ ! -d "$HOME/.asdf" ]; then
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+  append_to_zshrc "source $HOME/.asdf/asdf.sh" 1
+fi
+
+alias install_asdf_plugin=add_or_update_asdf_plugin
+add_or_update_asdf_plugin() {
+  local name="$1"
+  local url="$2"
+
+  if ! asdf plugin-list | grep -Fq "$name"; then
+    asdf plugin-add "$name" "$url"
+  else
+    asdf plugin-update "$name"
+  fi
+}
+
+# shellcheck disable=SC1090
+source "$HOME/.asdf/asdf.sh"
+add_or_update_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
+add_or_update_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
+
+install_asdf_language() {
+  local language="$1"
+  local version
+  version="$(asdf list-all "$language" | grep -v "[a-z]" | tail -1)"
+
+  if ! asdf list "$language" | grep -Fq "$version"; then
+    asdf install "$language" "$version"
+    asdf global "$language" "$version"
+  fi
+}
+
+fancy_echo "Installing latest Ruby ..."
+install_asdf_language "ruby"
+gem update --system
+
+fancy_echo "Installing latest Node ..."
+install_asdf_language "nodejs"
+
+if [ -f "$HOME/.laptop.local" ]; then
+  fancy_echo "Running your customizations from ~/.laptop.local ..."
+  # shellcheck disable=SC1090
+  . "$HOME/.laptop.local"
+fi
+
+#
+# Custom Scripting
+#
+fancy_echo "-- Doing Kal's Custom Stuff Now --"
+
+# Symlink dotfiles
+fancy_echo "Symlink dotfiles"
+
+declare -a files=(".vimrc" ".zshrc" ".tmux.conf" ".gitconfig" ".githelpers")
+
+for file in "${files[@]}"
+do
+  if [ ! -L "$HOME/$file" ]; then
+    ln -s $(pwd)/dotfiles/$file $HOME/$file
+  fi
+done
+
+if [ ! -L ~/.git_template ]; then
+  ln -s $(pwd)/gittemplate ~/.git_template
+fi
+
+# Symlink scripts
+fancy_echo "Symlink scripts"
+# antigen
+if [ ! -L ~/antigen.zsh ]; then
+  ln -s $(pwd)/scripts/antigen.zsh ~/antigen.zsh
+fi
+
+# tmuxinator
+if [ ! -L ~/.config/tmuxinator.zsh ]; then
+  ln -s $(pwd)/scripts/tmuxinator.zsh ~/.config/tmuxinator.zsh
+fi
+
+# Set up Nvim
+fancy_echo "Install neovim"
+sudo apt-get install python3 python3-pip
+pip3 install neovim
+mkdir -p ~/.config/nvim
+ln -s $(pwd)/dotfiles/.vimrc ~/.config/nvim/init.vim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+# run PlugInstall
+fancy_echo "Install neovim plugins"
+nvim -c PlugInstall -c qa
