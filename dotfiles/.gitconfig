@@ -1,9 +1,11 @@
 [core]
   editor = nvim
+  autocrlf = false
+  filemode = false
 
 [user]
   name = Andrew Fallows
-  email = afallows@covermymeds.com
+  email = afallows@vmox.com
 
 [grep]
   linenumber = true
@@ -59,3 +61,10 @@
   checkpoint     = commit -m "stopping point before I mess it up lol."
   cleanup        = "!git stash && git add -A && git reset --hard HEAD && git status"
   conflicts      = diff --name-only --diff-filter=U
+
+  #VMox aliases
+  comaster    = '!git co master && git pull'
+  newmaster   = '!git comaster && git co -b'
+  masterprep  = '!git remote update & git rebase -i origin/master'
+  masterpush  = '!git push origin HEAD:refs/for/master'
+  featurepush = '!f() { git push origin HEAD:refs/for/feature/\"$1\"; }; f'
