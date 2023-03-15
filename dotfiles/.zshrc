@@ -334,15 +334,6 @@ zle -N zle-keymap-select
 PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin"
 
-start-agent() {
-  if ps ax | grep '[s]sh-agent -s' > /dev/null; then
-    # Do nothing
-  else
-    eval `ssh-agent -s`
-  fi
-}
-start-agent
-
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.zshrc'
 
