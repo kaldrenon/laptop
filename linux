@@ -158,3 +158,6 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 # run PlugInstall
 fancy_echo "Install neovim plugins"
 nvim -c PlugInstall -c qa
+
+# install packages with apt
+sudo apt-get install htop silversearcher-ag tree
