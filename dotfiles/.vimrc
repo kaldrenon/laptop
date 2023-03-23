@@ -21,6 +21,7 @@ Plug 'ap/vim-css-color'
 Plug 'dahu/vim-asciidoc'
 Plug 'digitaltoad/vim-jade'
 Plug 'elzr/vim-json'
+Plug 'ernstvanderlinden/vim-coldfusion'
 Plug 'othree/html5.vim'
 Plug 'posva/vim-vue'
 Plug 'slim-template/vim-slim'
@@ -74,7 +75,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-ruby/vim-ruby'
 
 " Colo Plugins
-Plug 'ajh17/Spacegray.vim'
 Plug 'cseelus/vim-colors-clearance'
 Plug 'flazz/vim-colorschemes'
 Plug 'zefei/vim-colortuner'
@@ -250,6 +250,7 @@ augroup END
 " Tab formatting
 set shiftwidth=2
 set softtabstop=2
+set tabstop=2
 set expandtab
 
 " Wrapping
@@ -362,18 +363,16 @@ nnoremap <silent> <space>c viw~
 nnoremap <silent> <space>sc :SyntasticCheck<cr>
 nnoremap <silent> <space>sC :lclose<cr><C-w>_
 
-" Better save
-nnoremap <space>ww :w<cr>
-
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
