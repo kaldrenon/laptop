@@ -154,7 +154,7 @@ else
 fi
 
 if [[ -a "${HOME}/.bin/nvim.appimage" ]]; then
-  VIM_BIN="~/.bin/nvim.appimage"
+  VIM_BIN="ASDF_NODEJS_VERSION=19.7.0 ~/.bin/nvim.appimage"
 fi
 
 
@@ -170,7 +170,7 @@ if [ ${HAS_HUB} != "hub not found" ]; then
   alias git="hub"
 fi
 
-alias dotfiles="cd ~ && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig"
+alias dotfiles="cd ~ && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig .profile"
 alias muxen="cd ~/.config/tmuxinator/ && ${VIM_BIN} -o *.yml"
 
 alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
@@ -351,3 +351,6 @@ cleave() {
 
 export PATH="$HOME/.bin:$PATH"
 source /home/afallows/.asdf/asdf.sh
+
+/usr/bin/keychain -q --nogui $HOME/.ssh/afallows_vmox
+source $HOME/.keychain/$HOST-sh
