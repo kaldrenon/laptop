@@ -350,13 +350,6 @@ set noequalalways
 set winminheight=0 " No max height on windows.
 set splitright
 
-" Mark something completed with a unicode check
-nnoremap <Leader>x I✓<space><esc>
-
-" Goyo / Limelight Mappings
-nnoremap <silent> <space><space> :Goyo<cr>
-nnoremap <silent> <Leader>l :Limelight!!<cr>
-
 " recapitalize a word
 nnoremap <silent> <space>c viw~
 
