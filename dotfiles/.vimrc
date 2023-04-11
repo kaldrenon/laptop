@@ -119,6 +119,8 @@ else
 endif
 
 "Set options for plugins
+let g:coc_disable_startup_warning = 1
+
 let g:python3_host_prog='/usr/bin/python3'
 let g:pymode_python = 'python3'
 
