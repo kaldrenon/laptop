@@ -165,40 +165,39 @@ export VISUAL
 alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
 alias vpi="${VIM_BIN} -c PluginInstall"
+alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
+
+alias dotfiles="cd ~ && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig .profile"
+alias muxen="cd ~/.config/tmuxinator/ && ${VIM_BIN} -o *.yml"
+
 HAS_HUB=`which hub`
 if [ ${HAS_HUB} != "hub not found" ]; then
   alias git="hub"
 fi
 
-alias dotfiles="cd ~ && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig .profile"
-alias muxen="cd ~/.config/tmuxinator/ && ${VIM_BIN} -o *.yml"
-
-alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
-
 # Search power
 vimag() {
-  ${VIM_BIN} -o `ag -l $1 $2`
+  eval ${VIM_BIN} -o `ag -l $1 $2`
 }
 
 # Open last commit's files
 vimdl() {
-  ${VIM_BIN} -o `git dlf`
+  eval ${VIM_BIN} -o `git dlf`
 }
 alias vl="vimdl"
 
-
 # Open files in merge conflict state
 vimconf() {
-  ${VIM_BIN} -o `git diff --name-only --diff-filter=U`
+  eval ${VIM_BIN} -o `git diff --name-only --diff-filter=U`
 }
 
 # Open all files breaking rubocop rules
 vimcops() {
-  ${VIM_BIN} -o `rubocop -f fi`
+  eval ${VIM_BIN} -o `rubocop -f fi`
 }
 
 vimdf() {
-  ${VIM_BIN} -o `git diff --name-only` `git diff --cached --name-only`
+  eval ${VIM_BIN} -o `git diff --name-only` `git diff --cached --name-only`
 }
 
 ######
