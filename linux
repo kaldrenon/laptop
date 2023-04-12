@@ -132,19 +132,19 @@ do
 done
 
 if [ ! -L ~/.git_template ]; then
-  ln -s $(pwd)/gittemplate ~/.git_template
+  ln -s $(pwd)/gittemplate $HOME/.git_template
 fi
 
 # Symlink scripts
 fancy_echo "Symlink scripts"
 # antigen
 if [ ! -L ~/antigen.zsh ]; then
-  ln -s $(pwd)/scripts/antigen.zsh ~/antigen.zsh
+  ln -s $(pwd)/scripts/antigen.zsh $HOME/antigen.zsh
 fi
 
 # tmuxinator
 if [ ! -L ~/.config/tmuxinator.zsh ]; then
-  ln -s $(pwd)/scripts/tmuxinator.zsh ~/.config/tmuxinator.zsh
+  ln -s $(pwd)/scripts/tmuxinator.zsh $HOME/.config/tmuxinator.zsh
 fi
 
 # Set up Nvim
@@ -152,13 +152,17 @@ fancy_echo "Install neovim"
 sudo apt-get install python3 python3-pip
 pip3 install neovim
 mkdir -p ~/.config/nvim
-ln -s $(pwd)/dotfiles/.vimrc ~/.config/nvim/init.vim
-ln -s $(pwd)/dotfiles/coc-settings.json ~/.config/nvim/coc-settings.json
+ln -s $(pwd)/dotfiles/.vimrc $HOME/.config/nvim/init.vim
+ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # run PlugInstall
 fancy_echo "Install neovim plugins"
 nvim -c PlugInstall -c qa
+
+# link snippets
+ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
+
 
 # install packages with apt
 sudo apt-get install htop silversearcher-ag tree
