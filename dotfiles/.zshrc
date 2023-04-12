@@ -205,7 +205,15 @@ vimdf() {
 ######
 alias rc="clear; bundle exec rails c"
 alias bx="bundle exec"
-alias irb="pry"
+
+has_pry=`which pry`
+if [ ${has_pry} = "pry not found" ]; then
+  pry_bin="pry"
+  alias irb="pry"
+else
+  pry_bin="irb"
+fi
+
 alias cop='clear; rubocop'
 
 rspeak () {
