@@ -75,3 +75,5 @@
   mpr = masterprep
   mpp = masterpush
   nm  = newmaster
+  vco = "!f() { git checkout sandbox/vmox-$1; }; f"
+  vnb = "!f() { git checkout -b sandbox/vmox-$1; }; f"
