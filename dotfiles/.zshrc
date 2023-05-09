@@ -338,6 +338,7 @@ zle -N zle-keymap-select
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
 # Ensure local/bin precedes bin, add Dropbox to PATH
+PATH="$PATH:/opt/mssql-tools/bin"
 PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin"
 
@@ -347,14 +348,6 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-
-# Cleaver - https://github.com/jdan/cleaver
-cleave() {
-  md=$1
-  html=$2
-  if [ -z "${html}" ]; then; html=$1; fi
-  cleaver ${md}.md && open ${html}.html
-}
 
 export PATH="$HOME/.bin:$PATH"
 source /home/afallows/.asdf/asdf.sh
