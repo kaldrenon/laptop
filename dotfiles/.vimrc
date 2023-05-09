@@ -1,9 +1,7 @@
-"Load plugins with Vundle
 set nocompatible
 filetype off
-"set runtimepath+=~/.vim/bundle/Vundle.vim
-"call vundle#rc()
-"call plug#begin('~/.local/share/nvim/site/plugged')
+
+" Load plugins with vim-plugged
 call plug#begin( stdpath('data') . '/plugged')
 runtime macros/matchit.vim
 
@@ -142,14 +140,16 @@ let g:webdevicons_enable = 1
 let g:webdevicons_enable_airline_statusline = 1
 let g:WebDevIconsOS = 'Darwin'
 
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': [] }
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_jump                = 0
 let g:syntastic_auto_loc_list            = 0
-let g:syntastic_enable_signs             = 1
 let g:syntastic_enable_highlighting      = 1
+let g:syntastic_enable_signs             = 1
+let g:syntastic_mode_map                 = { 'mode': 'active', 'active_filetypes': [], 'passive_filetypes': [] }
+let g:syntastic_python_python_exec       = '/usr/bin/python3'
 let g:syntastic_scss_checkers            = ['scss_lint']
-let g:syntastic_python_python_exec = '/usr/bin/python3'
+let g:syntastic_warning_symbol           = '->'
+let g:syntastic_style_warning_symbol     = 'S-'
 
 let g:vimwiki_list         = [{'path': '~/Dropbox/docs/vimwiki/'}]
 let g:vimwiki_conceallevel = 0
@@ -160,6 +160,7 @@ let g:gist_open_browser_after_post = 1
 
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsEditSplit     = 'horizontal'
+let g:UltiSnipsSnippetDirectories = ['/home/afallows/.config/nvim/UltiSnips']
 
 "let g:deoplete#enable_at_startup = 1
 
@@ -177,17 +178,22 @@ if executable('ag')
 endif
 
 let g:tmuxify_custom_command = 'tmux split-window -l 16'
-let g:tmuxify_map_prefix = '<space>m'
+let g:tmuxify_map_prefix     = '<space>m'
+
 let g:tmuxify_run = {
       \ 'c':  'rails c',
       \ 'gs': 'gs'
       \ }
 
-let g:ctrlp_map = 'go'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_switch_buffer = 'ETVH'
 let g:ctrlp_clear_cache_on_exit = 1
-let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_follow_symlinks     = 1
+let g:ctrlp_map                 = 'go'
+let g:ctrlp_max_depth           = 40
+let g:ctrlp_max_files           = 9999999
+"let g:ctrlp_regexp              = 1
+let g:ctrlp_show_hidden         = 1
+let g:ctrlp_switch_buffer       = 'ETVH'
+
 let g:ctrlp_custom_ignore = {
       \ 'dir': '\v[\/]\.?(node_modules|tmp|public/assets|git|hg|svn)$'
       \}
