@@ -182,7 +182,7 @@ vimag() {
 
 # Open last commit's files
 vimdl() {
-  eval ${VIM_BIN} -o `git dlf`
+  cd /code/vmox && eval ${VIM_BIN} -o `git dlf` && cd -
 }
 alias vl="vimdl"
 
