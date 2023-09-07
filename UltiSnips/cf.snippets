@@ -1,1 +1,20 @@
 extends javascript
+
+snippet logcf "basic writelog" !b
+writeLog(text='$1');
+endsnippet
+
+snippet jslog "log to js console" !b
+<cfoutput>
+  console.log('$1');
+</cfoutput>
+endsnippet
+
+snippet dump "dump var to page" !b
+writeDump(var = $1, label = "${2:$1}", output = "console");
+endsnippet
+
+snippet tdump "dump var to page" !b
+<cfdump var="#$1#" label="${2:$1}">
+endsnippet
+

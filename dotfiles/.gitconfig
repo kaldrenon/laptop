@@ -65,7 +65,7 @@
   # vMox aliases
   comaster    = "!git co master && git pull"
   newmaster   = "!git comaster && git co -b"
-  masterprep  = "!git remote update & git rebase -i origin/master"
+  masterprep  = "!git remote update && git rebase -i origin/master"
   masterpush  = "!git push origin HEAD:refs/for/master"
   featurepush = "!f() { git push origin HEAD:refs/for/feature/\"$1\"; }; f"
 

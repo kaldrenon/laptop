@@ -228,7 +228,7 @@ rspeak () {
 ######
 # Git(Hub)
 ######
-alias gco="git checkout"
+# alias gco="git checkout"
 alias gs="git status"
 
 # git add, status, prepare to commit

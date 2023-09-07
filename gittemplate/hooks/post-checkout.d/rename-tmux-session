@@ -9,9 +9,9 @@ function try_rename() {
 }
 
 if which tmux > /dev/null; then
-  PROJECT=$(basename $(git rev-parse --show-toplevel))
+  PROJECT=$(tmux display-message -p '#S')
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  SESSION_NAME="${PROJECT}/${BRANCH}";
+  SESSION_NAME="${PROJECT} (${BRANCH})";
 
   # Only rename if in tmux
   if [ ! -z ${TMUX_PANE} ]; then
