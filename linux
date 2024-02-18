@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# Welcome to the thoughtbot laptop script!
-# Be prepared to turn your laptop (or desktop, no haters here)
-# into an awesome development machine.
+# Adapted from Thoughtbot's script
 
 fancy_echo() {
   local fmt="$1"; shift
@@ -11,36 +9,6 @@ fancy_echo() {
   printf "\\n$fmt\\n" "$@"
 }
 
-append_to_zshrc() {
-  local text="$1" zshrc
-  local skip_new_line="${2:-0}"
-
-  if [ -w "$HOME/.zshrc.local" ]; then
-    zshrc="$HOME/.zshrc.local"
-  else
-    zshrc="$HOME/.zshrc"
-  fi
-
-  if ! grep -Fqs "$text" "$zshrc"; then
-    if [ "$skip_new_line" -eq 1 ]; then
-      printf "%s\\n" "$text" >> "$zshrc"
-    else
-      printf "\\n%s\\n" "$text" >> "$zshrc"
-    fi
-  fi
-}
-
-# shellcheck disable=SC2154
-trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
-
-set -e
-
-if [ ! -d "$HOME/.bin/" ]; then
-  mkdir "$HOME/.bin"
-fi
-
-# shellcheck disable=SC2016
-append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
 
 HOMEBREW_PREFIX="/usr/local"
 
@@ -48,7 +16,7 @@ update_shell() {
   local shell_path;
   shell_path="$(command -v zsh)"
 
-  fancy_echo "Changing your shell to zsh ..."
+  fancy_echo "Changing your shell to zsh..."
   if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
     fancy_echo "Adding '$shell_path' to /etc/shells"
     sudo sh -c "echo $shell_path >> /etc/shells"
@@ -67,11 +35,15 @@ case "$SHELL" in
     ;;
 esac
 
-fancy_echo "Configuring asdf version manager ..."
+fancy_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf
   append_to_zshrc "source $HOME/.asdf/asdf.sh" 1
 fi
+
+### TODO: install some prereqs here
+fancy_echo "Installing ruby and node prerequisites..."
+sudo apt-get install -y build-essential libffi-dev libtool libyaml-dev zlib1g-dev
 
 alias install_asdf_plugin=add_or_update_asdf_plugin
 add_or_update_asdf_plugin() {
@@ -101,23 +73,18 @@ install_asdf_language() {
   fi
 }
 
-fancy_echo "Installing latest Ruby ..."
+fancy_echo "Installing latest Ruby..."
 install_asdf_language "ruby"
 gem update --system
 
-fancy_echo "Installing latest Node ..."
+fancy_echo "Installing latest Node..."
 install_asdf_language "nodejs"
 
 if [ -f "$HOME/.laptop.local" ]; then
-  fancy_echo "Running your customizations from ~/.laptop.local ..."
+  fancy_echo "Running your customizations from ~/.laptop.local..."
   # shellcheck disable=SC1090
   . "$HOME/.laptop.local"
 fi
-
-#
-# Custom Scripting
-#
-fancy_echo "-- Doing Kal's Custom Stuff Now --"
 
 # Symlink dotfiles
 fancy_echo "Symlink dotfiles"
@@ -149,20 +116,49 @@ fi
 
 # Set up Nvim
 fancy_echo "Install neovim"
-sudo apt-get install python3 python3-pip
+sudo apt-get install -y python3 python3-pip neovim
 pip3 install neovim
 mkdir -p ~/.config/nvim
 ln -s $(pwd)/dotfiles/.vimrc $HOME/.config/nvim/init.vim
 ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+append_to_zshrc() {
+  local text="$1" zshrc
+  local skip_new_line="${2:-0}"
+
+  if [ -w "$HOME/.zshrc.local" ]; then
+    zshrc="$HOME/.zshrc.local"
+  else
+    zshrc="$HOME/.zshrc"
+  fi
+
+  if ! grep -Fqs "$text" "$zshrc"; then
+    if [ "$skip_new_line" -eq 1 ]; then
+      printf "%s\\n" "$text" >> "$zshrc"
+    else
+      printf "\\n%s\\n" "$text" >> "$zshrc"
+    fi
+  fi
+}
+
+set -e
+
+if [ ! -d "$HOME/.bin/" ]; then
+  mkdir "$HOME/.bin"
+fi
+
+# shellcheck disable=SC2016
+append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
+
 # run PlugInstall
 fancy_echo "Install neovim plugins"
 nvim -c PlugInstall -c qa
 
 # link snippets
+rm $HOME/.config/nvim/coc-settings.json
 ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
 
 
 # install packages with apt
-sudo apt-get install htop silversearcher-ag tree
+sudo apt-get install -y htop silversearcher-ag tree
