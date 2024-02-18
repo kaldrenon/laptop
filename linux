@@ -38,7 +38,6 @@ esac
 fancy_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-  append_to_zshrc "source $HOME/.asdf/asdf.sh" 1
 fi
 
 ### TODO: install some prereqs here
@@ -162,3 +161,6 @@ ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
 
 # install packages with apt
 sudo apt-get install -y htop silversearcher-ag tree
+
+# Install common ruby tools
+gem install tmuxinator

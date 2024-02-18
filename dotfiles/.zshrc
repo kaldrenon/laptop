@@ -350,7 +350,7 @@ compinit
 # End of lines added by compinstall
 
 export PATH="$HOME/.bin:$PATH"
-source /home/afallows/.asdf/asdf.sh
+source $HOME/.asdf/asdf.sh
 
-/usr/bin/keychain -q --nogui $HOME/.ssh/afallows_vmox
-source $HOME/.keychain/$HOST-sh
+# /usr/bin/keychain -q --nogui $HOME/.ssh/afallows_vmox
+# source $HOME/.keychain/$HOST-sh
