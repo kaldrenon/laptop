@@ -120,6 +120,7 @@ pip3 install neovim
 mkdir -p ~/.config/nvim
 ln -s $(pwd)/dotfiles/.vimrc $HOME/.config/nvim/init.vim
 ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
+ln -s $(pwd)/UltiSnips $HOME/.config/nvim/UltiSnips
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 append_to_zshrc() {

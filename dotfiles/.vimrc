@@ -161,7 +161,7 @@ let g:gist_open_browser_after_post = 1
 
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsEditSplit     = 'horizontal'
-let g:UltiSnipsSnippetDirectories = ['/home/afallows/.config/nvim/UltiSnips']
+let g:UltiSnipsSnippetDirectories = ['/home/kaldrenon/.config/nvim/UltiSnips']
 
 "let g:deoplete#enable_at_startup = 1
 
