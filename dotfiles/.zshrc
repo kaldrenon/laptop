@@ -182,7 +182,7 @@ vimag() {
 
 # Open last commit's files
 vimdl() {
-  cd /code/vmox && eval ${VIM_BIN} -o `git dlf` && cd -
+  eval ${VIM_BIN} -o `git dlf` && cd -
 }
 alias vl="vimdl"
 
@@ -351,9 +351,6 @@ compinit
 
 export PATH="$HOME/.bin:$PATH"
 source $HOME/.asdf/asdf.sh
-
-# /usr/bin/keychain -q --nogui $HOME/.ssh/afallows_vmox
-# source $HOME/.keychain/$HOST-sh
 
 if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
   eval $(ssh-agent -s) > /dev/null
