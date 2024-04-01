@@ -354,3 +354,11 @@ source $HOME/.asdf/asdf.sh
 
 # /usr/bin/keychain -q --nogui $HOME/.ssh/afallows_vmox
 # source $HOME/.keychain/$HOST-sh
+
+if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
+  eval $(ssh-agent -s) > /dev/null
+fi
+
+if [ "$(ssh-add -l)" = "The agent has no identities." ] ; then
+  ssh-add ~/.ssh/kaldrenon_key > /dev/null 2>&1
+fi
