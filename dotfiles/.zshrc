@@ -352,10 +352,5 @@ compinit
 export PATH="$HOME/.bin:$PATH"
 source $HOME/.asdf/asdf.sh
 
-if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
-  eval $(ssh-agent -s) > /dev/null
-fi
-
-if [ "$(ssh-add -l)" = "The agent has no identities." ] ; then
-  ssh-add ~/.ssh/kaldrenon_key > /dev/null 2>&1
-fi
+/usr/bin/keychain -q --nogui $HOME/.ssh/kaldrenon_key
+source $HOME/.keychain/$HOST-sh
