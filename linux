@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Adapted from Thoughtbot's script
 
 fancy_echo() {
@@ -9,9 +8,20 @@ fancy_echo() {
   printf "\\n$fmt\\n" "$@"
 }
 
+#
+# Install core linux utilities and libs
+#
+fancy_echo "-- Installing system tools"
+sudo apt-get install -y build-essential libffi-dev libtool libyaml-dev zlib1g-dev libssl-dev \
+  git zsh tmux \
+  python3 python3-pip neovim \
+  htop silversearcher-ag tree
 
-HOMEBREW_PREFIX="/usr/local"
+mkdir -p $HOME/.config
 
+#
+# Make ZSH default shell
+#
 update_shell() {
   local shell_path;
   shell_path="$(command -v zsh)"
@@ -35,14 +45,15 @@ case "$SHELL" in
     ;;
 esac
 
+#
+# Install ruby and nodejs
+#
 fancy_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 fi
 
-### TODO: install some prereqs here
 fancy_echo "Installing ruby and node prerequisites..."
-sudo apt-get install -y build-essential libffi-dev libtool libyaml-dev zlib1g-dev
 
 alias install_asdf_plugin=add_or_update_asdf_plugin
 add_or_update_asdf_plugin() {
@@ -85,7 +96,9 @@ if [ -f "$HOME/.laptop.local" ]; then
   . "$HOME/.laptop.local"
 fi
 
+#
 # Symlink dotfiles
+#
 fancy_echo "Symlink dotfiles"
 
 declare -a files=(".vimrc" ".zshrc" ".tmux.conf" ".gitconfig" ".githelpers")
@@ -101,8 +114,11 @@ if [ ! -L ~/.git_template ]; then
   ln -s $(pwd)/gittemplate $HOME/.git_template
 fi
 
+#
 # Symlink scripts
+#
 fancy_echo "Symlink scripts"
+
 # antigen
 if [ ! -L ~/antigen.zsh ]; then
   ln -s $(pwd)/scripts/antigen.zsh $HOME/antigen.zsh
@@ -113,9 +129,10 @@ if [ ! -L ~/.config/tmuxinator.zsh ]; then
   ln -s $(pwd)/scripts/tmuxinator.zsh $HOME/.config/tmuxinator.zsh
 fi
 
+#
 # Set up Nvim
+#
 fancy_echo "Install neovim"
-sudo apt-get install -y python3 python3-pip neovim
 pip3 install neovim
 mkdir -p ~/.config/nvim
 ln -s $(pwd)/dotfiles/.vimrc $HOME/.config/nvim/init.vim
@@ -123,6 +140,9 @@ ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
 ln -s $(pwd)/UltiSnips $HOME/.config/nvim/UltiSnips
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+#
+# Update PATH
+#
 append_to_zshrc() {
   local text="$1" zshrc
   local skip_new_line="${2:-0}"
@@ -151,6 +171,9 @@ fi
 # shellcheck disable=SC2016
 append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
 
+#
+# Install Neovim plugins
+#
 # run PlugInstall
 fancy_echo "Install neovim plugins"
 nvim -c PlugInstall -c qa
@@ -158,10 +181,6 @@ nvim -c PlugInstall -c qa
 # link snippets
 rm $HOME/.config/nvim/coc-settings.json
 ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
-
-
-# install packages with apt
-sudo apt-get install -y htop silversearcher-ag tree
 
 # Install common ruby tools
 gem install tmuxinator
