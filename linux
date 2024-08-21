@@ -119,6 +119,10 @@ if [ ! -L ~/.git_template ]; then
   ln -s $(pwd)/gittemplate $HOME/.git_template
 fi
 
+if [ ! -L ~/.config/tmuxinator ]; then
+  ln -s $(pwd)/muxen $HOME/.config/tmuxinator
+fi
+
 #
 # Neovim
 #
