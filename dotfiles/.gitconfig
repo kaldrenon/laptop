@@ -1,11 +1,11 @@
 [core]
   editor = nvim
-  autocrlf = false
+  autocrlf = true
   filemode = false
 
 [user]
   name = Andrew Fallows
-  email = afallows@vmox.com
+  email = afallows@captivecorp.com
 
 [grep]
   linenumber = true
@@ -31,6 +31,7 @@
 [init]
   templatedir = ~/.git_template
 
+  defaultBranch = main
 [push]
   default = current
 
@@ -38,7 +39,6 @@
   aa  = "!clear; git add -A; git status"
   b   = branch
   bc  = for-each-ref --sort='-*committerdate' --format="%(refname:short)" refs/heads/
-  bm  = "!bash -c 'source ~/.githelpers && list_merged'"
   ca  = commit --amend
   clg = "!f() { git clone http://github.com/$1; }; f"
   cm  = commit -m
@@ -58,6 +58,12 @@
 
   cached-changes = diff --cached --name-only --diff-filter=AM
   changes        = diff --name-only --diff-filter=AM
-  checkpoint     = commit -m "stopping point before I mess it up lol."
+  checkpoint     = commit -m "WIP snapshot, committed for safety"
   cleanup        = "!git stash && git add -A && git reset --hard HEAD && git status"
   conflicts      = diff --name-only --diff-filter=U
+
+  jco = "!f() { git checkout trn-$1; }; f"
+  jnb = "!f() { git checkout -b trn-$1; }; f"
+[pull]
+  rebase = false
+

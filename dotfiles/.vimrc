@@ -8,6 +8,7 @@ runtime macros/matchit.vim
 set runtimepath^=~/.vim
 set redrawtime=100000
 set encoding=UTF-8
+set fileformats=unix
 
 if exists('g:loaded_airline')
   set noshowmode
@@ -108,7 +109,7 @@ if (has("termguicolors"))
   set termguicolors
   execute 'colorscheme pencil'
 else
-  for cs in ['pencil', 'spacegray', 'hybrid', 'wombat256mod', 'wombat256', 'default']
+  for cs in ['pencil', 'spacegray', 'wombat256mod', 'wombat256', 'default']
     try
       execute 'colorscheme' cs
       break
@@ -406,6 +407,9 @@ set autoread " automatically reload externally changed buffers
 autocmd BufRead,BufNewFile *.tex setfiletype tex
 autocmd BufRead,BufNewFile *.god setfiletype rb
 autocmd BufNewFile,BufRead,BufReadPost *.jade.html set filetype=jade
+
+" Always remove CR from files on open
+"autocmd BufNewFile,BufRead,BufReadPost %s///g
 
 autocmd BufNewFile,BufNewFile html,javascript,css,sass,ruby let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
 
