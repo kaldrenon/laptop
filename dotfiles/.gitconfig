@@ -2,6 +2,7 @@
   editor = nvim
   autocrlf = true
   filemode = false
+  safecrlf = false
 
 [user]
   name = Andrew Fallows
