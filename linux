@@ -8,18 +8,12 @@ fancy_echo() {
   printf "\\n$fmt\\n" "$@"
 }
 
-#
-# Install core linux utilities and libs
-#
-fancy_echo "-- Installing system tools"
-sudo apt-get install -y build-essential libffi-dev libtool libyaml-dev \
-  lib1g-dev libssl-dev \
-  git zsh tmux \
-  python3 python3-pip neovim \
-  htop silversearcher-ag tree \
-  crawl
-
 mkdir -p $HOME/.config
+
+### Install some packages
+fancy_echo "Installing aptitude packages"
+sudo apt-get update
+sudo apt-get install -y --ignore-missing $(cat Aptfile)
 
 #
 # Make ZSH default shell
@@ -50,12 +44,12 @@ esac
 #
 # Install ruby and nodejs
 #
+
+### asdf
 fancy_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 fi
-
-fancy_echo "Installing ruby and node prerequisites..."
 
 alias install_asdf_plugin=add_or_update_asdf_plugin
 add_or_update_asdf_plugin() {
@@ -85,10 +79,25 @@ install_asdf_language() {
   fi
 }
 
+#
+# Ruby
+#
 fancy_echo "Installing latest Ruby..."
 install_asdf_language "ruby"
-gem update --system
+asdf local ruby latest
 
+# Install common ruby tools
+gem update --system
+gem install tmuxinator pry guard rubocop
+
+# tmuxinator
+if [ ! -L ~/.config/tmuxinator.zsh ]; then
+  ln -s $(pwd)/scripts/tmuxinator.zsh $HOME/.config/tmuxinator.zsh
+fi
+
+#
+# Nodejs
+#
 fancy_echo "Installing latest Node..."
 install_asdf_language "nodejs"
 
@@ -131,16 +140,34 @@ if [ ! -L ~/.config/tmuxinator.zsh ]; then
   ln -s $(pwd)/scripts/tmuxinator.zsh $HOME/.config/tmuxinator.zsh
 fi
 
+if [ ! -L ~/.config/tmuxinator ]; then
+  ln -s $(pwd)/muxen $HOME/.config/tmuxinator
+fi
+
 #
-# Set up Nvim
+# Neovim
 #
 fancy_echo "Install neovim"
+
+# install
 pip3 install neovim
+
+# link configs
 mkdir -p ~/.config/nvim
 ln -s $(pwd)/dotfiles/.vimrc $HOME/.config/nvim/init.vim
 ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
 ln -s $(pwd)/UltiSnips $HOME/.config/nvim/UltiSnips
+
+# download plug.vim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+# run PlugInstall
+fancy_echo "Install neovim plugins"
+nvim -c PlugInstall -c qa
+
+# link snippets
+rm $HOME/.config/nvim/coc-settings.json
+ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
 
 #
 # Update PATH
@@ -172,17 +199,3 @@ fi
 
 # shellcheck disable=SC2016
 append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
-
-#
-# Install Neovim plugins
-#
-# run PlugInstall
-fancy_echo "Install neovim plugins"
-nvim -c PlugInstall -c qa
-
-# link snippets
-rm $HOME/.config/nvim/coc-settings.json
-ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
-
-# Install common ruby tools
-gem install tmuxinator
