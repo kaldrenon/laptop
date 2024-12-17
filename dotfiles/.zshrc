@@ -11,18 +11,20 @@ antigen apply
 
 source ~/.config/tmuxinator.zsh
 
-HISTFILE=~/.histfile   # Location of command history
-HISTSIZE=10000         # Number of history entries to keep in memory
-SAVEHIST=10000         # Number of history entries to save in HISTFILE
-setopt appendhistory   # Append history from all instances to same histfile
-setopt autocd          # change to dirs without needing to prepend 'cd '
-setopt extendedglob    # expand globs in autocomplete with super smart smartness
-unsetopt beep          # Don't beeping beep.
-bindkey -v             # Vi-ish bindings (normal and insert modes)
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+setopt autocd
+setopt extendedglob
+unsetopt beep
+bindkey -v
 
-bindkey -M vicmd '?' history-incremental-search-backward  # Search up through recent commands
+# Search up through recent commands
+bindkey -M vicmd '?' history-incremental-search-backward
 
-autoload -U colors && colors  # simplify color codes for use in this RC file
+# simplify color codes for use in this RC file
+autoload -U colors && colors
 
 # Prompt: time user|host current-path git-info →
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[green]%}"
@@ -73,12 +75,6 @@ alias vdown='vagrant halt'
 alias vkill='vagrant halt && vagrant destroy -f'
 
 alias kiex="~/.kiex/bin/kiex"
-
-export PLATFORM_DEV=$HOME/cmm/dev # change to match your local dev directory
-shovel() ( cd $PLATFORM_DEV && ./script/run shovel "$@"; )
-alias de='docker exec -e COLUMNS="$(tput cols)" -e LINES="$(tput lines)" -ti'
-fpath=($PLATFORM_DEV/misc/completion/ $fpath)
-autoload -U compinit && compinit
 
 alias dc='docker-compose'
 
