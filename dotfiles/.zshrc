@@ -338,6 +338,7 @@ zle -N zle-keymap-select
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
 # Ensure local/bin precedes bin, add Dropbox to PATH
+PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 PATH="$PATH:/opt/mssql-tools/bin"
 PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin"

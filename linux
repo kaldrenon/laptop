@@ -149,8 +149,15 @@ fi
 #
 fancy_echo "Install neovim"
 
+# prereqs
+curl https://sh.rustup.rs -sSf | sh
+$(which cargo) install --git https://github.com/MordechaiHadad/bob.git
+bob install stable
+
 # install
 pip3 install neovim
+npm install -g neovim
+gem install neovim
 
 # link configs
 mkdir -p ~/.config/nvim

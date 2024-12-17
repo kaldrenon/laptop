@@ -1,6 +1,6 @@
 [core]
   editor = nvim
-  autocrlf = true
+  autocrlf = false
   filemode = false
   safecrlf = false
 
@@ -63,8 +63,8 @@
   cleanup        = "!git stash && git add -A && git reset --hard HEAD && git status"
   conflicts      = diff --name-only --diff-filter=U
 
-  jco = "!f() { git checkout trn-$1; }; f"
-  jnb = "!f() { git checkout -b trn-$1; }; f"
+  cco = "!f() { git checkout trn-$1; }; f"
+  cnb = "!f() { git checkout -b trn-$1; }; f"
 [pull]
   rebase = false
 
