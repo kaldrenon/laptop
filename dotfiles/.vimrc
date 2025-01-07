@@ -33,9 +33,9 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'groenewege/vim-less'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mattn/emmet-vim'
-Plug 'rust-lang/rust.vim'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
 Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
+Plug 'rust-lang/rust.vim'
 
 " Functionality plugins
 Plug 'AndrewRadev/splitjoin.vim'
@@ -70,9 +70,11 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'vim-test/vim-test'
 
 " Colo Plugins
-Plug 'cseelus/vim-colors-clearance'
-Plug 'flazz/vim-colorschemes'
-Plug 'zefei/vim-colortuner'
+Plug 'preservim/vim-colors-pencil'
+Plug 'rebelot/kanagawa.nvim'
+Plug 'sainnhe/everforest'
+
+" Airline Themes
 Plug 'mhartington/oceanic-next'
 
 " Dependencies - plugins I don't use directly but that other plugins need
@@ -102,9 +104,9 @@ filetype plugin indent on
 
 if (has("termguicolors"))
   set termguicolors
-  execute 'colorscheme pencil'
+  execute 'colorscheme everforest'
 else
-  for cs in ['pencil', 'spacegray', 'wombat256mod', 'wombat256', 'default']
+  for cs in ['everforest', 'kanagawa', 'pencil']
     try
       execute 'colorscheme' cs
       break
