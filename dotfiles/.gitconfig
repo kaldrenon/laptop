@@ -1,8 +1,9 @@
 [core]
   editor = nvim
-  autocrlf = false
+  autocrlf = input
   filemode = false
   safecrlf = false
+  eol = lf
 
 [user]
   name = Andrew Fallows
