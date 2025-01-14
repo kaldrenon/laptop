@@ -53,6 +53,7 @@ Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-tmuxify'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'notalex/vim-run-live'
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
@@ -104,9 +105,9 @@ filetype plugin indent on
 
 if (has("termguicolors"))
   set termguicolors
-  execute 'colorscheme everforest'
+  execute 'colorscheme kanagawa-wave'
 else
-  for cs in ['everforest', 'kanagawa', 'pencil']
+  for cs in ['kanagawa-wave', 'everforest', 'pencil']
     try
       execute 'colorscheme' cs
       break
