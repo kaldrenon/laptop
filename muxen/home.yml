@@ -1,14 +1,17 @@
-# /home/kaldrenon/.config/tmuxinator/home.yml
+# /home/afallows/.config/tmuxinator/home.yml
 
 name: home
-root: ~/
+root: ~/laptop
+
 windows:
-  - editor:
+  - dotfiles:
       layout: even-horizontal
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
       panes:
         - dotfiles
-        - nv -o ~/.config/tmuxinator/*
+        - muxen
   - crawl: crawl
+  - script:
+      layout: even-horizontal
+      panes:
+        - nv -o linux Aptfile
+        - git status
