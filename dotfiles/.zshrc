@@ -196,6 +196,11 @@ vimdf() {
   eval ${VIM_BIN} -o `git diff --name-only` `git diff --cached --name-only`
 }
 
+vimout() {
+  eval ${VIM_BIN} <($@)
+}
+alias vo="vimout"
+
 ######
 # Ruby Dev
 ######
