@@ -102,7 +102,6 @@ call plug#end()
 
 filetype plugin indent on
 
-
 if (has("termguicolors"))
   set termguicolors
   execute 'colorscheme kanagawa-wave'
@@ -121,6 +120,8 @@ let g:coc_disable_startup_warning = 1
 
 let g:python3_host_prog='/usr/bin/python3'
 let g:pymode_python = 'python3'
+
+let g:loaded_perl_provider = 0
 
 let g:airline_theme='oceanicnext'
 let g:airline_left_sep=' '
@@ -407,7 +408,15 @@ autocmd BufRead,BufNewFile *.god setfiletype rb
 autocmd BufNewFile,BufRead,BufReadPost *.jade.html set filetype=jade
 
 " Always remove CR from files on open
-"autocmd BufNewFile,BufRead,BufReadPost %s///g
+fun! StripCRLF()
+    " Don't strip on these filetypes
+    if &ft =~ 'vim'
+        return
+    endif
+    %s///e
+endfun
+
+au BufReadPost * call StripCRLF()
 
 autocmd BufNewFile,BufNewFile html,javascript,css,sass,ruby let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
 
