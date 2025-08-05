@@ -1,6 +1,8 @@
 # Antigen bundles
 source ~/antigen.zsh
 
+antigen bundle git
+antigen bundle gitfast
 antigen bundle emallson/gulp-zsh-completion
 antigen bundle olivierverdier/zsh-git-prompt
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -19,6 +21,8 @@ setopt autocd
 setopt extendedglob
 unsetopt beep
 bindkey -v
+
+fpath=(~/.zsh $fpath)
 
 # Search up through recent commands
 bindkey -M vicmd '?' history-incremental-search-backward
@@ -233,12 +237,14 @@ rspeak () {
 alias gs="git status"
 
 # git add, status, prepare to commit
-gcs() {
+git_clear_add_status() {
   clear
   git add -A
   git status
   print -z 'git commit -m "'
 }
+
+alias gcs="git_clear_add_status"
 
 ######
 # Utility
