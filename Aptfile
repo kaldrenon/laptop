@@ -1,5 +1,7 @@
 build-essential
+crawl
 curl
+fzf
 git
 htop
 keychain
@@ -17,6 +19,8 @@ ripgrep
 silversearcher-ag
 tmux
 tree
+unzip
 vim
 wget
+zip
 zlib1g-dev
