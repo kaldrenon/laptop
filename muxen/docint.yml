@@ -1,7 +1,7 @@
 # /home/afallows/.config/tmuxinator/trin.yml
 
-name: trinity8
-root: ~/Trinity8
+name: doc-int
+root: ~/doc-int
 
 windows:
   - code:
