@@ -9,6 +9,7 @@ libffi-dev
 libssl-dev
 libtool
 libyaml-dev
+net-tools
 openssl
 postgresql
 postgresql-contrib

@@ -484,4 +484,3 @@ nnoremap z] }zt
 " Netrw
 let g:netrw_liststyle=3
 nnoremap <silent><space>gn :Explore<cr>
-
