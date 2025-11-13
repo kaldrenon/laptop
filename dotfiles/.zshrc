@@ -363,3 +363,9 @@ source $HOME/.asdf/asdf.sh
 /usr/bin/keychain -q --nogui $HOME/.ssh/kaldrenon_key
 /usr/bin/keychain -q --nogui $HOME/.ssh/afallows_key
 source $HOME/.keychain/$HOST-sh
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
+  export PATH="${PATH}:/home/kaldrenon/.cargo/bin"
