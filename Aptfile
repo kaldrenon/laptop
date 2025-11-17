@@ -9,6 +9,7 @@ libffi-dev
 libssl-dev
 libtool
 libyaml-dev
+neovim
 net-tools
 openssl
 postgresql
@@ -25,3 +26,4 @@ vim
 wget
 zip
 zlib1g-dev
+zsh
