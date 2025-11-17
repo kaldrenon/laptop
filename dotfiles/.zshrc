@@ -67,9 +67,6 @@ alias wat='man'
 
 alias drop='cd ~/Dropbox/'
 alias code='cd ~/Dropbox/code'
-alias cdh='cd ~/home'
-
-alias clip="nc localhost 8377"
 
 alias hl="history -D -n -1"
 
@@ -360,12 +357,18 @@ compinit
 export PATH="$HOME/.bin:$PATH"
 source $HOME/.asdf/asdf.sh
 
-/usr/bin/keychain -q --nogui $HOME/.ssh/kaldrenon_key
-/usr/bin/keychain -q --nogui $HOME/.ssh/afallows_key
+if [ ! -f $HOME/.ssh/kaldrenon_key ]; then
+  /usr/bin/keychain -q --nogui $HOME/.ssh/kaldrenon_key
+fi
+
+if [ ! -f $HOME/.ssh/kaldrenon_key ]; then
+  /usr/bin/keychain -q --nogui $HOME/.ssh/afallows_key
+fi
+
 source $HOME/.keychain/$HOST-sh
 
-. "$HOME/.atuin/bin/env"
+#. "$HOME/.atuin/bin/env"
 
-eval "$(atuin init zsh)"
+#eval "$(atuin init zsh)"
 
-  export PATH="${PATH}:/home/kaldrenon/.cargo/bin"
+export PATH="${PATH}:/home/kaldrenon/.cargo/bin"
