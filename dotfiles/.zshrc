@@ -344,8 +344,11 @@ zle -N zle-keymap-select
 # Ensure local/bin precedes bin, add Dropbox to PATH
 PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 PATH="$PATH:/opt/mssql-tools/bin"
+PATH="$PATH:/opt/nvim-0.11.5/bin"
 PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin"
+export PATH="${PATH}:/home/kaldrenon/.cargo/bin"
+export PATH="$PATH:/usr/local/go/bin"
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.zshrc'
@@ -355,7 +358,6 @@ compinit
 # End of lines added by compinstall
 
 export PATH="$HOME/.bin:$PATH"
-source $HOME/.asdf/asdf.sh
 
 if [ ! -f $HOME/.ssh/kaldrenon_key ]; then
   /usr/bin/keychain -q --nogui $HOME/.ssh/kaldrenon_key
@@ -371,4 +373,3 @@ source $HOME/.keychain/$HOST-sh
 
 #eval "$(atuin init zsh)"
 
-export PATH="${PATH}:/home/kaldrenon/.cargo/bin"
