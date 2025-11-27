@@ -112,7 +112,7 @@ fi
 #
 fancy_echo "Symlink dotfiles"
 
-declare -a files=(".vimrc" ".zshrc" ".tmux.conf" ".gitconfig" ".githelpers")
+declare -a files=("nvim" ".zshrc" ".tmux.conf" ".gitconfig" ".githelpers")
 
 for file in "${files[@]}"
 do
@@ -154,27 +154,15 @@ curl https://sh.rustup.rs -sSf | sh
 $(which cargo) install --git https://github.com/MordechaiHadad/bob.git
 bob install stable
 
-# install
+# install support packages
 pip3 install neovim
 npm install -g neovim
 gem install neovim
 
-# link configs
-mkdir -p ~/.config/nvim
-ln -s $(pwd)/dotfiles/.vimrc $HOME/.config/nvim/init.vim
-ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
-ln -s $(pwd)/UltiSnips $HOME/.config/nvim/UltiSnips
-
-# download plug.vim
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-# run PlugInstall
-fancy_echo "Install neovim plugins"
-nvim -c PlugInstall -c qa
-
-# link snippets
-rm $HOME/.config/nvim/coc-settings.json
-ln -s $(pwd)/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
+# install latest nvim binary
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+chmod a+x nvim-linux-x86_64.appimage
+sudo mv nvim-linux-x86_64.appimage /usr/bin/nvim
 
 #
 # Update PATH
