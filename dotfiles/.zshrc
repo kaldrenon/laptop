@@ -304,6 +304,14 @@ alias la="=ls $LS_COLO_FLAG"
 
 function mcd() { mkdir -p $1 && cd $1; }
 
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd < "$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
+}
+
 # Show the task being run when aliases are involved
 _-accept-line () {
   emulate -L zsh
@@ -344,6 +352,7 @@ zle -N zle-keymap-select
 # Ensure local/bin precedes bin, add Dropbox to PATH
 PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 PATH="$PATH:/opt/mssql-tools/bin"
+PATH="$PATH:$HOME/.dotnet/tools"
 PATH="$PATH:/opt/nvim-0.11.5/bin"
 PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin"
