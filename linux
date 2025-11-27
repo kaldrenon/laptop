@@ -71,12 +71,9 @@ add_or_update_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 install_asdf_language() {
   local language="$1"
   local version
-  version="$(asdf list-all "$language" | grep -v "[a-z]" | tail -1)"
 
-  if ! asdf list "$language" | grep -Fq "$version"; then
-    asdf install "$language" "$version"
-    asdf global "$language" "$version"
-  fi
+  asdf install "$language" latest
+  asdf "set" --home "$language" latest
 }
 
 #
@@ -100,6 +97,15 @@ fi
 #
 fancy_echo "Installing latest Node..."
 install_asdf_language "nodejs"
+
+#
+# dotnet
+#
+fancy_echo "Installing latest dotnet..."
+install_asdf_language "dotnet"
+
+dotnet tool install --global easydotnet
+dotnet tool install --global dotnet-ef
 
 if [ -f "$HOME/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local..."
