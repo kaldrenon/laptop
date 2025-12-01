@@ -378,3 +378,8 @@ source $HOME/.keychain/$HOST-sh
 
 #eval "$(atuin init zsh)"
 
+# SSH Agent should be running, once
+if ! ps -ef | grep "[s]sh-agent" &>/dev/null; then
+  eval $(ssh-agent -s) > /dev/null
+  ssh-add -q ~/.ssh/*_key
+fi
