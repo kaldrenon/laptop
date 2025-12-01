@@ -149,11 +149,6 @@ else
   VIM_BIN="nvim"
 fi
 
-if [[ -a "${HOME}/.bin/nvim.appimage" ]]; then
-  VIM_BIN="ASDF_NODEJS_VERSION=19.7.0 ~/.bin/nvim.appimage"
-fi
-
-
 EDITOR="${VIM_BIN}"
 export EDITOR
 VISUAL="${VIM_BIN}"
