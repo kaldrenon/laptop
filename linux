@@ -161,9 +161,10 @@ fi
 fancy_echo "Install neovim"
 
 # prereqs
-curl https://sh.rustup.rs -sSf | sh
+curl https://sh.rustup.rs -sSf | sh -s -- -y
 $(which cargo) install --git https://github.com/MordechaiHadad/bob.git
 bob install stable
+cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
 
 # install support packages
 pip3 install neovim
