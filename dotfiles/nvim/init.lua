@@ -3,6 +3,7 @@ require('lualine').setup()
 require('mason').setup()
 
 local opt = vim.opt
+local o = vim.o
 local g = vim.g
 
 vim.cmd([[colorscheme kanagawa-wave]])
@@ -29,13 +30,13 @@ opt.showmode = false
 opt.redrawtime = 100000
 opt.encoding = "UTF-8"
 opt.fileformats = "unix"
-vim.o.clipboard = vim.o.clipboard .. 'unnamedplus'
+o.clipboard = o.clipboard .. 'unnamedplus'
 opt.shortmess = 'ltToOcF'
 opt.wildmode = 'longest,list'
 opt.termguicolors = true
 -- Highlight matched HTML tags
 opt.showmatch = true
-vim.o.matchpairs = vim.o.matchpairs .. ",<:>"
+o.matchpairs = o.matchpairs .. ",<:>"
 opt.matchtime = 3
 
 -- Make wildcard completion behave like zsh
@@ -87,6 +88,20 @@ opt.mouse = 'a'
 -- Use Ag over Grep
 opt.grepprg = "ag --nogroup --nocolor"
 
+-- remove CR on paste
+o.clipboard = "unnamed,unnamedplus"
+g.clipboard = {
+  name = 'WslClipboard',
+  copy = {
+    ['+'] = 'clip.exe',
+    ['*'] = 'clip.exe',
+  },
+  paste = {
+    ['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    ['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+  },
+  cache_enabled = 0,
+}
 -- Settings
 g.python3_host_prog='/usr/bin/python3'
 g.pymode_python = 'python3'
