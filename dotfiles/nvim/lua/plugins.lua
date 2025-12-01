@@ -142,7 +142,7 @@ return {
   'janko/vim-test',
   'kana/vim-textobj-user',
   'kchmck/vim-coffee-script',
-  'kien/ctrlp.vim',
+  'ctrlp/ctrlp.vim',
   'lambdalisue/suda.vim',
   'martinda/Jenkinsfile-vim-syntax',
   'mattn/gist-vim',

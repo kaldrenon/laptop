@@ -107,6 +107,9 @@ install_asdf_language "dotnet"
 dotnet tool install --global easydotnet
 dotnet tool install --global dotnet-ef
 
+fancy_echo "Installing latest lua..."
+install_asdf_language "lua"
+
 if [ -f "$HOME/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local..."
   # shellcheck disable=SC1090

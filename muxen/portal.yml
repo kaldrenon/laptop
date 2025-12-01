@@ -55,3 +55,4 @@ windows:
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
 # attach: false
+

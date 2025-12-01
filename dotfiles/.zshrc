@@ -75,8 +75,6 @@ alias vup='vagrant up'
 alias vdown='vagrant halt'
 alias vkill='vagrant halt && vagrant destroy -f'
 
-alias kiex="~/.kiex/bin/kiex"
-
 alias dc='docker-compose'
 
 alias dcr='docker-compose run --rm app'
@@ -84,6 +82,7 @@ alias dcrt='docker-compose run --rm -e RAILS_ENV=test app'
 
 alias dce='docker-compose exec app'
 alias dcet='docker-compose exec -e RAILS_ENV=test app'
+
 dca() {
   docker attach $(docker-compose ps -q app)
 }
@@ -161,10 +160,9 @@ VISUAL="${VIM_BIN}"
 export VISUAL
 alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
-alias vpi="${VIM_BIN} -c PluginInstall"
 alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
 
-alias dotfiles="cd ~ && ${VIM_BIN} -o .vimrc .zshrc .tmux.conf .githelpers .gitconfig .profile"
+alias dotfiles="cd ~ && ${VIM_BIN} -o .zshrc .tmux.conf .githelpers .gitconfig .profile ~/.config/nvim/**/*.lua"
 alias muxen="cd ~/.config/tmuxinator/ && ${VIM_BIN} -o *.yml"
 
 HAS_HUB=`which hub`
