@@ -343,14 +343,17 @@ zle -N zle-keymap-select
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
 # Ensure local/bin precedes bin, add Dropbox to PATH
-PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 PATH="$PATH:/opt/mssql-tools/bin"
 PATH="$PATH:$HOME/.dotnet/tools"
 PATH="$PATH:/opt/nvim-0.11.5/bin"
 PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin"
-export PATH="${PATH}:/home/kaldrenon/.cargo/bin"
-export PATH="$PATH:/usr/local/go/bin"
+PATH="${PATH}:/home/kaldrenon/.cargo/bin"
+PATH="$PATH:/usr/local/go/bin"
+PATH="$PATH:/.dotnet/tools"
+PATH="$PATH:$HOME/.dotnet/tools"
+export PATH="$PATH:$HOME/.asdf/bin"
+export PATH="$PATH:$HOME/.asdf/shims"
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.zshrc'

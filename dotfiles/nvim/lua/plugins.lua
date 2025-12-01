@@ -33,12 +33,6 @@ return {
     },
     keys = {
       {
-        "<C-p>",
-        mode = { "n", "v" },
-        "<cmd>Yazi<cr>",
-        desc = "Open yazi at the current file",
-      },
-      {
         -- Open in the current working directory
         "<leader>cw",
         "<cmd>Yazi cwd<cr>",
@@ -112,7 +106,7 @@ return {
         documentation = { auto_show = false },
         list = {
           selection = {
-            preselect = true
+            preselect = false
           }
         }
       },
@@ -140,6 +134,11 @@ return {
     },
     opts_extend = { "sources.default" }
   },
+  {
+    'nvim-telescope/telescope.nvim', tag = 'v0.2.0',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   'EinfachToll/DidYouMean',
   'Lokaltog/vim-easymotion',
   'OmniSharp/omnisharp-vim',
@@ -154,7 +153,6 @@ return {
   'janko/vim-test',
   'kana/vim-textobj-user',
   'kchmck/vim-coffee-script',
-  'ctrlp/ctrlp.vim',
   'lambdalisue/suda.vim',
   'martinda/Jenkinsfile-vim-syntax',
   'mattn/gist-vim',
