@@ -1,6 +1,7 @@
 require("config.lazy")
 require('lualine').setup()
 require('mason').setup()
+require("nvim-tree").setup()
 
 local opt = vim.opt
 local o = vim.o
@@ -167,6 +168,10 @@ vim.keymap.set('n', 'K', 'kJ')
 
 -- Clear search highlighting with \c
 vim.keymap.set('n', '<space>l', ':nohls<CR>', { silent = true })
+
+vim.keymap.set('n', '<C-p>', ':Yazi<CR>S', { silent = true })
+vim.keymap.set('n', '<C-o>', ':Yazi<CR>s', { silent = true })
+vim.keymap.set('n', '-', ':NvimTreeToggle<CR>', { silent = true })
 
 -- Various leader maps
 

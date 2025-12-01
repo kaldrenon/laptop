@@ -33,7 +33,7 @@ return {
     },
     keys = {
       {
-        "-",
+        "<C-p>",
         mode = { "n", "v" },
         "<cmd>Yazi<cr>",
         desc = "Open yazi at the current file",
@@ -163,10 +163,10 @@ return {
   'mhartington/oceanic-next',
   'mhinz/vim-signify',
   'mhinz/vim-tmuxify',
-  'mikavilpas/yazi.nvim',
   'mxw/vim-jsx',
   'nanotee/sqls.nvim',
   'notalex/vim-run-live',
+  'nvim-tree/nvim-tree.lua',
   'nvim-tree/nvim-web-devicons',
   'othree/html5.vim',
   'pangloss/vim-javascript',
