@@ -152,6 +152,9 @@ return {
       window = {
         position = "left",
         width = 30,
+        mappings = {
+          ["<cr>"] = { "open_split" }
+        }
       }
     },
     lazy = false, -- neo-tree will lazily load itself
