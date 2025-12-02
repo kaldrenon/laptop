@@ -13,6 +13,7 @@ require("toggleterm").setup {
     border = 'single'
   }
 }
+require("luasnip.loaders.from_snipmate").lazy_load()
 
 local opt = vim.opt
 local o = vim.o
