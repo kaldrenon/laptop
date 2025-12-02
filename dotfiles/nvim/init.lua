@@ -1,13 +1,12 @@
 require("config.lazy")
 require('lualine').setup()
 require('mason').setup()
-require("nvim-tree").setup()
 require('keys')
 require("toggleterm").setup {
   open_mapping = [[<c-\>]],
   direction = 'float',
   float_opts = {
-    border = 'shadow'
+    border = 'single'
   }
 }
 

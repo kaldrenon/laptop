@@ -19,7 +19,7 @@ vim.keymap.set('n', 'K', 'kJ')
 -- Clear search highlighting with \c
 vim.keymap.set('n', '<space>l', ':nohls<CR>', { silent = true })
 
-vim.keymap.set('n', '-', ':NvimTreeToggle<CR>', { silent = true })
+vim.keymap.set('n', '-', ':Neotree toggle reveal left<CR>', { silent = true })
 
 -- Various leader maps
 

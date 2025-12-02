@@ -140,6 +140,22 @@ return {
   },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   { 'akinsho/toggleterm.nvim', version = "*", config = true },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons", -- optional, but recommended
+    },
+    opts = {
+      window = {
+        position = "left",
+        width = 30,
+      }
+    },
+    lazy = false, -- neo-tree will lazily load itself
+  },
   'EinfachToll/DidYouMean',
   'Lokaltog/vim-easymotion',
   'OmniSharp/omnisharp-vim',
@@ -165,7 +181,6 @@ return {
   'mxw/vim-jsx',
   'nanotee/sqls.nvim',
   'notalex/vim-run-live',
-  'nvim-tree/nvim-tree.lua',
   'nvim-tree/nvim-web-devicons',
   'othree/html5.vim',
   'pangloss/vim-javascript',
