@@ -103,7 +103,6 @@ opt.grepprg = "ag --nogroup --nocolor"
 
 -- remove CR on paste
 o.clipboard = "unnamed,unnamedplus"
-g.mapleader = "\\"
 g.clipboard = {
   name = 'WslClipboard',
   copy = {

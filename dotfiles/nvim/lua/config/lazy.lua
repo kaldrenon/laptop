@@ -17,6 +17,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
+vim.g.mapleader = "\\"
 require("lazy").setup({
   spec = {
     -- import your plugins

@@ -149,6 +149,13 @@ return {
       "nvim-tree/nvim-web-devicons", -- optional, but recommended
     },
     opts = {
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = true,
+        },
+      },
       window = {
         position = "left",
         width = 30,
