@@ -21,20 +21,21 @@ vim.keymap.set('n', '<space>l', ':nohls<CR>', { silent = true })
 
 vim.keymap.set('n', '-', ':Neotree toggle reveal left<CR>', { silent = true })
 
--- Various leader maps
-
 -- reduce down to current buffer
 vim.keymap.set('n', '<Leader>o', ':only<cr>', { silent = true })
 
--- lets me use snippets in mappings!
-vim.keymap.set('i', '<c-b>', '<C-R>=UltiSnips_ExpandSnippetOrJump()<cr>', { silent = true })
+-- Snippets
+local ls = require("luasnip")
 
--- minor cursor adjust without leaving insert mode
-vim.keymap.set('i', '<C-h>', '<left>')
-vim.keymap.set('i', '<C-l>', '<right>')
+vim.keymap.set({"i"}, "<C-J>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-H>", function() ls.jump(-1) end, {silent = true})
 
--- Save and quit in the ZZ ZQ family
-vim.keymap.set('n', 'ZA', ':wqa<cr>')
+vim.keymap.set({"i", "s"}, "<C-E>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, {silent = true})
 
 -- Better yank
 vim.keymap.set('n', 'Y', 'y$')
@@ -47,12 +48,12 @@ vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<cr><C-w>_zz', { silent = true })
 vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<cr>', { silent = true })
 
 -- Fast zoom and even-out
-vim.keymap.set('n', '<C-=>', '<C-w>=', { silent = true })
 vim.keymap.set('n', '<C-m>', '<C-w>_', { silent = true })
 
 -- recapitalize a word
 vim.keymap.set('n', '<space>c', 'viw~', { silent = true })
 
+-- Syntax and Lint
 vim.keymap.set('n', '<space>sc', ':SyntasticCheck<cr>', { silent = true })
 vim.keymap.set('n', '<space>sC', ':lclose<cr><C-w>_', { silent = true })
 
@@ -104,4 +105,5 @@ vim.keymap.set('n', 'z]', '}zt')
 
 -- Netrw
 vim.keymap.set('n', '<space>gn', ':Explore<cr>', { silent = true })
+
 

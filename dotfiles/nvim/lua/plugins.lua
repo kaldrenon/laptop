@@ -159,6 +159,12 @@ return {
     },
     lazy = false, -- neo-tree will lazily load itself
   },
+  {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release),
+    build = "make install_jsregexp"
+  },
+  'AlexvZyl/nordic.nvim',
   'EinfachToll/DidYouMean',
   'Lokaltog/vim-easymotion',
   'OmniSharp/omnisharp-vim',
@@ -194,6 +200,7 @@ return {
   'ryanoasis/vim-devicons',
   'sainnhe/everforest',
   'scrooloose/syntastic',
+  'shaunsingh/nord.nvim',
   'slim-template/vim-slim',
   'terryma/vim-expand-region',
   'tomtom/tcomment_vim',

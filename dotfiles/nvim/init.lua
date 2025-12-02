@@ -1,5 +1,9 @@
 require("config.lazy")
-require('lualine').setup()
+require('lualine').setup({
+  options = {
+    theme = 'nordic'
+  }
+})
 require('mason').setup()
 require('keys')
 require("toggleterm").setup {
@@ -14,7 +18,8 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
-vim.cmd([[colorscheme kanagawa-wave]])
+-- vim.cmd([[colorscheme kanagawa-wave]])
+vim.cmd([[colorscheme nordic]])
 
 ----stuff I still have to figure out
 -- Default height of window is maxxed on new
@@ -98,6 +103,7 @@ opt.grepprg = "ag --nogroup --nocolor"
 
 -- remove CR on paste
 o.clipboard = "unnamed,unnamedplus"
+g.mapleader = "\\"
 g.clipboard = {
   name = 'WslClipboard',
   copy = {
