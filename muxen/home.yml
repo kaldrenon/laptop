@@ -4,15 +4,6 @@ name: home
 root: ~/laptop
 
 windows:
-  - dotfiles:
-      layout: even-horizontal
-      panes:
-        - dotfiles
-        - muxen
+  - dotfiles: dotfiles
   - crawl: crawl
-  - script:
-      layout: even-horizontal
-      panes:
-        - nv -o linux Aptfile
-        - git status
 
