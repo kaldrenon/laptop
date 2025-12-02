@@ -1,0 +1,8 @@
+.gemrc
+.gitconfig
+.githelpers
+.irbrc
+.tmux.conf
+.zshenv
+.zshrc
+nvim

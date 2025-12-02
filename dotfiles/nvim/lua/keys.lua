@@ -45,7 +45,6 @@ vim.keymap.set('n', '<C-h>', ':TmuxNavigateLeft<cr>', { silent = true })
 vim.keymap.set('n', '<C-j>', ':TmuxNavigateDown<cr><C-w>_zz', { silent = true })
 vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<cr><C-w>_zz', { silent = true })
 vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<cr>', { silent = true })
-vim.keymap.set('n', '<C-\\>', ':TmuxNavigatePrevious<cr>', { silent = true })
 
 -- Fast zoom and even-out
 vim.keymap.set('n', '<C-=>', '<C-w>=', { silent = true })

@@ -123,7 +123,7 @@ fi
 #
 fancy_echo "Symlink dotfiles"
 
-declare -a files=("nvim" ".zshrc" ".tmux.conf" ".gitconfig" ".githelpers")
+declare -a files=($(cat Linkfile))
 
 for file in "${files[@]}"
 do
