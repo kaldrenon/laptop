@@ -157,8 +157,8 @@ alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
 alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
 
-alias dotfiles="cd ~ && ${VIM_BIN} -o .zshrc .tmux.conf .githelpers .gitconfig .profile ~/.config/nvim/**/*.lua"
-alias muxen="cd ~/.config/tmuxinator/ && ${VIM_BIN} -o *.yml"
+alias dotfiles="cd $HOME/laptop && ${VIM_BIN} -o dotfiles/.* dotfiles/nvim/**/*.lua"
+alias muxen="cd $HOME/laptop && ${VIM_BIN} -o muxen/*.yml"
 
 HAS_HUB=`which hub`
 if [ ${HAS_HUB} != "hub not found" ]; then
