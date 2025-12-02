@@ -1,14 +1,15 @@
 # Antigen bundles
 source ~/antigen.zsh
 
-antigen bundle git
-antigen bundle gitfast
-antigen bundle emallson/gulp-zsh-completion
-antigen bundle olivierverdier/zsh-git-prompt
-antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle bobthecow/git-flow-completion
 antigen bundle docker
+antigen bundle emallson/gulp-zsh-completion
 antigen bundle felixr/docker-zsh-completion
+antigen bundle git
+antigen bundle gitfast
+antigen bundle mollifier/cd-gitroot
+antigen bundle olivierverdier/zsh-git-prompt
+antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
 source ~/.config/tmuxinator.zsh
@@ -235,6 +236,7 @@ git_clear_add_status() {
 }
 
 alias gcs="git_clear_add_status"
+alias cdg="cd-gitroot"
 
 ######
 # Utility
