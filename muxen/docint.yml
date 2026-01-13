@@ -1,7 +1,7 @@
 # /home/afallows/.config/tmuxinator/trin.yml
 
 name: doc-int
-root: ~/doc-int
+root: ~/code/doc-int
 
 windows:
   - code:

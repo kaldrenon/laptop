@@ -1,7 +1,7 @@
 # /home/afallows/.config/tmuxinator/trin.yml
 
 name: database
-root: ~/database
+root: ~/code/database
 
 windows:
   - code:

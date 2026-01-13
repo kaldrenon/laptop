@@ -158,7 +158,7 @@ alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
 alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
 
-alias dotfiles="cd $HOME/laptop && ${VIM_BIN} -o dotfiles/.* dotfiles/nvim/**/*.lua"
+alias dotfiles="cd $HOME/laptop && ${VIM_BIN} -o dotfiles/nvim/**/*.lua dotfiles/.*"
 alias muxen="cd $HOME/laptop && ${VIM_BIN} -o muxen/*.yml"
 
 HAS_HUB=`which hub`

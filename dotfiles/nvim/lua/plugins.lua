@@ -2,13 +2,26 @@ return {
   {
     "GustavEikaas/easy-dotnet.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim",
       'nvim-telescope/telescope.nvim'
     },
     config = function()
      local dotnet = require("easy-dotnet")
 
      dotnet.setup({
+      terminal = function(path, action, args, ctx)
+        args = args or ""
+        local commands = {
+          run = function() return string.format("%s %s", ctx.cmd, args) end,
+          test = function() return string.format("%s %s", ctx.cmd, args) end,
+          restore = function() return string.format("%s %s", ctx.cmd, args) end,
+          build = function() return string.format("%s --property WarningLevel=0 %s", ctx.cmd, args) end,
+          watch = function() return string.format("dotnet watch --project %s %s", path, args) end,
+        }
+        local command = commands[action]()
+        if require("easy-dotnet.extensions").isWindows() == true then command = command .. "\r" end
+        vim.cmd("split")
+        vim.cmd("term " .. command)
+      end,
        lsp = {
          enabled = true,
          roslynator_enabled = true
@@ -63,6 +76,10 @@ return {
   {
     "mason-org/mason.nvim",
     opts = {
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry"
+      },
       ui = {
         icons = {
           package_installed = "✓",
@@ -159,10 +176,72 @@ return {
     version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release),
     build = "make install_jsregexp"
   },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      local dap = require "dap"
+
+      -- Keymaps for controlling the debugger
+      vim.keymap.set("n", "q", function()
+        dap.terminate()
+        dap.clear_breakpoints()
+      end, { desc = "Terminate and clear breakpoints" })
+
+      vim.keymap.set("n", "<F5>", dap.continue, { desc = "Start/continue debugging" })
+      vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Step over" })
+      vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Step into" })
+      vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Step out" })
+      vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
+      vim.keymap.set("n", "<leader>dO", dap.step_over, { desc = "Step over (alt)" })
+      vim.keymap.set("n", "<leader>dC", dap.run_to_cursor, { desc = "Run to cursor" })
+      vim.keymap.set("n", "<leader>dr", dap.repl.toggle, { desc = "Toggle DAP REPL" })
+      vim.keymap.set("n", "<leader>dj", dap.down, { desc = "Go down stack frame" })
+      vim.keymap.set("n", "<leader>dk", dap.up, { desc = "Go up stack frame" })
+
+      -- .NET specific setup using `easy-dotnet`
+      require("easy-dotnet.netcoredbg").register_dap_variables_viewer() -- special variables viewer specific for .NET
+    end
+  },
+  {
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
   'AlexvZyl/nordic.nvim',
   'EinfachToll/DidYouMean',
   'Lokaltog/vim-easymotion',
-  'OmniSharp/omnisharp-vim',
   'OrangeT/vim-csharp',
   'ap/vim-css-color',
   'christoomey/vim-tmux-navigator',
@@ -178,7 +257,6 @@ return {
   'martinda/Jenkinsfile-vim-syntax',
   'mattn/gist-vim',
   'mattn/webapi-vim',
-  'mfussenegger/nvim-dap',
   'mhartington/oceanic-next',
   'mhinz/vim-signify',
   'mhinz/vim-tmuxify',
