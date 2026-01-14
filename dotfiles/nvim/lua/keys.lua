@@ -2,9 +2,17 @@
 local k = vim.keymap
 
 -- EasyDotnet
-k.set('n', '<space>db', ':Dotnet build<cr>')
-k.set('n', '<space>dr', ':Dotnet run<cr>')
-k.set('n', '<space>dt', ':Dotnet testrunner<cr>')
+k.set('n', '<space>db', ':Dotnet build<cr>', { silent = true })
+k.set('n', '<space>dr', ':Dotnet run<cr>', { silent = true })
+k.set('n', '<space>dt', ':Dotnet testrunner<cr>', { silent = true })
+k.set('n', 'gdd', ':lua vim.lsp.buf.definition()<cr>', { silent = true })
+k.set('n', 'gdf', ':lua vim.lsp.buf.references()<cr>', { silent = true })
+k.set('n', 'grr', ':lua vim.lsp.buf.rename()<cr>', { silent = true })
+
+-- Trouble
+k.set('n', 'gee', ':Trouble diagnostics toggle<cr>', { silent = true })
+k.set('n', 'gel', ':Trouble loclist toggle<cr>', { silent = true })
+k.set('n', 'geq', ':Trouble qflist toggle<cr>', { silent = true })
 
 -- Telescope
 local builtin = require('telescope.builtin')
@@ -12,6 +20,7 @@ k.set('n', '<C-o>', builtin.find_files, { desc = 'Telescope find files' })
 k.set('n', '<C-p>', builtin.live_grep, { desc = 'Telescope live grep' })
 k.set('n', '<C-b>', builtin.buffers, { desc = 'Telescope buffers' })
 k.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+k.set('n', '<leader>fs', ':Telescope luasnip<cr>', { desc = 'Telescope luasnip' })
 
 -- Swap j/k with gj/gk for normal, visual, and select modes
 k.set({'n', 'x', 'v'}, 'j', 'gj')
@@ -44,14 +53,16 @@ k.set({"i", "s"}, "<C-e>", function()
   end
 end, {silent = true})
 
+k.set('n', '<leader>se', ':LuaSnipEdit<cr>', { silent = true })
+
 -- Better yank
 k.set('n', 'Y', 'y$')
 k.set('n', 'gy', '"+y')
 
 -- Uncomment these and comment the ones above to enable tmux nav
 k.set('n', '<C-h>', ':TmuxNavigateLeft<cr>', { silent = true })
-k.set('n', '<C-j>', ':TmuxNavigateDown<cr><C-w>_zz', { silent = true })
-k.set('n', '<C-k>', ':TmuxNavigateUp<cr><C-w>_zz', { silent = true })
+k.set('n', '<C-j>', ':TmuxNavigateDown<cr>', { silent = true })
+k.set('n', '<C-k>', ':TmuxNavigateUp<cr>', { silent = true })
 k.set('n', '<C-l>', ':TmuxNavigateRight<cr>', { silent = true })
 
 -- Fast zoom and even-out

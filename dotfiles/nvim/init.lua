@@ -14,6 +14,7 @@ require("toggleterm").setup {
   }
 }
 require("luasnip.loaders.from_snipmate").lazy_load()
+require('telescope').load_extension('luasnip')
 
 local opt = vim.opt
 local o = vim.o
@@ -168,6 +169,7 @@ vim.api.nvim_create_user_command('Q', 'q', {})
 vim.api.nvim_create_user_command('Qa', 'qa', {})
 vim.api.nvim_create_user_command('Bd', 'bd', {})
 vim.api.nvim_create_user_command('RS', 'source ~/.vimrc', {})
+vim.api.nvim_create_user_command('LuaSnipEdit', 'lua require("luasnip.loaders").edit_snippet_files()', {})
 
 -- Autocmds
 local cg = vim.api.nvim_create_augroup('CursorLine', { clear = true })
