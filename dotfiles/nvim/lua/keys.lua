@@ -16,7 +16,7 @@ k.set('n', 'geq', ':Trouble qflist toggle<cr>', { silent = true })
 
 -- Telescope
 local builtin = require('telescope.builtin')
-k.set('n', '<C-o>', builtin.find_files, { desc = 'Telescope find files' })
+k.set('n', '<C-o>',  ':Telescope find_files hidden=true<cr>', { desc = 'Telescope find files' })
 k.set('n', '<C-p>', builtin.live_grep, { desc = 'Telescope live grep' })
 k.set('n', '<C-b>', builtin.buffers, { desc = 'Telescope buffers' })
 k.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })

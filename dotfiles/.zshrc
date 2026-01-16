@@ -114,6 +114,7 @@ HOST_OS=`uname`
 # Ubuntu/Debian
 if [[ $HOST_OS = 'Linux' ]]; then
   alias agi="sudo apt-get install -y"
+  alias agu="sudo apt-get update"
   alert() {
     echo $1
   }
@@ -220,6 +221,13 @@ rspeak () {
     alert "tests are red"
   fi
 }
+
+######
+# dotnet dev
+######
+alias dnb="dotnet build"
+alias dnr="dotnet run"
+alias dnt="dotnet test"
 
 ######
 # Git(Hub)
@@ -344,16 +352,16 @@ zle -N zle-keymap-select
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
-# Ensure local/bin precedes bin, add Dropbox to PATH
 PATH="$PATH:/opt/mssql-tools/bin"
 PATH="$PATH:$HOME/.dotnet/tools"
 PATH="$PATH:/opt/nvim-0.11.5/bin"
 PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
-PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:$HOME/Dropbox/bin:/usr/local/share/npm/bin:$HOME/.local/bin"
+PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:/usr/local/share/npm/bin:$HOME/.local/bin"
 PATH="${PATH}:/home/kaldrenon/.cargo/bin"
 PATH="$PATH:/usr/local/go/bin"
 PATH="$PATH:/.dotnet/tools"
 PATH="$PATH:$HOME/.dotnet/tools"
+PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
 export PATH="$PATH:$HOME/.asdf/bin"
 export PATH="$PATH:$HOME/.asdf/shims"
 
@@ -383,3 +391,4 @@ source $HOME/.keychain/$HOST-sh
 # SSH Agent should be running, once
 eval $(ssh-agent -s)
 ssh-add -q ~/.ssh/*_key
+export PATH="$PATH:/opt/mssql-tools18/bin"

@@ -27,7 +27,7 @@ return {
          roslynator_enabled = true
        },
        debugger = {
-         bin_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason/bin/netcoredbg.cmd"),
+         bin_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason/bin/netcoredbg"),
          auto_register_dap = true
        }
      })
@@ -164,9 +164,7 @@ return {
       window = {
         position = "left",
         width = 30,
-        mappings = {
-          ["<cr>"] = { "open_split" }
-        }
+        mappings = {}
       }
     },
     lazy = false, -- neo-tree will lazily load itself
@@ -182,7 +180,7 @@ return {
       local dap = require "dap"
 
       -- Keymaps for controlling the debugger
-      vim.keymap.set("n", "q", function()
+      vim.keymap.set("n", "<leader>q", function()
         dap.terminate()
         dap.clear_breakpoints()
       end, { desc = "Terminate and clear breakpoints" })
@@ -210,6 +208,18 @@ return {
     }, -- for default options, refer to the configuration section for custom setup.
     cmd = "Trouble",
   },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
   'AlexvZyl/nordic.nvim',
   'EinfachToll/DidYouMean',
   'Lokaltog/vim-easymotion',

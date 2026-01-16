@@ -1,4 +1,4 @@
-require("config.lazy")
+require('config.lazy')
 require('lualine').setup({
   options = {
     theme = 'nordic'
@@ -6,15 +6,33 @@ require('lualine').setup({
 })
 require('mason').setup()
 require('keys')
-require("toggleterm").setup {
+require('toggleterm').setup {
   open_mapping = [[<c-\>]],
   direction = 'float',
   float_opts = {
     border = 'single'
   }
 }
-require("luasnip.loaders.from_snipmate").lazy_load()
+require('luasnip.loaders.from_snipmate').lazy_load()
 require('telescope').load_extension('luasnip')
+require('lazydev').setup({
+  library = { 'nvim-dap-ui' },
+})
+
+local dap, dapui = require("dap"), require("dapui")
+dapui.setup()
+dap.listeners.before.attach.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated.dapui_config = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+  dapui.close()
+end
 
 local opt = vim.opt
 local o = vim.o
@@ -186,6 +204,11 @@ vim.api.nvim_create_autocmd('FileType', { pattern = 'xml', command = "setlocal o
 
 
 -- Extension to filetype config
+vim.filetype.add({
+  extension = {
+    cshtml = 'razor'
+  }
+})
 vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, { pattern = '*.tex', command = 'setfiletype tex' })
 vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead', 'BufReadPost'}, { pattern = '*.jade.html', command = 'set filetype=jade' })
 
