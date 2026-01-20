@@ -197,16 +197,6 @@ g.pymode_python = 'python3'
 
 g.loaded_perl_provider = 0
 
-g.syntastic_always_populate_loc_list = 1
-g.syntastic_auto_jump            = 0
-g.syntastic_auto_loc_list        = 0
-g.syntastic_enable_highlighting  = 1
-g.syntastic_enable_signs         = 1
-g.syntastic_python_python_exec   = '/usr/bin/python3'
-g.syntastic_scss_checkers        = 'scss_lint'
-g.syntastic_warning_symbol       = '->'
-g.syntastic_style_warning_symbol = 'S-'
-
 g.gist_clip_command = 'pbcopy'
 g.gist_open_browser_after_post = 1
 

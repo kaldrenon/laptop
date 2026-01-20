@@ -80,10 +80,6 @@ k.set('n', '<C-m>', '<C-w>_', { silent = true })
 -- recapitalize a word
 k.set('n', '<space>c', 'viw~', { silent = true })
 
--- Syntax and Lint
-k.set('n', '<space>sc', ':SyntasticCheck<cr>', { silent = true })
-k.set('n', '<space>sC', ':lclose<cr><C-w>_', { silent = true })
-
 -- * search in visual mode
 k.set('v', '*', 'y/<C-r>"<cr>')
 k.set('v', '<Tab>', ':Tabularize<space>/')

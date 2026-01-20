@@ -5,9 +5,9 @@ root: ~/code/trinity/
 
 windows:
   - code: nv
-  - server: dotnet run
+  - server: dotnet build
   - shell: git status
-  - jira: jiratui ui
+  - tests: dotnet watch test
 
 # Optional tmux socket
 # socket_name: foo

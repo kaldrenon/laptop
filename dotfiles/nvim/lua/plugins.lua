@@ -280,7 +280,6 @@ return {
   'rust-lang/rust.vim',
   'ryanoasis/vim-devicons',
   'sainnhe/everforest',
-  'scrooloose/syntastic',
   'shaunsingh/nord.nvim',
   'slim-template/vim-slim',
   'terryma/vim-expand-region',
