@@ -8,20 +8,20 @@ return {
      local dotnet = require("easy-dotnet")
 
      dotnet.setup({
-      terminal = function(path, action, args, ctx)
-        args = args or ""
-        local commands = {
-          run = function() return string.format("%s %s", ctx.cmd, args) end,
-          test = function() return string.format("%s %s", ctx.cmd, args) end,
-          restore = function() return string.format("%s %s", ctx.cmd, args) end,
-          build = function() return string.format("%s --property WarningLevel=0 %s", ctx.cmd, args) end,
-          watch = function() return string.format("dotnet watch --project %s %s", path, args) end,
-        }
-        local command = commands[action]()
-        if require("easy-dotnet.extensions").isWindows() == true then command = command .. "\r" end
-        vim.cmd("split")
-        vim.cmd("term " .. command)
-      end,
+       terminal = function(path, action, args, ctx)
+         args = args or ""
+         local commands = {
+           run = function() return string.format("%s %s", ctx.cmd, args) end,
+           test = function() return string.format("%s %s", ctx.cmd, args) end,
+           restore = function() return string.format("%s %s", ctx.cmd, args) end,
+           build = function() return string.format("%s --property WarningLevel=0 %s", ctx.cmd, args) end,
+           watch = function() return string.format("dotnet watch --project %s %s", path, args) end,
+         }
+         local command = commands[action]()
+         if require("easy-dotnet.extensions").isWindows() == true then command = command .. "\r" end
+         vim.cmd("split")
+         vim.cmd("term " .. command)
+       end,
        lsp = {
          enabled = true,
          roslynator_enabled = true
@@ -29,6 +29,9 @@ return {
        debugger = {
          bin_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason/bin/netcoredbg"),
          auto_register_dap = true
+       },
+       file_ignore_patterns = {
+         '^.git/'
        }
      })
     end
@@ -172,7 +175,11 @@ return {
   {
     "L3MON4D3/LuaSnip",
     version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release),
-    build = "make install_jsregexp"
+    build = "make install_jsregexp",
+    config = function()
+      local luasnip = require("luasnip")
+      require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
+    end
   },
   {
     "mfussenegger/nvim-dap",
@@ -219,7 +226,25 @@ return {
       },
     },
   },
-  { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
+  { 
+    'rcarriga/nvim-dap-ui', 
+    dependencies = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'}
+  },
+  {
+    'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    },
+    init = function() vim.g.barbar_auto_setup = false end,
+    opts = {
+      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+      -- animation = true,
+      -- insert_at_start = true,
+      -- .etc.
+    },
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+  },
   'AlexvZyl/nordic.nvim',
   'EinfachToll/DidYouMean',
   'Lokaltog/vim-easymotion',

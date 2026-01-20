@@ -16,9 +16,8 @@ k.set('n', 'geq', ':Trouble qflist toggle<cr>', { silent = true })
 
 -- Telescope
 local builtin = require('telescope.builtin')
-k.set('n', '<C-o>',  ':Telescope find_files hidden=true<cr>', { desc = 'Telescope find files' })
+k.set('n', '<C-o>', builtin.find_files, { desc = 'Telescope find files' })
 k.set('n', '<C-p>', builtin.live_grep, { desc = 'Telescope live grep' })
-k.set('n', '<C-b>', builtin.buffers, { desc = 'Telescope buffers' })
 k.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 k.set('n', '<leader>fs', ':Telescope luasnip<cr>', { desc = 'Telescope luasnip' })
 
@@ -59,11 +58,21 @@ k.set('n', '<leader>se', ':LuaSnipEdit<cr>', { silent = true })
 k.set('n', 'Y', 'y$')
 k.set('n', 'gy', '"+y')
 
--- Uncomment these and comment the ones above to enable tmux nav
 k.set('n', '<C-h>', ':TmuxNavigateLeft<cr>', { silent = true })
-k.set('n', '<C-j>', ':TmuxNavigateDown<cr>', { silent = true })
-k.set('n', '<C-k>', ':TmuxNavigateUp<cr>', { silent = true })
 k.set('n', '<C-l>', ':TmuxNavigateRight<cr>', { silent = true })
+
+k.set('n', '<C-j>', ':BufferNext<cr>', { silent = true })
+k.set('n', '<C-k>', ':BufferPrevious<cr>', { silent = true })
+k.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', { silent = true })
+k.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', { silent = true })
+k.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', { silent = true })
+k.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', { silent = true })
+k.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', { silent = true })
+k.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', { silent = true })
+k.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', { silent = true })
+k.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', { silent = true })
+k.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', { silent = true })
+k.set('n', '<C-b>', ':BufferPick<cr>', { silent = true })
 
 -- Fast zoom and even-out
 k.set('n', '<C-m>', '<C-w>_', { silent = true })
