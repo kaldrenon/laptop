@@ -229,6 +229,7 @@ alias dn="dotnet"
 alias dnb="dotnet build"
 alias dnr="dotnet run"
 alias dnt="dotnet test"
+alias dnw="dotnet watch"
 eval "$(dotnet completions script zsh)"
 
 ######

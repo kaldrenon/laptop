@@ -1,0 +1,8 @@
+# /home/afallows/.config/tmuxinator/datadog.yml
+
+name: datadog
+root: ~/code/datadog
+
+windows:
+  - code: nv
+  - shell: git status
