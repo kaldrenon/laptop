@@ -159,8 +159,8 @@ alias v="${VIM_BIN}"
 alias nv="${VIM_BIN}"
 alias vimp="${VIM_BIN} --startuptime ~/vim_start.log"
 
-alias dotfiles="cd $HOME/laptop && ${VIM_BIN}"
-alias muxen="cd $HOME/laptop && ${VIM_BIN} -o muxen/*.yml"
+alias dotfiles="cd $HOME/laptop && ${VIM_BIN} -- dotfiles/nvim/init.lua dotfiles/nvim/lua/plugins.lua dotfiles/nvim/lua/keys.lua dotfiles/.zshrc"
+alias muxen="cd $HOME/laptop && ${VIM_BIN} -- muxen/*.yml"
 
 HAS_HUB=`which hub`
 if [ ${HAS_HUB} != "hub not found" ]; then
@@ -169,27 +169,27 @@ fi
 
 # Search power
 vimag() {
-  eval ${VIM_BIN} -o `ag -l $1 $2`
+  eval ${VIM_BIN} -- `ag -l $1 $2`
 }
 
 # Open last commit's files
 vimdl() {
-  eval ${VIM_BIN} -o `git dlf` && cd -
+  eval ${VIM_BIN} -- `git dlf` && cd -
 }
 alias vl="vimdl"
 
 # Open files in merge conflict state
 vimconf() {
-  eval ${VIM_BIN} -o `git diff --name-only --diff-filter=U`
+  eval ${VIM_BIN} -- `git diff --name-only --diff-filter=U`
 }
 
 # Open all files breaking rubocop rules
 vimcops() {
-  eval ${VIM_BIN} -o `rubocop -f fi`
+  eval ${VIM_BIN} -- `rubocop -f fi`
 }
 
 vimdf() {
-  eval ${VIM_BIN} -o `git diff --name-only` `git diff --cached --name-only`
+  eval ${VIM_BIN} -- `git diff --name-only` `git diff --cached --name-only`
 }
 
 vimout() {
