@@ -225,9 +225,11 @@ rspeak () {
 ######
 # dotnet dev
 ######
+alias dn="dotnet"
 alias dnb="dotnet build"
 alias dnr="dotnet run"
 alias dnt="dotnet test"
+eval "$(dotnet completions script zsh)"
 
 ######
 # Git(Hub)

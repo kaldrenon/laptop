@@ -75,6 +75,15 @@ require('lazydev').setup({
   library = { 'nvim-dap-ui' },
 })
 
+vim.lsp.config('roslyn', {
+  settings = {
+    ['csharp|background_analysis'] = {
+      dotnet_analyzer_diagnostics_scope = 'openFiles',
+      dotnet_compiler_diagnostics_scope = 'fullSolution'
+    }
+  }
+})
+
 local dap, dapui = require("dap"), require("dapui")
 dapui.setup()
 dap.listeners.before.attach.dapui_config = function()
@@ -250,5 +259,6 @@ vim.filetype.add({
 })
 vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, { pattern = '*.tex', command = 'setfiletype tex' })
 vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead', 'BufReadPost'}, { pattern = '*.jade.html', command = 'set filetype=jade' })
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead', 'BufReadPost'}, { pattern = '*.cshtml', command = 'set filetype=razor' })
 
 vim.api.nvim_create_autocmd({'BufNewFile', 'BufNewFile'}, { pattern = {'html','javascript', 'css', 'sass', 'ruby'}, command = "let w:m2=matchadd('ErrorMsg', '\\%>100v.\\+', -1)" })
