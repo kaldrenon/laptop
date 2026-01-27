@@ -215,13 +215,6 @@ g.rust_recommended_style = 0
 
 g.jsx_ext_required = 0 -- Allow JSX in normal JS files
 
--- EasyMotion
-g.EasyMotion_leader_key = '<leader>'
-g.EasyMotion_keys = 'asdfjklzxcvqwer'
-g.EasyMotion_do_mapping = 0 -- Disable default mappings
-g.EasyMotion_smartcase = 1
-g.EasyMotion_startofline = 0 -- keep cursor column when JK motion
-
 g.netrw_liststyle = 3
 
 g.run_mode_map = '<Leader>rr'

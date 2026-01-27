@@ -1,10 +1,16 @@
 -- Keymaps
 local k = vim.keymap
 
+-- Lazy
+k.set('n', '<leader>ll', ':Lazy<cr>', { silent = true })
+k.set('n', '<leader>lu', ':Lazy update<cr>', { silent = true })
+k.set('n', '<leader>lx', ':Lazy clean<cr>', { silent = true })
+
 -- EasyDotnet
 k.set('n', '<space>db', ':Dotnet build<cr>', { silent = true })
 k.set('n', '<space>dr', ':Dotnet run<cr>', { silent = true })
 k.set('n', '<space>dt', ':Dotnet testrunner<cr>', { silent = true })
+k.set('n', '<space>dlr', ':Dotnet lsp restart<cr>', { silent = true })
 k.set('n', 'gdd', ':lua vim.lsp.buf.definition()<cr>', { silent = true })
 k.set('n', 'gdf', ':lua vim.lsp.buf.references()<cr>', { silent = true })
 k.set('n', 'grr', ':lua vim.lsp.buf.rename()<cr>', { silent = true })
@@ -89,34 +95,6 @@ k.set('n', '<Leader>a=', ':Tabularize /=<CR>')
 k.set('v', '<Leader>a=', ':Tabularize /=<CR>')
 k.set('n', '<Leader>a:', ':Tabularize /:\zs<CR>')
 k.set('v', '<Leader>a:', ':Tabularize /:\zs<CR>')
-
--- Bi-directional find motion
--- Jump to anywhere you want with minimal keystrokes, with just one key binding.
--- Version 2 Needs one more keystroke, but on average, it may be more comfortable.
-k.set('n', 's', '<Plug>(easymotion-s)')
-k.set('n', 'S', '<Plug>(easymotion-s2)')
-k.set('n', 't', '<Plug>(easymotion-t)')
-k.set('n', 'T', '<Plug>(easymotion-T2)')
-
-k.set('n', '<space>tn', ':TestNearest<CR>', { silent = true })
-k.set('n', '<space>tf', ':TestFile<CR>', { silent = true })
-k.set('n', '<space>ts', ':TestSuite<CR>', { silent = true })
-k.set('n', '<space>tl', ':TestLast<CR>', { silent = true })
-k.set('n', '<space>tg', ':TestVisit<CR>', { silent = true })
-
--- JK motions: Line motions
-k.set('n', '<Leader>j', '<Plug>(easymotion-j)')
-k.set('n', '<Leader>k', '<Plug>(easymotion-k)')
-
--- replace incremental search
-k.set('n', '/', '<Plug>(easymotion-sn)')
-k.set('n', '/', '<Plug>(easymotion-tn)')
-k.set('n', '?', '<Plug>(easymotion-sn)')
-k.set('n', '?', '<Plug>(easymotion-tn)')
-
--- replace n/N for fast targeting
-k.set('n', '<space>n', '<Plug>(easymotion-next)')
-k.set('n', '<space>N', '<Plug>(easymotion-prev)')
 
 -- Highlight long rows
 -- ctermbg 52 is dark red
