@@ -4,6 +4,7 @@
   filemode = false
   safecrlf = false
   eol = lf
+  pager = delta --line-numbers --dark
 
 [user]
   name = Andrew Fallows
@@ -70,3 +71,12 @@
 [pull]
   rebase = false
 
+[delta]
+  side-by-side = true
+  navigate = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+  conflictStyle = zdiff3
