@@ -262,7 +262,9 @@ return {
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
+-- noconf
   'AlexvZyl/nordic.nvim',
+  'EdenEast/nightfox.nvim',
   'EinfachToll/DidYouMean',
   'Lokaltog/vim-easymotion',
   'OrangeT/vim-csharp',

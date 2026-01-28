@@ -1,9 +1,12 @@
+-- Load Lazy for all plugin management
 require('config.lazy')
-require('lualine').setup({
-  options = {
-    theme = 'nordic'
-  }
-})
+
+-- Set colo before loading lualine, so that lualine will use it
+-- vim.cmd([[colorscheme kanagawa-wave]])
+-- vim.cmd([[colorscheme nordic]])
+vim.cmd([[colorscheme nightfox]])
+require('lualine').setup()
+
 require('mason').setup()
 require('keys')
 require('toggleterm').setup {
@@ -103,8 +106,6 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
--- vim.cmd([[colorscheme kanagawa-wave]])
-vim.cmd([[colorscheme nordic]])
 
 ----stuff I still have to figure out
 -- Default height of window is maxxed on new
@@ -249,7 +250,7 @@ vim.api.nvim_create_autocmd('FileType', { pattern = {'javascript', 'vue'}, comma
 vim.api.nvim_create_autocmd('FileType', { pattern = 'python', command = "setlocal omnifunc=pythoncomplete#Complete" })
 vim.api.nvim_create_autocmd('FileType', { pattern = 'python', command = "setlocal expandtab shiftwidth=2 softtabstop=2" })
 vim.api.nvim_create_autocmd('FileType', { pattern = 'xml', command = "setlocal omnifunc=xmlcomplete#CompleteTags" })
-
+vim.api.nvim_create_autocmd('BufReadPost', { pattern = 'quickfix', command = "nnoremap <buffer> <CR> <CR>" })
 
 -- Extension to filetype config
 vim.filetype.add({
