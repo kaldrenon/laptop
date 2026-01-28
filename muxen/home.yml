@@ -6,4 +6,5 @@ root: ~/laptop
 windows:
   - dotfiles: dotfiles
   - crawl: crawl
+  - shell: git status
 
