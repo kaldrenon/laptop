@@ -223,16 +223,6 @@ rspeak () {
 }
 
 ######
-# dotnet dev
-######
-alias dn="dotnet"
-alias dnb="dotnet build"
-alias dnr="dotnet run"
-alias dnt="dotnet test"
-alias dnw="dotnet watch"
-eval "$(dotnet completions script zsh)"
-
-######
 # Git(Hub)
 ######
 # alias gco="git checkout"
@@ -395,3 +385,14 @@ source $HOME/.keychain/$HOST-sh
 eval $(ssh-agent -s)
 ssh-add -q ~/.ssh/*_key
 export PATH="$PATH:/opt/mssql-tools18/bin"
+
+######
+# dotnet dev
+######
+alias dn="dotnet"
+alias dnb="dotnet build"
+alias dnr="dotnet run"
+alias dnt="dotnet test"
+alias dnw="dotnet watch"
+# needs to be after asdf so shims are in PATH
+eval "$(dotnet completions script zsh)"
