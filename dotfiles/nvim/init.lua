@@ -87,6 +87,15 @@ vim.lsp.config('roslyn', {
   }
 })
 
+require("conform").setup({
+  formatters_by_ft = {
+    csharp = { "csharpier" },
+    lua = { "stylua" },
+    -- Conform will run the first available formatter
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+  },
+})
+
 local dap, dapui = require("dap"), require("dapui")
 dapui.setup()
 dap.listeners.before.attach.dapui_config = function()

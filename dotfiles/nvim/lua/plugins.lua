@@ -262,7 +262,11 @@ return {
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
--- noconf
+  {
+    'stevearc/conform.nvim',
+    opts = {}
+  },
+  -- noconf
   'AlexvZyl/nordic.nvim',
   'EdenEast/nightfox.nvim',
   'EinfachToll/DidYouMean',
