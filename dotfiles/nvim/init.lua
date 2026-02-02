@@ -198,18 +198,7 @@ opt.grepprg = "ag --nogroup --nocolor"
 
 -- remove CR on paste
 o.clipboard = "unnamed,unnamedplus"
-g.clipboard = {
-  name = 'WslClipboard',
-  copy = {
-    ['+'] = 'clip.exe',
-    ['*'] = 'clip.exe',
-  },
-  paste = {
-    ['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    ['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-  },
-  cache_enabled = 0,
-}
+
 -- Settings
 g.python3_host_prog='/usr/bin/python3'
 g.pymode_python = 'python3'
