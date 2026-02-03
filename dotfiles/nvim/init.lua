@@ -78,24 +78,6 @@ require('lazydev').setup({
   library = { 'nvim-dap-ui' },
 })
 
-vim.lsp.config('roslyn', {
-  settings = {
-    ['csharp|background_analysis'] = {
-      dotnet_analyzer_diagnostics_scope = 'openFiles',
-      dotnet_compiler_diagnostics_scope = 'fullSolution'
-    }
-  }
-})
-
-require("conform").setup({
-  formatters_by_ft = {
-    csharp = { "csharpier" },
-    lua = { "stylua" },
-    -- Conform will run the first available formatter
-    javascript = { "prettierd", "prettier", stop_after_first = true },
-  },
-})
-
 local dap, dapui = require("dap"), require("dapui")
 dapui.setup()
 dap.listeners.before.attach.dapui_config = function()
@@ -114,7 +96,6 @@ end
 local opt = vim.opt
 local o = vim.o
 local g = vim.g
-
 
 ----stuff I still have to figure out
 -- Default height of window is maxxed on new
@@ -163,9 +144,10 @@ opt.hidden = true
 opt.number = true
 opt.ruler = true
 opt.background = 'dark'
+opt.fixeol = true
+opt.eol = true
 
 -- Might be nvim-only?
-
 opt.list = true
 opt.listchars = 'tab:‣-,trail:·'
 

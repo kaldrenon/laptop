@@ -279,6 +279,17 @@ return {
       build = true, -- Build from source if needed
     }
   },
+  {
+    "seblyng/roslyn.nvim",
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    opts = {
+      ['csharp|background_analysis'] = {
+        dotnet_analyzer_diagnostics_scope = 'fullSolution',
+        dotnet_compiler_diagnostics_scope = 'fullSolution'
+      }
+    },
+  },
   -- noconf
   'AlexvZyl/nordic.nvim',
   'EdenEast/nightfox.nvim',
