@@ -23,7 +23,7 @@ return {
          vim.cmd("term " .. command)
        end,
        lsp = {
-         enabled = true,
+         enabled = false,
          roslynator_enabled = true
        },
        debugger = {
@@ -94,7 +94,6 @@ return {
   },
   {
     'saghen/blink.cmp',
-
     -- use a release tag to download pre-built binaries
     version = '1.*',
     dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*' },
@@ -281,14 +280,20 @@ return {
   },
   {
     "seblyng/roslyn.nvim",
-    ---@module 'roslyn.config'
-    ---@type RoslynNvimConfig
-    opts = {
-      ['csharp|background_analysis'] = {
-        dotnet_analyzer_diagnostics_scope = 'fullSolution',
-        dotnet_compiler_diagnostics_scope = 'fullSolution'
-      }
-    },
+    init = function()
+      vim.filetype.add({
+        extension = {
+          razor = "razor",
+          cshtml = "razor",
+        },
+      })
+    end,
+    -- opts = {
+    --   ['csharp|background_analysis'] = {
+    --     dotnet_analyzer_diagnostics_scope = 'openFiles',
+    --     dotnet_compiler_diagnostics_scope = 'fullSolution'
+    --   }
+    -- },
   },
   -- noconf
   'AlexvZyl/nordic.nvim',

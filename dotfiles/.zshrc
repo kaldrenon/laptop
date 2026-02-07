@@ -189,7 +189,7 @@ vimcops() {
 }
 
 vimdf() {
-  eval ${VIM_BIN} -- `git diff --name-only` `git diff --cached --name-only`
+  eval ${VIM_BIN} -- `git diff --name-only` `git diff --cached --name-only` `git ls-files --others --exclude-standard`
 }
 
 vimout() {

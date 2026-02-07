@@ -93,6 +93,18 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
+vim.lsp.config('html-lsp', {
+  filetypes = { 'html', 'cshtml', 'razor' }
+})
+
+vim.lsp.enable({
+  'css-lsp',
+  'html-lsp',
+  'json-lsp',
+  'roslyn',
+  'vscode-html-language-server'
+})
+
 local opt = vim.opt
 local o = vim.o
 local g = vim.g
@@ -127,6 +139,7 @@ opt.termguicolors = true
 opt.showmatch = true
 o.matchpairs = o.matchpairs .. ",<:>"
 opt.matchtime = 3
+opt.updatetime = 250
 
 -- Make wildcard completion behave like zsh
 opt.wildmenu = true
