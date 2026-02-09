@@ -93,17 +93,12 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
-vim.lsp.config('html-lsp', {
-  filetypes = { 'html', 'cshtml', 'razor' }
+vim.lsp.config('html', {
+  filetypes = { 'razor', 'cshtml', 'html' },
 })
 
-vim.lsp.enable({
-  'css-lsp',
-  'html-lsp',
-  'json-lsp',
-  'roslyn',
-  'vscode-html-language-server'
-})
+require("mason-lspconfig").setup()
+
 
 local opt = vim.opt
 local o = vim.o

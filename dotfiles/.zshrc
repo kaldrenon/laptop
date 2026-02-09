@@ -345,6 +345,8 @@ zle -N zle-keymap-select
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
+PATH="$PATH:$HOME/.asdf/bin"
+PATH="$PATH:$HOME/.asdf/shims"
 PATH="$PATH:/opt/mssql-tools/bin"
 PATH="$PATH:$HOME/.dotnet/tools"
 PATH="$PATH:/opt/nvim-0.11.5/bin"
@@ -355,8 +357,6 @@ PATH="$PATH:/usr/local/go/bin"
 PATH="$PATH:/.dotnet/tools"
 PATH="$PATH:$HOME/.dotnet/tools"
 PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
-export PATH="$PATH:$HOME/.asdf/bin"
-export PATH="$PATH:$HOME/.asdf/shims"
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.zshrc'
