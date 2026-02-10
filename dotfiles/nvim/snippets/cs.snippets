@@ -1,61 +1,15 @@
-# cs.snippets
-# ===========
-#
-# Standard C-Sharp snippets for snipmate.
-#
-# Largely ported over from Visual Studio 2010 snippets plus
-# a few snippets from Resharper plus a few widely known snippets.
-#
-# Most snippets on elements (i.e. classes, properties)
-# follow suffix conventions. The order of suffixes to a snippet
-# is fixed.
-#
-# Snippet Suffix Order
-# --------------------
-# 1. Access Modifiers
-# 2. Class Modifiers
-#
-# Access Modifier Suffix Table
-# ----------------------------
-# + = public
-# & = internal
-# | = protected
-# - = private
-#
-# Example: `cls&` expands to `internal class $1`.
-# Access modifiers might be doubled to indicate
-# different modifiers for get/set on properties.
-# Example: `pb+-` expands to `public bool $1 { get; private set; }`
-#
-# Class Modifier Table
-# --------------------
-# ^ = static
-# % = abstract
-#
-# Example: `cls|%` expands to `protected abstract class $1`
-#
-# On method and property snippets, you can directly set
-# one of the common types int, string and bool, if desired,
-# just by appending the type modifier.
-#
-# Type Modifier Table
-# -------------------
-# i = integer
-# s = string
-# b = bool
-#
-# Example: `pi+&` expands to `public int $1 { get; internal set; }`
-#
-# I'll most propably add more stuff in here like
-# * List/Array constructio
-# * Mostly used generics
-# * Linq
-# * Funcs, Actions, Predicates
-# * Lambda
-# * Events
-#
-# Feedback is welcome!
-#
+# logging
+snippet log
+  Logger.Info("${0:message}");
+
+snippet loge
+  Logger.Error("${0:message}");
+
+snippet logd
+  Logger.Debug("${0:message}");
+
+snippet logw
+  Logger.Warning("${0:message}");
 
 # if condition
 snippet if
@@ -112,7 +66,7 @@ snippet each
   }
 
 # interfaces
-snippet interface
+snippet inf
   public interface ${1:`vim_snippets#Filename()`} {
     ${0}
   }
@@ -138,13 +92,13 @@ snippet ctor
 # properties - auto properties by default.
 # default type is int with layout get / set.
 snippet prop
-  ${1:public} ${2:int} ${3} { get; set; }
+  ${1:public} ${2:int}? ${3} { get; set; }
 
 snippet p
-  ${1:public} ${2:int} ${3} { get; set; }
+  ${1:public} ${2:int}? ${3} { get; set; }
 
-snippet p-
-  private ${1:int} ${2} { get; set; }
+snippet pp
+  private ${1:int}? ${2} { get; set; }
 
 snippet gs
   { get; set; }
@@ -163,13 +117,7 @@ snippet struct
 
 # enumeration
 snippet enum
-  enum ${1} {
-    ${0}
-  }
-
-snippet enum+
-  public enum ${1}
-  {
+  public enum ${1} {
     ${0}
   }
 
@@ -178,8 +126,7 @@ snippet cw
 
 # exception
 snippet exc
-  public class ${1:MyException} : ${2:Exception}
-  {
+  public class ${1:MyException} : ${2:Exception} {
     public $1() { }
     public $1(string message) : base(message) { }
     public $1(string message, Exception inner) : base(message, inner) { }
@@ -190,7 +137,7 @@ snippet exc
   }
 
 # indexer
-snippet namespace
+snippet ns
   namespace ${1:MyNamespace};
 
 # switch

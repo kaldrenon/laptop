@@ -1,0 +1,15 @@
+extends cs, html, javascript
+
+snippet partial
+  <partial name="${1:pathToPartial}" for="${0:@Model}" />
+
+snippet layout
+  @{
+    Layout = "$1";
+  }
+
+snippet u
+  @using $1
+
+snippet m
+  @model $1
