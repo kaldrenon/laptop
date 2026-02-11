@@ -11,14 +11,16 @@ k.set('n', '<space>db', ':Dotnet build<cr>', { silent = true })
 k.set('n', '<space>dr', ':Dotnet run<cr>', { silent = true })
 k.set('n', '<space>dt', ':Dotnet testrunner<cr>', { silent = true })
 k.set('n', '<space>dlr', ':Dotnet lsp restart<cr>', { silent = true })
-k.set('n', 'gdd', ':lua vim.lsp.buf.definition()<cr>', { silent = true })
-k.set('n', 'gdf', ':lua vim.lsp.buf.references()<cr>', { silent = true })
-k.set('n', 'grr', ':lua vim.lsp.buf.rename()<cr>', { silent = true })
+
+-- LSP
+k.set('n', '<space>gd', ':lua vim.lsp.buf.definition()<cr>', { silent = true })
+k.set('n', '<space>gf', ':lua vim.lsp.buf.references()<cr>', { silent = true })
+k.set('n', '<space>gr', ':lua vim.lsp.buf.rename()<cr>', { silent = true })
 
 -- Trouble
-k.set('n', 'gee', ':Trouble diagnostics toggle<cr>', { silent = true })
-k.set('n', 'gel', ':Trouble loclist toggle<cr>', { silent = true })
-k.set('n', 'geq', ':Trouble qflist toggle<cr>', { silent = true })
+k.set('n', 'gtd', ':Trouble diagnostics toggle<cr>', { silent = true })
+k.set('n', 'gtl', ':Trouble loclist toggle<cr>', { silent = true })
+k.set('n', 'gtq', ':Trouble qflist toggle<cr>', { silent = true })
 
 -- Telescope
 local builtin = require('telescope.builtin')
@@ -47,14 +49,23 @@ k.set('n', '<Leader>o', ':only<cr>', { silent = true })
 -- Snippets
 local ls = require("luasnip")
 
-k.set({"i"}, "<C-j>", function() ls.expand() end, {silent = true})
+vim.keymap.set({'i', 's'}, '<C-e>', function()
+  ls.expand()
+end, {silent = true})
 
-k.set({"i", "s"}, "<C-L>", function() ls.jump(1) end, {silent = true})
-k.set({"i", "s"}, "<C-H>", function() ls.jump(-1) end, {silent = true})
+vim.keymap.set({'i', 's'}, '<C-j>', function()
+  if ls.jumpable(1) then
+    ls.jump(1)
+  else
+    require('blink.cmp')['select_next']()
+  end
+end, {silent = true})
 
-k.set({"i", "s"}, "<C-e>", function()
-  if ls.choice_active() then
-    ls.change_choice(1)
+vim.keymap.set({'i', 's'}, '<C-k>', function()
+  if ls.jumpable(-1) then
+    ls.jump(-1)
+  else
+    require('blink.cmp')['select_prev']()
   end
 end, {silent = true})
 
@@ -102,9 +113,8 @@ k.set('v', '<Leader>a:', ':Tabularize /:\zs<CR>')
 
 -- Jump around
 k.set('n', 'z[', '{zt')
-k.set('n', 'z]', '}zt')
+k.set('n', 'z]', '}zb')
 
 -- Netrw
 k.set('n', '<space>gn', ':Explore<cr>', { silent = true })
-
 
