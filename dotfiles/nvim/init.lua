@@ -16,7 +16,7 @@ require('toggleterm').setup {
     border = 'single'
   }
 }
-require('luasnip.loaders.from_snipmate').lazy_load()
+require('luasnip.loaders.from_snipmate').lazy_load({  paths = "~/.config/nvim/snippets/" })
 
 require('telescope').load_extension('luasnip')
 require('telescope').setup{
