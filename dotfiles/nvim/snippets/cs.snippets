@@ -1,6 +1,22 @@
-# Additional CSharp Snippets for Testing
+#
+# Basic CS snips
+#
+snippet li 'logger info'
+  Logger.Info("${1:message}");
+
+snippet le 'logger error'
+  Logger.Error("${1:message}");
+
+snippet lw 'logger warning'
+  Logger.Warn("${1:message}");
+
 snippet gs 'basic get-set'
   { get; set; }
+
+snippet fun 'function'
+  public ${1:void} ${2:Function}($3) {
+    ${4:// code}
+  }
 
 snippet sw 'switch'
   switch (${1:var}) {
@@ -8,6 +24,33 @@ snippet sw 'switch'
       break;
     default:
       break;
+  }
+
+snippet if 'basic if'
+  if (${1:true}) {
+    ${2://code}
+  }
+
+snippet ife 'if/else'
+  if (${1:true}) {
+    ${2://code}
+  } else {
+    ${3://code}
+  }
+
+snippet ifei 'if/else if'
+  if (${1:true}) {
+    ${2://code}
+  } else if(${3:false}) {
+    ${4://code}
+  }
+
+#
+# Trinity/Starcap
+#
+snippet flagp 'flag for production'
+  if (!TrinityApp.WebEnv.IsProduction()) {
+    $1
   }
 
 # xunit tests
