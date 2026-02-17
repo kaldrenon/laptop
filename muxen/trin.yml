@@ -4,8 +4,8 @@ name: trinity
 root: ~/code/trinity/
 
 windows:
-  - code: nv
-  - server: dotnet build
+  - code: nv Program.cs
+  - server: dotnet watch
   - shell: git status
   - tests: dotnet watch test
 
