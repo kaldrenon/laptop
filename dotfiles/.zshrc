@@ -20,6 +20,7 @@ SAVEHIST=10000
 setopt appendhistory
 setopt autocd
 setopt extendedglob
+setopt inc_append_history_time
 unsetopt beep
 bindkey -v
 
