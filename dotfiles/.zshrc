@@ -359,6 +359,9 @@ PATH="$PATH:/.dotnet/tools"
 PATH="$PATH:$HOME/.dotnet/tools"
 PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
 
+export DOTNET_ROOT_X64="$HOME/.asdf/installs/dotnet/10.0.100"
+export DOTNET_ROOT="$HOME/.asdf/installs/dotnet/10.0.100"
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.zshrc'
 

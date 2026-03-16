@@ -7,7 +7,7 @@ windows:
   - code: nv Program.cs
   - server: dotnet watch
   - shell: git status
-  - tests: dotnet watch test
+  - tests: ls #dotnet watch test
 
 # Optional tmux socket
 # socket_name: foo
