@@ -264,7 +264,12 @@ return {
   },
   {
     'stevearc/conform.nvim',
-    opts = {}
+    opts = {
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        cs = { 'clang-format' },
+      }
+    }
   },
   {
     'bkoropoff/clipipe',
@@ -290,76 +295,76 @@ return {
       })
     end,
     -- opts = {
-    --   ['csharp|background_analysis'] = {
-    --     dotnet_analyzer_diagnostics_scope = 'openFiles',
-    --     dotnet_compiler_diagnostics_scope = 'fullSolution'
-    --   }
-    -- },
-  },
-  {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {},
-    dependencies = {
-      { "mason-org/mason.nvim", opts = {} },
-      "neovim/nvim-lspconfig",
-    },
-  },
-  {
-    "j-hui/fidget.nvim",
-    opts = {
-      -- options
-    },
-  },
-  -- noconf
-  'AlexvZyl/nordic.nvim',
-  'EdenEast/nightfox.nvim',
-  'EinfachToll/DidYouMean',
-  'Lokaltog/vim-easymotion',
-  'OrangeT/vim-csharp',
-  'ap/vim-css-color',
-  'benfowler/telescope-luasnip.nvim',
-  'christoomey/vim-tmux-navigator',
-  'digitaltoad/vim-jade',
-  'elixir-lang/vim-elixir',
-  'elzr/vim-json',
-  'godlygeek/tabular',
-  'groenewege/vim-less',
-  'janko/vim-test',
-  'jlcrochet/vim-razor',
-  'kana/vim-textobj-user',
-  'kchmck/vim-coffee-script',
-  'lambdalisue/suda.vim',
-  'martinda/Jenkinsfile-vim-syntax',
-  'mattn/gist-vim',
-  'mattn/webapi-vim',
-  'mhartington/oceanic-next',
-  'mhinz/vim-signify',
-  'mhinz/vim-tmuxify',
-  'mxw/vim-jsx',
-  'nanotee/sqls.nvim',
-  'notalex/vim-run-live',
-  'nvim-tree/nvim-web-devicons',
-  'othree/html5.vim',
-  'pangloss/vim-javascript',
-  'posva/vim-vue',
-  'preservim/vim-colors-pencil',
-  'rebelot/kanagawa.nvim',
-  'rust-lang/rust.vim',
-  'ryanoasis/vim-devicons',
-  'sainnhe/everforest',
-  'shaunsingh/nord.nvim',
-  'slim-template/vim-slim',
-  'terryma/vim-expand-region',
-  'tomtom/tcomment_vim',
-  'tpope/vim-abolish',
-  'tpope/vim-bundler',
-  'tpope/vim-dispatch',
-  'tpope/vim-fugitive',
-  'tpope/vim-haml',
-  'tpope/vim-markdown',
-  'tpope/vim-rails',
-  'tpope/vim-rake',
-  'tpope/vim-surround',
-  'tpope/vim-unimpaired',
-  'vim-ruby/vim-ruby'
-}
+      --   ['csharp|background_analysis'] = {
+        --     dotnet_analyzer_diagnostics_scope = 'openFiles',
+        --     dotnet_compiler_diagnostics_scope = 'fullSolution'
+        --   }
+        -- },
+      },
+      {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {},
+        dependencies = {
+          { "mason-org/mason.nvim", opts = {} },
+          "neovim/nvim-lspconfig",
+        },
+      },
+      {
+        "j-hui/fidget.nvim",
+        opts = {
+          -- options
+        },
+      },
+      -- noconf
+      'AlexvZyl/nordic.nvim',
+      'EdenEast/nightfox.nvim',
+      'EinfachToll/DidYouMean',
+      'Lokaltog/vim-easymotion',
+      'OrangeT/vim-csharp',
+      'ap/vim-css-color',
+      'benfowler/telescope-luasnip.nvim',
+      'christoomey/vim-tmux-navigator',
+      'digitaltoad/vim-jade',
+      'elixir-lang/vim-elixir',
+      'elzr/vim-json',
+      'godlygeek/tabular',
+      'groenewege/vim-less',
+      'janko/vim-test',
+      'jlcrochet/vim-razor',
+      'kana/vim-textobj-user',
+      'kchmck/vim-coffee-script',
+      'lambdalisue/suda.vim',
+      'martinda/Jenkinsfile-vim-syntax',
+      'mattn/gist-vim',
+      'mattn/webapi-vim',
+      'mhartington/oceanic-next',
+      'mhinz/vim-signify',
+      'mhinz/vim-tmuxify',
+      'mxw/vim-jsx',
+      'nanotee/sqls.nvim',
+      'notalex/vim-run-live',
+      'nvim-tree/nvim-web-devicons',
+      'othree/html5.vim',
+      'pangloss/vim-javascript',
+      'posva/vim-vue',
+      'preservim/vim-colors-pencil',
+      'rebelot/kanagawa.nvim',
+      'rust-lang/rust.vim',
+      'ryanoasis/vim-devicons',
+      'sainnhe/everforest',
+      'shaunsingh/nord.nvim',
+      'slim-template/vim-slim',
+      'terryma/vim-expand-region',
+      'tomtom/tcomment_vim',
+      'tpope/vim-abolish',
+      'tpope/vim-bundler',
+      'tpope/vim-dispatch',
+      'tpope/vim-fugitive',
+      'tpope/vim-haml',
+      'tpope/vim-markdown',
+      'tpope/vim-rails',
+      'tpope/vim-rake',
+      'tpope/vim-surround',
+      'tpope/vim-unimpaired',
+      'vim-ruby/vim-ruby'
+    }

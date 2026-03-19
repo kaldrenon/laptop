@@ -252,4 +252,14 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, { pattern = '*.tex', comm
 vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead', 'BufReadPost'}, { pattern = '*.jade.html', command = 'set filetype=jade' })
 vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead', 'BufReadPost'}, { pattern = '*.cshtml', command = 'set filetype=razor' })
 
-vim.api.nvim_create_autocmd({'BufNewFile', 'BufNewFile'}, { pattern = {'html','javascript', 'css', 'sass', 'ruby'}, command = "let w:m2=matchadd('ErrorMsg', '\\%>100v.\\+', -1)" })
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufNewFile'}, {
+  pattern = {'html','javascript', 'css', 'sass', 'ruby'},
+  command = "let w:m2=matchadd('ErrorMsg', '\\%>100v.\\+', -1)"
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})

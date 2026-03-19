@@ -1,0 +1,59 @@
+AlignAfterOpenBracket: true
+AlignOperands: DontAlign
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 1
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: Empty
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+BinPackArguments: false
+BinPackLongBracedList: false
+BinPackParameters: OnePerLine
+BracedInitializerIndentWidth: 2
+BreakAfterOpenBracketBracedList: true
+BreakAfterOpenBracketFunction: true
+BreakAfterOpenBracketIf: true
+BreakAfterOpenBracketLoop: true
+BreakAfterOpenBracketSwitch: true
+BreakAfterReturnType: Automatic
+BreakBeforeBraces: Attach
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeCloseBracketBracedList: true
+BreakBeforeCloseBracketFunction: true
+BreakBeforeCloseBracketIf: true
+BreakBeforeCloseBracketLoop: true
+BreakBeforeCloseBracketSwitch: true
+BreakBeforeTernaryOperators: true
+BreakBinaryOperations: OnePerLine
+BreakConstructorInitializers: AfterColon
+BreakInheritanceList: AfterColon
+BreakStringLiterals: false
+ColumnLimit: 90
+ContinuationIndentWidth: 2
+EnumTrailingComma: Remove
+IndentWidth: 2
+KeepEmptyLines:
+  AtEndOfFile: false
+  AtStartOfFile: false
+Language: CSharp
+LineEnding: LF
+MaxEmptyLinesToKeep: 1
+PackConstructorInitializers: NextLine
+PenaltyBreakBeforeFirstCallParameter: 0
+PenaltyBreakOpenParenthesis: 0
+PenaltyIndentedWhitespace: 1000
+PenaltyReturnTypeOnItsOwnLine: 10000
+ReflowComments: Always
+SortUsingDeclarations: Lexicographic
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyBraces: Never
+SpacesInAngles: Never
+SpacesInLineCommentPrefix:
+  Maximum: -1
+  Minimum: 1
+TabWidth: 2
+UseTab: Never
