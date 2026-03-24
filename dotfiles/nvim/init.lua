@@ -16,9 +16,11 @@ require('toggleterm').setup {
     border = 'single'
   }
 }
-require('luasnip.loaders.from_snipmate').lazy_load({  paths = "~/.config/nvim/snippets/" })
+require('luasnip.loaders.from_snipmate').lazy_load({  paths = '~/.config/nvim/snippets/' })
 
 require('telescope').load_extension('luasnip')
+require('telescope').load_extension('ui-select')
+require('telescope').load_extension('git_branch')
 require('telescope').setup{
   defaults = {
     vimgrep_arguments = {
@@ -77,8 +79,9 @@ require('telescope').setup{
 require('lazydev').setup({
   library = { 'nvim-dap-ui' },
 })
+require('quicker').setup()
 
-local dap, dapui = require("dap"), require("dapui")
+local dap, dapui = require('dap'), require('dapui')
 dapui.setup()
 dap.listeners.before.attach.dapui_config = function()
   dapui.open()

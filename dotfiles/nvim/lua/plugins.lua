@@ -144,7 +144,10 @@ return {
   },
   {
     'nvim-telescope/telescope.nvim', tag = 'v0.2.0',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
+    }
   },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   { 'akinsho/toggleterm.nvim', version = "*", config = true },
@@ -315,13 +318,49 @@ return {
           -- options
         },
       },
+      {
+        'stevearc/quicker.nvim',
+        ft = "qf",
+        ---@module "quicker"
+        ---@type quicker.SetupOptions
+        opts = {},
+      },
+      {
+        "SalOrak/whaler",
+        opts = {
+          directories = { "~/code" },
+          oneoff_directories = {
+            { path = "~/.local/share/nvim/lazy", alias = "Neovim"},
+            { path = "~/laptop/", alias = "Dotfile Repo"},
+            { path = "~/.config/", alias = "Config"}
+          },
+          picker = "telescope"
+        },
+      },
+      {
+        "catgoose/nvim-colorizer.lua",
+        event = "BufReadPre",
+        opts = {},
+      },
+      {
+        "erl-koenig/theme-hub.nvim",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+          -- Optional: for themes that use lush (will be notified if a theme requires it)
+          -- "rktjmp/lush.nvim"
+        },
+        config = function()
+          require("theme-hub").setup({
+            -- Configuration options (see below)
+          })
+        end,
+      },
       -- noconf
       'AlexvZyl/nordic.nvim',
       'EdenEast/nightfox.nvim',
       'EinfachToll/DidYouMean',
       'Lokaltog/vim-easymotion',
       'OrangeT/vim-csharp',
-      'ap/vim-css-color',
       'benfowler/telescope-luasnip.nvim',
       'christoomey/vim-tmux-navigator',
       'digitaltoad/vim-jade',
@@ -333,13 +372,16 @@ return {
       'jlcrochet/vim-razor',
       'kana/vim-textobj-user',
       'kchmck/vim-coffee-script',
+      'kevinhwang91/nvim-bqf',
       'lambdalisue/suda.vim',
       'martinda/Jenkinsfile-vim-syntax',
+      'mateuszwieloch/automkdir.nvim',
       'mattn/gist-vim',
       'mattn/webapi-vim',
       'mhartington/oceanic-next',
       'mhinz/vim-signify',
       'mhinz/vim-tmuxify',
+      'mrloop/telescope-git-branch.nvim',
       'mxw/vim-jsx',
       'nanotee/sqls.nvim',
       'notalex/vim-run-live',

@@ -397,7 +397,7 @@ alias dn="dotnet"
 alias dnb="dotnet build"
 alias dnr="dotnet run"
 alias dnt="dotnet test"
-alias dnw="dotnet watch"
+alias dnw="dotnet watch --non-interactive"
 # needs to be after asdf so shims are in PATH
 eval "$(dotnet completions script zsh)"
 
