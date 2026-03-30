@@ -355,6 +355,32 @@ return {
           })
         end,
       },
+      {
+        "YouSame2/inlinediff-nvim",
+        lazy = true, -- disable loading plugin until called with cmd or keys
+        cmd = "InlineDiff",
+        opts = {
+          debounce_time = 200,
+          ignored_buftype = { "terminal", "nofile" },
+          ignored_filetype = { "TelescopePrompt", "NvimTree", "neo-tree" },
+          colors = {
+            -- context = dim background color; change = bright background color for changed text.
+            InlineDiffAddContext = "#182400",
+            InlineDiffAddChange = "#395200",
+            InlineDiffDeleteContext = "#240004",
+            InlineDiffDeleteChange = "#520005",
+          },
+        }, -- leave blank to use defaults
+        keys = {
+          {
+            "<leader>di",
+            function()
+              require("inlinediff").toggle()
+            end,
+            desc = "Toggle inline diff",
+          },
+        }
+      },
       -- noconf
       'AlexvZyl/nordic.nvim',
       'EdenEast/nightfox.nvim',

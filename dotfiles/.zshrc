@@ -395,7 +395,7 @@ export PATH="$PATH:/opt/mssql-tools18/bin"
 ######
 alias dn="dotnet"
 alias dnb="dotnet build"
-alias dnr="dotnet run"
+alias dnr="dotnet run --no-restore"
 alias dnt="dotnet test"
 alias dnw="dotnet watch --non-interactive"
 # needs to be after asdf so shims are in PATH
