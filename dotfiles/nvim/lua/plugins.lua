@@ -5,35 +5,35 @@ return {
       'nvim-telescope/telescope.nvim'
     },
     config = function()
-     local dotnet = require("easy-dotnet")
+      local dotnet = require("easy-dotnet")
 
-     dotnet.setup({
-       terminal = function(path, action, args, ctx)
-         args = args or ""
-         local commands = {
-           run = function() return string.format("%s %s", ctx.cmd, args) end,
-           test = function() return string.format("%s %s", ctx.cmd, args) end,
-           restore = function() return string.format("%s %s", ctx.cmd, args) end,
-           build = function() return string.format("%s --property WarningLevel=0 %s", ctx.cmd, args) end,
-           watch = function() return string.format("dotnet watch --project %s %s", path, args) end,
-         }
-         local command = commands[action]()
-         if require("easy-dotnet.extensions").isWindows() == true then command = command .. "\r" end
-         vim.cmd("split")
-         vim.cmd("term " .. command)
-       end,
-       lsp = {
-         enabled = false,
-         roslynator_enabled = true
-       },
-       debugger = {
-         bin_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason/bin/netcoredbg"),
-         auto_register_dap = true
-       },
-       file_ignore_patterns = {
-         '^.git/'
-       }
-     })
+      dotnet.setup({
+        terminal = function(path, action, args, ctx)
+          args = args or ""
+          local commands = {
+            run = function() return string.format("%s %s", ctx.cmd, args) end,
+            test = function() return string.format("%s %s", ctx.cmd, args) end,
+            restore = function() return string.format("%s %s", ctx.cmd, args) end,
+            build = function() return string.format("%s --property WarningLevel=0 %s", ctx.cmd, args) end,
+            watch = function() return string.format("dotnet watch --project %s %s", path, args) end,
+          }
+          local command = commands[action]()
+          if require("easy-dotnet.extensions").isWindows() == true then command = command .. "\r" end
+          vim.cmd("split")
+          vim.cmd("term " .. command)
+        end,
+        lsp = {
+          enabled = false,
+          roslynator_enabled = true
+        },
+        debugger = {
+          bin_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason/bin/netcoredbg"),
+          auto_register_dap = true
+        },
+        file_ignore_patterns = {
+          '^.git/'
+        }
+      })
     end
   },
   {
@@ -425,13 +425,13 @@ return {
   {
     "tris203/hawtkeys.nvim",
     dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-treesitter/nvim-treesitter",
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
     },
     config = {
-        -- an empty table will work for default config
-        --- if you use functions, or whichkey, or lazy to map keys
-        --- then please see the API below for options
+      -- an empty table will work for default config
+      --- if you use functions, or whichkey, or lazy to map keys
+      --- then please see the API below for options
     },
   },
   {
@@ -442,9 +442,8 @@ return {
   {
     "letieu/jira.nvim",
     opts = {
-      -- Your setup options...
       jira = {
-        limit = 200,                                -- Global limit of tasks per view (default: 200)
+        limit = 200
       },
     },
   },
