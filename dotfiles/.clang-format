@@ -13,7 +13,7 @@ BinPackLongBracedList: false
 BinPackParameters: OnePerLine
 BracedInitializerIndentWidth: 2
 BreakAfterOpenBracketBracedList: true
-BreakAfterOpenBracketFunction: true
+BreakAfterOpenBracketFunction: true.cl
 BreakAfterOpenBracketIf: true
 BreakAfterOpenBracketLoop: true
 BreakAfterOpenBracketSwitch: true
@@ -33,6 +33,7 @@ BreakStringLiterals: false
 ColumnLimit: 90
 ContinuationIndentWidth: 2
 EnumTrailingComma: Remove
+IndentCaseLabels: true
 IndentWidth: 2
 KeepEmptyLines:
   AtEndOfFile: false
@@ -41,7 +42,7 @@ Language: CSharp
 LineEnding: LF
 MaxEmptyLinesToKeep: 1
 PackConstructorInitializers: NextLine
-PenaltyBreakBeforeFirstCallParameter: 0
+PenaltyBreakBeforeFirstCallParameter: 10
 PenaltyBreakOpenParenthesis: 0
 PenaltyIndentedWhitespace: 1000
 PenaltyReturnTypeOnItsOwnLine: 10000
