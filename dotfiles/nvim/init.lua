@@ -4,11 +4,12 @@ require('config.lazy')
 -- Set colo before loading lualine, so that lualine will use it
 -- vim.cmd([[colorscheme kanagawa-wave]])
 -- vim.cmd([[colorscheme nordic]])
-vim.cmd([[colorscheme nightfox]])
+-- vim.cmd([[colorscheme nightfox]])
+-- vim.cmd([[colorscheme kanso]])
+vim.cmd([[colorscheme acario_dark]])
 require('lualine').setup()
 
 require('mason').setup()
-require('keys')
 require('toggleterm').setup {
   open_mapping = [[<c-\>]],
   direction = 'float',
@@ -17,6 +18,9 @@ require('toggleterm').setup {
   }
 }
 require('luasnip.loaders.from_snipmate').lazy_load({  paths = '~/.config/nvim/snippets/' })
+
+local harpoon = require('harpoon')
+harpoon:setup({})
 
 require('telescope').load_extension('luasnip')
 require('telescope').load_extension('ui-select')
@@ -75,6 +79,23 @@ require('telescope').setup{
     },
   },
 }
+
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+  local file_paths = {}
+  for _, item in ipairs(harpoon_files.items) do
+    table.insert(file_paths, item.value)
+  end
+
+  require("telescope.pickers").new({}, {
+    prompt_title = "Harpoon",
+    finder = require("telescope.finders").new_table({
+      results = file_paths,
+    }),
+    previewer = conf.file_previewer({}),
+    sorter = conf.generic_sorter({}),
+  }):find()
+end
 
 require('lazydev').setup({
   library = { 'nvim-dap-ui' },
@@ -266,3 +287,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     require("conform").format({ bufnr = args.buf })
   end,
 })
+
+-- Import key bindings
+require('keys')

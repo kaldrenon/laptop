@@ -38,13 +38,7 @@ k.set({'n', 'x', 'v'}, 'gk', 'k')
 -- Join up
 k.set('n', 'K', 'kJ')
 
--- Clear search highlighting with \c
-k.set('n', '<space>l', ':nohls<CR>', { silent = true })
-
 k.set('n', '-', ':Neotree toggle reveal left<CR>', { silent = true })
-
--- reduce down to current buffer
-k.set('n', '<Leader>o', ':only<cr>', { silent = true })
 
 -- Snippets
 local ls = require("luasnip")
@@ -80,16 +74,22 @@ k.set('n', '<C-l>', ':TmuxNavigateRight<cr>', { silent = true })
 
 k.set('n', '<C-j>', ':BufferNext<cr>', { silent = true })
 k.set('n', '<C-k>', ':BufferPrevious<cr>', { silent = true })
-k.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', { silent = true })
-k.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', { silent = true })
-k.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', { silent = true })
-k.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', { silent = true })
-k.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', { silent = true })
-k.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', { silent = true })
-k.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', { silent = true })
-k.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', { silent = true })
-k.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', { silent = true })
 k.set('n', '<C-b>', ':BufferPick<cr>', { silent = true })
+
+-- Harpoon
+local harpoon = require('harpoon')
+harpoon:setup()
+k.set("n", "<leader>a", function() harpoon:list():add() end)
+k.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+k.set("n", "<A-1>", function() harpoon:list():select(1) end)
+k.set("n", "<A-2>", function() harpoon:list():select(2) end)
+k.set("n", "<A-3>", function() harpoon:list():select(3) end)
+k.set("n", "<A-4>", function() harpoon:list():select(4) end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+k.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+k.set("n", "<C-S-N>", function() harpoon:list():next() end)
 
 -- Fast zoom and even-out
 k.set('n', '<C-m>', '<C-w>_', { silent = true })

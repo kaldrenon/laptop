@@ -297,142 +297,236 @@ return {
         },
       })
     end,
-    -- opts = {
-      --   ['csharp|background_analysis'] = {
-        --     dotnet_analyzer_diagnostics_scope = 'openFiles',
-        --     dotnet_compiler_diagnostics_scope = 'fullSolution'
-        --   }
-        -- },
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
+  },
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+  },
+  {
+    'stevearc/quicker.nvim',
+    ft = "qf",
+    ---@module "quicker"
+    ---@type quicker.SetupOptions
+    opts = {},
+  },
+  {
+    "SalOrak/whaler",
+    opts = {
+      directories = { "~/code" },
+      oneoff_directories = {
+        { path = "~/.local/share/nvim/lazy", alias = "Neovim"},
+        { path = "~/laptop/", alias = "Dotfile Repo"},
+        { path = "~/.config/", alias = "Config"}
       },
-      {
-        "mason-org/mason-lspconfig.nvim",
-        opts = {},
-        dependencies = {
-          { "mason-org/mason.nvim", opts = {} },
-          "neovim/nvim-lspconfig",
-        },
+      picker = "telescope"
+    },
+  },
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {},
+  },
+  {
+    "erl-koenig/theme-hub.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      -- Optional: for themes that use lush (will be notified if a theme requires it)
+      -- "rktjmp/lush.nvim"
+    },
+    config = function()
+      require("theme-hub").setup({
+        -- Configuration options (see below)
+      })
+    end,
+  },
+  {
+    "YouSame2/inlinediff-nvim",
+    lazy = true, -- disable loading plugin until called with cmd or keys
+    cmd = "InlineDiff",
+    opts = {
+      debounce_time = 200,
+      ignored_buftype = { "terminal", "nofile" },
+      ignored_filetype = { "TelescopePrompt", "NvimTree", "neo-tree" },
+      colors = {
+        -- context = dim background color; change = bright background color for changed text.
+        InlineDiffAddContext = "#182400",
+        InlineDiffAddChange = "#395200",
+        InlineDiffDeleteContext = "#240004",
+        InlineDiffDeleteChange = "#520005",
       },
+    }, -- leave blank to use defaults
+    keys = {
       {
-        "j-hui/fidget.nvim",
-        opts = {
-          -- options
-        },
-      },
-      {
-        'stevearc/quicker.nvim',
-        ft = "qf",
-        ---@module "quicker"
-        ---@type quicker.SetupOptions
-        opts = {},
-      },
-      {
-        "SalOrak/whaler",
-        opts = {
-          directories = { "~/code" },
-          oneoff_directories = {
-            { path = "~/.local/share/nvim/lazy", alias = "Neovim"},
-            { path = "~/laptop/", alias = "Dotfile Repo"},
-            { path = "~/.config/", alias = "Config"}
-          },
-          picker = "telescope"
-        },
-      },
-      {
-        "catgoose/nvim-colorizer.lua",
-        event = "BufReadPre",
-        opts = {},
-      },
-      {
-        "erl-koenig/theme-hub.nvim",
-        dependencies = {
-          "nvim-lua/plenary.nvim",
-          -- Optional: for themes that use lush (will be notified if a theme requires it)
-          -- "rktjmp/lush.nvim"
-        },
-        config = function()
-          require("theme-hub").setup({
-            -- Configuration options (see below)
-          })
+        "<leader>di",
+        function()
+          require("inlinediff").toggle()
         end,
+        desc = "Toggle inline diff",
+      },
+    }
+  },
+  {
+    "spacedentist/resolve.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {},
+  },
+  {
+    "pwntester/octo.nvim",
+    cmd = "Octo",
+    opts = {
+      -- or "fzf-lua" or "snacks" or "default"
+      picker = "telescope",
+      -- bare Octo command opens picker of commands
+      enable_builtin = true,
+    },
+    keys = {
+      {
+        "<leader>oi",
+        "<CMD>Octo issue list<CR>",
+        desc = "List GitHub Issues",
       },
       {
-        "YouSame2/inlinediff-nvim",
-        lazy = true, -- disable loading plugin until called with cmd or keys
-        cmd = "InlineDiff",
-        opts = {
-          debounce_time = 200,
-          ignored_buftype = { "terminal", "nofile" },
-          ignored_filetype = { "TelescopePrompt", "NvimTree", "neo-tree" },
-          colors = {
-            -- context = dim background color; change = bright background color for changed text.
-            InlineDiffAddContext = "#182400",
-            InlineDiffAddChange = "#395200",
-            InlineDiffDeleteContext = "#240004",
-            InlineDiffDeleteChange = "#520005",
-          },
-        }, -- leave blank to use defaults
-        keys = {
-          {
-            "<leader>di",
-            function()
-              require("inlinediff").toggle()
-            end,
-            desc = "Toggle inline diff",
-          },
-        }
+        "<leader>os",
+        function()
+          require("octo.utils").create_base_search_command { include_current_repo = true }
+        end,
+        desc = "Search GitHub",
       },
-      -- noconf
-      'AlexvZyl/nordic.nvim',
-      'EdenEast/nightfox.nvim',
-      'EinfachToll/DidYouMean',
-      'Lokaltog/vim-easymotion',
-      'OrangeT/vim-csharp',
-      'benfowler/telescope-luasnip.nvim',
-      'christoomey/vim-tmux-navigator',
-      'digitaltoad/vim-jade',
-      'elixir-lang/vim-elixir',
-      'elzr/vim-json',
-      'godlygeek/tabular',
-      'groenewege/vim-less',
-      'janko/vim-test',
-      'jlcrochet/vim-razor',
-      'kana/vim-textobj-user',
-      'kchmck/vim-coffee-script',
-      'kevinhwang91/nvim-bqf',
-      'lambdalisue/suda.vim',
-      'martinda/Jenkinsfile-vim-syntax',
-      'mateuszwieloch/automkdir.nvim',
-      'mattn/gist-vim',
-      'mattn/webapi-vim',
-      'mhartington/oceanic-next',
-      'mhinz/vim-signify',
-      'mhinz/vim-tmuxify',
-      'mrloop/telescope-git-branch.nvim',
-      'mxw/vim-jsx',
-      'nanotee/sqls.nvim',
-      'notalex/vim-run-live',
-      'nvim-tree/nvim-web-devicons',
-      'othree/html5.vim',
-      'pangloss/vim-javascript',
-      'posva/vim-vue',
-      'preservim/vim-colors-pencil',
-      'rebelot/kanagawa.nvim',
-      'rust-lang/rust.vim',
-      'ryanoasis/vim-devicons',
-      'sainnhe/everforest',
-      'shaunsingh/nord.nvim',
-      'slim-template/vim-slim',
-      'terryma/vim-expand-region',
-      'tomtom/tcomment_vim',
-      'tpope/vim-abolish',
-      'tpope/vim-bundler',
-      'tpope/vim-dispatch',
-      'tpope/vim-fugitive',
-      'tpope/vim-haml',
-      'tpope/vim-markdown',
-      'tpope/vim-rails',
-      'tpope/vim-rake',
-      'tpope/vim-surround',
-      'tpope/vim-unimpaired',
-      'vim-ruby/vim-ruby'
-    }
+    },
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  },
+  {
+    "tris203/hawtkeys.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+    },
+    config = {
+        -- an empty table will work for default config
+        --- if you use functions, or whichkey, or lazy to map keys
+        --- then please see the API below for options
+    },
+  },
+  {
+    "necrom4/convy.nvim",
+    cmd = { "Convy", "ConvySeparator" },
+    opts = {}
+  },
+  {
+    "letieu/jira.nvim",
+    opts = {
+      -- Your setup options...
+      jira = {
+        limit = 200,                                -- Global limit of tasks per view (default: 200)
+      },
+    },
+  },
+  {
+    "0x-ximon/acario.nvim",
+    name = "acario",
+    lazy = false,
+    priority = 1000,
+  },
+  {
+    "kndndrj/nvim-dbee",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    build = function()
+      -- Install tries to automatically detect the install method.
+      -- if it fails, try calling it with one of these parameters:
+      --    "curl", "wget", "bitsadmin", "go"
+      require("dbee").install()
+    end,
+    config = function()
+      require("dbee").setup(--[[optional config]])
+    end,
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
+  },
+  -- noconf
+  'AlexvZyl/nordic.nvim',
+  'EdenEast/nightfox.nvim',
+  'EinfachToll/DidYouMean',
+  'FeiyouG/commander.nvim',
+  'Lokaltog/vim-easymotion',
+  'OrangeT/vim-csharp',
+  'benfowler/telescope-luasnip.nvim',
+  'christoomey/vim-tmux-navigator',
+  'digitaltoad/vim-jade',
+  'elixir-lang/vim-elixir',
+  'elzr/vim-json',
+  'godlygeek/tabular',
+  'groenewege/vim-less',
+  'janko/vim-test',
+  'jlcrochet/vim-razor',
+  'kana/vim-textobj-user',
+  'kchmck/vim-coffee-script',
+  'kevinhwang91/nvim-bqf',
+  'lambdalisue/suda.vim',
+  'martinda/Jenkinsfile-vim-syntax',
+  'mateuszwieloch/automkdir.nvim',
+  'mattn/gist-vim',
+  'mattn/webapi-vim',
+  'mhartington/oceanic-next',
+  'mhinz/vim-signify',
+  'mhinz/vim-tmuxify',
+  'mrloop/telescope-git-branch.nvim',
+  'mxw/vim-jsx',
+  'nanotee/sqls.nvim',
+  'notalex/vim-run-live',
+  'nvim-tree/nvim-web-devicons',
+  'othree/html5.vim',
+  'pangloss/vim-javascript',
+  'posva/vim-vue',
+  'preservim/vim-colors-pencil',
+  'rebelot/kanagawa.nvim',
+  'rust-lang/rust.vim',
+  'ryanoasis/vim-devicons',
+  'sainnhe/everforest',
+  'shaunsingh/nord.nvim',
+  'slim-template/vim-slim',
+  'terryma/vim-expand-region',
+  'tomtom/tcomment_vim',
+  'tpope/vim-abolish',
+  'tpope/vim-bundler',
+  'tpope/vim-dispatch',
+  'tpope/vim-fugitive',
+  'tpope/vim-haml',
+  'tpope/vim-markdown',
+  'tpope/vim-rails',
+  'tpope/vim-rake',
+  'tpope/vim-surround',
+  'tpope/vim-unimpaired',
+  'vim-ruby/vim-ruby'
+}
