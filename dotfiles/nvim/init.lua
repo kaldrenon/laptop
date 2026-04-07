@@ -6,8 +6,13 @@ require('config.lazy')
 -- vim.cmd([[colorscheme nordic]])
 -- vim.cmd([[colorscheme nightfox]])
 -- vim.cmd([[colorscheme kanso]])
-vim.cmd([[colorscheme acario_dark]])
-require('lualine').setup()
+-- vim.cmd([[colorscheme acario_dark]])
+vim.cmd([[colorscheme minimal-base16]])
+require('lualine').setup {
+  options = {
+    theme = 'tomorrow_night'
+  }
+}
 
 require('mason').setup()
 require('toggleterm').setup {
