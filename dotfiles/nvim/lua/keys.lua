@@ -5,6 +5,7 @@ local builtin = require('telescope.builtin')
 local ls = require("luasnip")
 local harpoon = require('harpoon')
 harpoon:setup()
+local quicker = require('quicker')
 
 --
 -- Modmaps (Ctrl/Shift/Alt)
@@ -58,6 +59,11 @@ k.set('n', '<leader>lx', ':Lazy clean<cr>', { silent = true })
 -- Snippets
 k.set('n', '<leader>se', ':LuaSnipEdit<cr>', { silent = true })
 
+-- Trouble
+k.set('n', '<leader>t', ':Trouble diagnostics toggle focus=true<cr>', { silent = true })
+k.set('n', '<leader>tl', ':Trouble loclist toggle focus=true<cr>', { silent = true })
+k.set('n', '<leader>tq', ':Trouble qflist toggle focus=true<cr>', { silent = true })
+
 --
 -- Spacemaps
 --
@@ -73,10 +79,6 @@ k.set('n', '<space>gd', ':lua vim.lsp.buf.definition()<cr>', { silent = true })
 k.set('n', '<space>gf', ':lua vim.lsp.buf.references()<cr>', { silent = true })
 k.set('n', '<space>gr', ':lua vim.lsp.buf.rename()<cr>', { silent = true })
 
--- Trouble
-k.set('n', '<space>tt', ':Trouble diagnostics toggle<cr>', { silent = true })
-k.set('n', '<space>tl', ':Trouble loclist toggle<cr>', { silent = true })
-k.set('n', '<space>tq', ':Trouble qflist toggle<cr>', { silent = true })
 
 --
 -- nmaps
@@ -111,6 +113,17 @@ k.set("n", "<A-1>", function() harpoon:list():select(1) end)
 k.set("n", "<A-2>", function() harpoon:list():select(2) end)
 k.set("n", "<A-3>", function() harpoon:list():select(3) end)
 k.set("n", "<A-4>", function() harpoon:list():select(4) end)
+
+-- Quicker
+k.set("n", "<leader>q", function()
+  quicker.toggle({focus = true})
+end, {
+  desc = "Toggle quickfix",
+})
+
+--
+-- vmaps
+--
 
 -- * search in visual mode
 k.set('v', '*', 'y/<C-r>"<cr>')

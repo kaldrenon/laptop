@@ -60,7 +60,6 @@ return {
         desc = "Resume the last yazi session",
       },
     },
-    ---@type YaziConfig | {}
     opts = {
       -- if you want to open yazi instead of netrw, see below for more info
       open_for_directories = false,
@@ -180,7 +179,7 @@ return {
     version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release),
     build = "make install_jsregexp",
     config = function()
-      local luasnip = require("luasnip")
+      require("luasnip")
       require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
     end
   },
@@ -190,7 +189,7 @@ return {
       local dap = require "dap"
 
       -- Keymaps for controlling the debugger
-      vim.keymap.set("n", "<leader>q", function()
+      vim.keymap.set("n", "<leader>dq", function()
         dap.terminate()
         dap.clear_breakpoints()
       end, { desc = "Terminate and clear breakpoints" })
@@ -229,8 +228,8 @@ return {
       },
     },
   },
-  { 
-    'rcarriga/nvim-dap-ui', 
+  {
+    'rcarriga/nvim-dap-ui',
     dependencies = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'}
   },
   {
@@ -246,7 +245,6 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    ---@type Flash.Config
     opts = {
       modes = {
         search = {
