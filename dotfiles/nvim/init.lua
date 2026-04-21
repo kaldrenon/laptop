@@ -166,6 +166,7 @@ opt.showmatch = true
 o.matchpairs = o.matchpairs .. ",<:>"
 opt.matchtime = 3
 opt.updatetime = 250
+opt.timeoutlen = 250
 
 -- Make wildcard completion behave like zsh
 opt.wildmenu = true
