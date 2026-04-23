@@ -393,7 +393,4 @@ eval "$(dotnet completions script zsh)"
 
 alias starcap="cd /mnt/c/Users/Andrew\ Fallows/starcap/"
 
-# Only load starship once
-if [[ -z $STARSHIP_SESSION_KEY ]]; then
-  eval "$(starship init zsh)"
-fi
+eval "$(starship init zsh)"

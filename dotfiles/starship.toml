@@ -24,10 +24,10 @@ $line_break\
 $character"""
 
 # Inserts a blank line between shell prompts
-add_newline = false
+add_newline = true
 
 [[battery.display]]
-threshold = 100
+threshold = 80
 style = 'green dimmed'
 
 [[battery.display]]
