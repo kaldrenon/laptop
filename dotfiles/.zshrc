@@ -322,16 +322,6 @@ _-accept-line () {
 }
 zle -N accept-line _-accept-line
 
-# Show mode in right prompt for zsh vi bindings
-function zle-line-init zle-keymap-select {
-  git_branch=`git branch 2>/dev/null | grep -e '^*' | sed -E 's/^\* (.+)$/(\1) /'`
-  RPS1="${${KEYMAP/vicmd/- N -}/(main|viins)/- I -}"
-  RPS2=$RPS1
-  zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
 # Address some issues with home/end, at least on OSX
 [[ -z "$terminfo[khome]" ]] || bindkey -M viins "$terminfo[khome]" beginning-of-line &&
                                bindkey -M vicmd "$terminfo[khome]" beginning-of-line
@@ -402,4 +392,8 @@ alias dnw="dotnet watch --non-interactive"
 eval "$(dotnet completions script zsh)"
 
 alias starcap="cd /mnt/c/Users/Andrew\ Fallows/starcap/"
-eval "$(starship init zsh)"
+
+# Only load starship once
+if [[ -z $STARSHIP_SESSION_KEY ]]; then
+  eval "$(starship init zsh)"
+fi
