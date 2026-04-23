@@ -402,3 +402,4 @@ alias dnw="dotnet watch --non-interactive"
 eval "$(dotnet completions script zsh)"
 
 alias starcap="cd /mnt/c/Users/Andrew\ Fallows/starcap/"
+eval "$(starship init zsh)"
