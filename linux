@@ -1,6 +1,8 @@
 #!/bin/bash
 # Adapted from Thoughtbot's script
 
+rm ~/laptop/gittemplate/hooks/post-checkout
+
 fancy_echo() {
   local fmt="$1"; shift
 
@@ -49,8 +51,10 @@ esac
 fancy_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
   wget https://go.dev/dl/go1.25.4.linux-amd64.tar.gz
-  rm -rf /usr/local/go && tar -C /usr/local -xzf go1.25.4.linux-amd64.tar.gz
-  go install github.com/asdf-vm/asdf/cmd/asdf@v0.18.0
+  sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.25.4.linux-amd64.tar.gz
+  go install github.com/asdf-vm/asdf/cmd/asdf@v0.19.0
+  mkdir -p ~/.asdf/bin
+  cp ~/go/bin/asdf ~/.asdf/bin
 fi
 
 alias install_asdf_plugin=add_or_update_asdf_plugin
@@ -75,7 +79,7 @@ install_asdf_language() {
   local version
 
   asdf install "$language" latest
-  asdf "set" --home "$language" latest
+  asdf set -u "$language" latest
 }
 
 #
@@ -83,7 +87,7 @@ install_asdf_language() {
 #
 fancy_echo "Installing latest Ruby..."
 install_asdf_language "ruby"
-asdf local ruby latest
+asdf set -u ruby latest
 
 # Install common ruby tools
 gem update --system
@@ -110,6 +114,7 @@ dotnet tool install --global easydotnet
 dotnet tool install --global dotnet-ef
 
 fancy_echo "Installing latest lua..."
+export ASDF_LUA_LUAROCKS_VERSION=3.12.2
 install_asdf_language "lua"
 
 if [ -f "$HOME/.laptop.local" ]; then
@@ -167,7 +172,7 @@ bob install stable
 cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
 
 # install support packages
-pip3 install neovim
+pipx install neovim --include-deps
 npm install -g neovim
 gem install neovim
 
@@ -206,3 +211,7 @@ fi
 
 # shellcheck disable=SC2016
 append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
+
+# Install Starship
+curl -sS https://starship.rs/install.sh | sh
+

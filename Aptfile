@@ -37,6 +37,7 @@ ncurses-bin
 neovim
 net-tools
 openssl
+pipx
 postgresql
 postgresql-contrib
 python3
