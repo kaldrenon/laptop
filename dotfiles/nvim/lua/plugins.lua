@@ -471,6 +471,12 @@ return {
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
+  {
+    'fguisso/sfer.nvim',
+    config = function()
+      require('sfer').setup()
+    end
+  },
   -- noconf
   'AlexvZyl/nordic.nvim',
   'EdenEast/nightfox.nvim',
