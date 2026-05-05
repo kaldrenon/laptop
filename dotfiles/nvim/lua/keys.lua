@@ -50,11 +50,7 @@ k.set('v', '<Leader>a:', ':Tabularize /:\zs<CR>')
 -- Telescope
 k.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 k.set('n', '<leader>fs', ':Telescope luasnip<cr>', { desc = 'Telescope luasnip' })
-
--- Lazy
-k.set('n', '<leader>ll', ':Lazy<cr>', { silent = true })
-k.set('n', '<leader>lu', ':Lazy update<cr>', { silent = true })
-k.set('n', '<leader>lx', ':Lazy clean<cr>', { silent = true })
+k.set('n', '<leader>fm', ':Telescope keymaps<cr>', { desc = 'Telescope keymaps' })
 
 -- Snippets
 k.set('n', '<leader>se', ':LuaSnipEdit<cr>', { silent = true })
@@ -79,6 +75,10 @@ k.set('n', '<space>gd', ':lua vim.lsp.buf.definition()<cr>', { silent = true })
 k.set('n', '<space>gf', ':lua vim.lsp.buf.references()<cr>', { silent = true })
 k.set('n', '<space>gr', ':lua vim.lsp.buf.rename()<cr>', { silent = true })
 
+-- Lazy
+k.set('n', '<space>ll', ':Lazy<cr>', { silent = true })
+k.set('n', '<space>lu', ':Lazy update<cr>', { silent = true })
+k.set('n', '<space>lx', ':Lazy clean<cr>', { silent = true })
 
 --
 -- nmaps
