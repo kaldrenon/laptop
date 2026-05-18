@@ -269,6 +269,9 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         cs = { 'clang-format' },
+        vue = { 'prettierd' },
+        scss = { 'prettierd' },
+        js = { 'prettierd' }
       }
     }
   },
@@ -483,7 +486,6 @@ return {
   'EinfachToll/DidYouMean',
   'FeiyouG/commander.nvim',
   'Lokaltog/vim-easymotion',
-  'OrangeT/vim-csharp',
   'benfowler/telescope-luasnip.nvim',
   'christoomey/vim-tmux-navigator',
   'digitaltoad/vim-jade',

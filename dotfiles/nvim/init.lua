@@ -129,6 +129,16 @@ vim.lsp.config('html', {
   filetypes = { 'razor', 'cshtml', 'html' },
 })
 
+vim.lsp.config('vue', {
+  filetypes = { 'vue', 'js', 'html' },
+})
+
+vim.lsp.config['ts_ls']                 = {
+  filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue' },
+  root_markers = { 'package.json' },
+  single_file_support = false,
+}
+
 require("mason-lspconfig").setup()
 
 local opt = vim.opt
@@ -140,16 +150,6 @@ local g = vim.g
 -- command! -nargs=1 MyWinOpen :new <args> | :resize 100
 -- highlight OverLength ctermbg=52 ctermfg=white guibg=#770000
 -- match OverLength /\%101v./
---
--- g.syntastic_mode_map = {
---   'mode': 'active',
---   'active_filetypes': [],
---   'passive_filetypes': []
--- }
--- g.tmuxify_run = {
---   'c':  'rails c',
---   'gs': 'gs'
--- }
 
 -- Opts
 opt.filetype = "off"
@@ -260,9 +260,11 @@ vim.api.nvim_create_user_command('LuaSnipEdit', 'lua require("luasnip.loaders").
 
 -- Autocmds
 local cg = vim.api.nvim_create_augroup('CursorLine', { clear = true })
-  vim.api.nvim_create_autocmd({'VimEnter', 'WinEnter', 'BufWinEnter'}, {
-    pattern = '*', command = 'setlocal cursorline', group = cg})
-  vim.api.nvim_create_autocmd('WinLeave', {pattern = '*', command = 'setlocal nocursorline', group = cg})
+vim.api.nvim_create_autocmd(
+  { 'VimEnter', 'WinEnter', 'BufWinEnter' },
+  { pattern = '*', command = 'setlocal cursorline', group = cg }
+)
+vim.api.nvim_create_autocmd('WinLeave', {pattern = '*', command = 'setlocal nocursorline', group = cg})
 
 vim.api.nvim_create_autocmd('FileType', { pattern = {'css', 'vue'}, command = "setlocal omnifunc=csscomplete#CompleteCSS" })
 vim.api.nvim_create_autocmd('FileType', { pattern = {'html', 'markdown', 'vue'}, command = "setlocal omnifunc=htmlcomplete#CompleteTags" })

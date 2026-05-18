@@ -1,3 +1,8 @@
+# Antigen prereqs
+ZSH_CACHE_DIR=$HOME/.cache
+
+[[ -d $ZSH_CACHE_DIR/completions ]] || mkdir -p -- "$ZSH_CACHE_DIR/completions"
+
 # Antigen bundles
 source ~/antigen.zsh
 
@@ -133,9 +138,6 @@ if [[ $HOST_OS = 'Darwin' ]]; then
   alias bsl="brew services list"
   alias bsr="brew services restart"
 fi
-
-# homebrew
-alias steep="brew update && brew upgrade && brew cleanup"
 
 # PostgreSQL
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
