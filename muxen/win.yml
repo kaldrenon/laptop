@@ -7,5 +7,5 @@ windows:
   - code:
       layout: even-horizontal
       panes:
-        - cd Trinity8; git status
-        - cd database; git status
+        - cd trinity; powershell.exe -NoExit -C clear
+        - cd database; powershell.exe -NoExit -C clear
