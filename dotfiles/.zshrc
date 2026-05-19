@@ -7,9 +7,9 @@ ZSH_CACHE_DIR=$HOME/.cache
 source ~/antigen.zsh
 
 antigen bundle bobthecow/git-flow-completion
-antigen bundle docker
+#antigen bundle docker
 antigen bundle emallson/gulp-zsh-completion
-antigen bundle felixr/docker-zsh-completion
+#antigen bundle felixr/docker-zsh-completion
 antigen bundle git
 antigen bundle gitfast
 antigen bundle mollifier/cd-gitroot
@@ -338,22 +338,6 @@ zle -N accept-line _-accept-line
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
-PATH="$PATH:$HOME/.asdf/bin"
-PATH="$PATH:$HOME/.asdf/shims"
-PATH="$PATH:/opt/mssql-tools/bin"
-PATH="$PATH:$HOME/.dotnet/tools"
-PATH="$PATH:/opt/nvim-0.11.5/bin"
-PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
-PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:/usr/local/share/npm/bin:$HOME/.local/bin"
-PATH="${PATH}:/home/kaldrenon/.cargo/bin"
-PATH="$PATH:/usr/local/go/bin"
-PATH="$PATH:/.dotnet/tools"
-PATH="$PATH:$HOME/.dotnet/tools"
-PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
-
-export DOTNET_ROOT_X64="$HOME/.asdf/installs/dotnet/10.0.100"
-export DOTNET_ROOT="$HOME/.asdf/installs/dotnet/10.0.100"
-
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.zshrc'
 
@@ -361,7 +345,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-export PATH="$HOME/.bin:$PATH"
 
 if [ ! -f $HOME/.ssh/kaldrenon_key ]; then
   /usr/bin/keychain -q --nogui $HOME/.ssh/kaldrenon_key
@@ -380,7 +363,6 @@ source $HOME/.keychain/$HOST-sh
 # SSH Agent should be running, once
 eval $(ssh-agent -s)
 ssh-add -q ~/.ssh/*_key
-export PATH="$PATH:/opt/mssql-tools18/bin"
 
 ######
 # Starcap - dotnet dev
@@ -390,9 +372,33 @@ alias dnb="dotnet build"
 alias dnr="dotnet run --no-restore"
 alias dnt="dotnet test"
 alias dnw="dotnet watch --non-interactive"
-# needs to be after asdf so shims are in PATH
-eval "$(dotnet completions script zsh)"
-
 alias starcap="cd /mnt/c/Users/Andrew\ Fallows/starcap/"
 
+
+#
+# PATH
+#
+PATH="$PATH:$HOME/.asdf/bin"
+PATH="$PATH:$HOME/.asdf/shims"
+PATH="$PATH:/opt/mssql-tools/bin"
+PATH="$PATH:$HOME/.dotnet/tools"
+PATH="$PATH:/opt/nvim-0.11.5/bin"
+PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+PATH="$PATH:/usr/local/opt/python/libexec/bin:$HOST_PATH:/usr/local/bin:/usr/local/share/npm/bin:$HOME/.local/bin"
+PATH="${PATH}:/home/kaldrenon/.cargo/bin"
+PATH="$PATH:/usr/local/go/bin"
+PATH="$PATH:/.dotnet/tools"
+PATH="$PATH:$HOME/.dotnet/tools"
+PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
+PATH="$PATH:/opt/mssql-tools18/bin"
+# Windows includes - interop turned off because it's hard to control PATH otherwise
+PATH="$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/"
+PATH="$PATH:/mnt/c/Windows/System32/"
+export PATH="$HOME/.bin:$PATH"
+
+# needs to be after asdf so shims are in PATH
+export DOTNET_ROOT_X64="$HOME/.asdf/installs/dotnet/10.0.100"
+export DOTNET_ROOT="$HOME/.asdf/installs/dotnet/10.0.100"
+
+eval "$(dotnet completions script zsh)"
 eval "$(starship init zsh)"
