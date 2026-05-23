@@ -389,7 +389,7 @@ alias dnr="dotnet run --no-restore"
 alias dnt="dotnet test"
 alias dnw="dotnet watch --non-interactive"
 # needs to be after asdf so shims are in PATH
-eval "$(dotnet completions script zsh)"
+#eval "$(dotnet completions script zsh)"
 
 alias starcap="cd /mnt/c/Users/Andrew\ Fallows/starcap/"
 
