@@ -18,6 +18,7 @@ freetds-bin
 freetds-dev
 fzf
 git
+git-delta
 gnupg
 grep
 gzip
@@ -59,4 +60,3 @@ whois
 zip
 zlib1g-dev
 zsh
-git-delta

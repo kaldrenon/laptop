@@ -477,7 +477,6 @@ return {
   'EinfachToll/DidYouMean',
   'FeiyouG/commander.nvim',
   'Lokaltog/vim-easymotion',
-  'OrangeT/vim-csharp',
   'benfowler/telescope-luasnip.nvim',
   'christoomey/vim-tmux-navigator',
   'digitaltoad/vim-jade',
