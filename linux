@@ -50,7 +50,7 @@ fancy_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
   wget https://go.dev/dl/go1.25.4.linux-amd64.tar.gz
   sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.25.4.linux-amd64.tar.gz
-  /usr/local/bin/go install github.com/asdf-vm/asdf/cmd/asdf@v0.18.0
+  /usr/local/go/bin/go install github.com/asdf-vm/asdf/cmd/asdf@v0.18.0
 fi
 
 alias install_asdf_plugin=add_or_update_asdf_plugin
