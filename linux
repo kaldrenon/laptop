@@ -87,7 +87,7 @@ install_asdf_language() {
 #
 fancy_echo "Installing latest Ruby..."
 install_asdf_language "ruby"
-asdf local ruby latest
+asdf set -u ruby latest
 
 # Install common ruby tools
 gem update --system
