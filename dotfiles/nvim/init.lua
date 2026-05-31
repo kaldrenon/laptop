@@ -7,7 +7,7 @@ require('config.lazy')
 -- vim.cmd([[colorscheme nightfox]])
 -- vim.cmd([[colorscheme kanso]])
 -- vim.cmd([[colorscheme acario_dark]])
-vim.cmd([[colorscheme minimal-base16]])
+vim.cmd([[silent! colorscheme minimal-base16]])
 require('lualine').setup {
   options = {
     theme = 'tomorrow_night'

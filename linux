@@ -44,7 +44,7 @@ case "$SHELL" in
 esac
 
 #
-# Install ruby and nodejs
+# asdf
 #
 
 ### asdf
@@ -62,17 +62,13 @@ add_or_update_asdf_plugin() {
   local name="$1"
   local url="$2"
 
-  if ! asdf plugin-list | grep -Fq "$name"; then
-    asdf plugin-add "$name" "$url"
+  if ! asdf plugin list | grep -Fq "$name"; then
+    asdf plugin add "$name" "$url"
   else
-    asdf plugin-update "$name"
+    asdf plugin update "$name"
   fi
 }
 
-# shellcheck disable=SC1090
-source "$HOME/.asdf/asdf.sh"
-add_or_update_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
-add_or_update_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 
 install_asdf_language() {
   local language="$1"
@@ -85,7 +81,8 @@ install_asdf_language() {
 #
 # Ruby
 #
-fancy_echo "Installing latest Ruby..."
+fancy_echo "--- Installing latest Ruby..."
+add_or_update_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
 install_asdf_language "ruby"
 asdf set -u ruby latest
 
@@ -101,20 +98,23 @@ fi
 #
 # Nodejs
 #
-fancy_echo "Installing latest Node..."
+fancy_echo "--- Installing latest Node..."
+add_or_update_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 install_asdf_language "nodejs"
 
 #
 # dotnet
 #
-fancy_echo "Installing latest dotnet..."
+fancy_echo "--- Installing latest dotnet..."
+add_or_update_asdf_plugin "dotnet"
 install_asdf_language "dotnet"
 
 dotnet tool install --global easydotnet
 dotnet tool install --global dotnet-ef
 
-fancy_echo "Installing latest lua..."
+fancy_echo "--- Installing latest lua..."
 export ASDF_LUA_LUAROCKS_VERSION=3.12.2
+add_or_update_asdf_plugin "lua"
 install_asdf_language "lua"
 
 if [ -f "$HOME/.laptop.local" ]; then
@@ -144,7 +144,7 @@ fi
 #
 # Symlink scripts
 #
-fancy_echo "Symlink scripts"
+fancy_echo "--- Symlink scripts"
 
 # antigen
 if [ ! -L ~/antigen.zsh ]; then
@@ -163,7 +163,7 @@ fi
 #
 # Neovim
 #
-fancy_echo "Install neovim"
+fancy_echo "--- Install neovim"
 
 # prereqs
 curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -180,6 +180,9 @@ gem install neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
 chmod a+x nvim-linux-x86_64.appimage
 sudo mv nvim-linux-x86_64.appimage /usr/bin/nvim
+
+# symlink nvim dir
+ln -s $HOME/laptop/dotfiles/nvim $HOME/.config/nvim
 
 #
 # Update PATH
@@ -213,5 +216,7 @@ fi
 append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
 
 # Install Starship
-curl -sS https://starship.rs/install.sh | sh
+if [ ! -f "/usr/local/bin/starship" ]; then
+  curl -sS https://starship.rs/install.sh | sh
+fi
 
