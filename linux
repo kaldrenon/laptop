@@ -49,8 +49,12 @@ esac
 fancy_echo "Configuring asdf version manager..."
 if [ ! -d "$HOME/.asdf" ]; then
   wget https://go.dev/dl/go1.25.4.linux-amd64.tar.gz
-  rm -rf /usr/local/go && tar -C /usr/local -xzf go1.25.4.linux-amd64.tar.gz
-  go install github.com/asdf-vm/asdf/cmd/asdf@v0.18.0
+  sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.25.4.linux-amd64.tar.gz
+  wget https://github.com/asdf-vm/asdf/releases/download/v0.19.0/asdf-v0.19.0-linux-amd64.tar.gz
+  gunzip
+  tar -xf asdf-v0.19.0-linux-amd64.tar.gz
+  rm asdf-v0.19.0-linux-amd64.tar.gz
+  mv asdf ~/.bin
 fi
 
 alias install_asdf_plugin=add_or_update_asdf_plugin
@@ -83,7 +87,7 @@ install_asdf_language() {
 #
 fancy_echo "Installing latest Ruby..."
 install_asdf_language "ruby"
-asdf local ruby latest
+asdf set -u ruby latest
 
 # Install common ruby tools
 gem update --system
