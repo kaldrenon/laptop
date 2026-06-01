@@ -1,3 +1,11 @@
+# Custom
+snippet lmap 'leader map'
+  k.set('n', '<leader>$1', '$2', { desc = '$3' })
+
+snippet smap 'space map'
+  k.set('n', '<space>$1', '$2', { desc = '$3' })
+
+# Predefined
 snippet #!
   #!/usr/bin/env lua
   $1

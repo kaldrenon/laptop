@@ -2,7 +2,7 @@ return {
   {
     "GustavEikaas/easy-dotnet.nvim",
     dependencies = {
-      'nvim-telescope/telescope.nvim'
+      "nvim-telescope/telescope.nvim",
     },
     config = function()
       local dotnet = require("easy-dotnet")
@@ -11,34 +11,46 @@ return {
         terminal = function(path, action, args, ctx)
           args = args or ""
           local commands = {
-            run = function() return string.format("%s %s", ctx.cmd, args) end,
-            test = function() return string.format("%s %s", ctx.cmd, args) end,
-            restore = function() return string.format("%s %s", ctx.cmd, args) end,
-            build = function() return string.format("%s --property WarningLevel=0 %s", ctx.cmd, args) end,
-            watch = function() return string.format("dotnet watch --project %s %s", path, args) end,
+            run = function()
+              return string.format("%s %s", ctx.cmd, args)
+            end,
+            test = function()
+              return string.format("%s %s", ctx.cmd, args)
+            end,
+            restore = function()
+              return string.format("%s %s", ctx.cmd, args)
+            end,
+            build = function()
+              return string.format("%s --property WarningLevel=0 %s", ctx.cmd, args)
+            end,
+            watch = function()
+              return string.format("dotnet watch --project %s %s", path, args)
+            end,
           }
           local command = commands[action]()
-          if require("easy-dotnet.extensions").isWindows() == true then command = command .. "\r" end
+          if require("easy-dotnet.extensions").isWindows() == true then
+            command = command .. "\r"
+          end
           vim.cmd("split")
           vim.cmd("term " .. command)
         end,
         lsp = {
           enabled = false,
-          roslynator_enabled = true
+          roslynator_enabled = true,
         },
         debugger = {
           bin_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason/bin/netcoredbg"),
-          auto_register_dap = true
+          auto_register_dap = true,
         },
         file_ignore_patterns = {
-          '^.git/'
-        }
+          "^.git/",
+        },
       })
-    end
+    end,
   },
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' }
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
     "mikavilpas/yazi.nvim",
@@ -80,47 +92,47 @@ return {
     opts = {
       registries = {
         "github:mason-org/mason-registry",
-        "github:Crashdummyy/mason-registry"
+        "github:Crashdummyy/mason-registry",
       },
       ui = {
         icons = {
           package_installed = "✓",
           package_pending = "➜",
-          package_uninstalled = "✗"
-        }
-      }
-    }
+          package_uninstalled = "✗",
+        },
+      },
+    },
   },
   {
-    'saghen/blink.cmp',
+    "saghen/blink.cmp",
     -- use a release tag to download pre-built binaries
-    version = '1.*',
-    dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*' },
+    version = "1.*",
+    dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
     opts = {
       keymap = {
-        preset = 'default',
-        ['<C-e>'] = { 'select_and_accept', 'fallback' },
-        ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-        ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-        ['<C-space>'] = { 'select_and_accept','fallback' }
+        preset = "default",
+        ["<C-e>"] = { "select_and_accept", "fallback" },
+        ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+        ["<C-space>"] = { "select_and_accept", "fallback" },
       },
       appearance = {
-        nerd_font_variant = 'mono'
+        nerd_font_variant = "mono",
       },
 
-      snippets = { preset = 'luasnip' },
+      snippets = { preset = "luasnip" },
       completion = {
         documentation = { auto_show = false },
         list = {
           selection = {
-            preselect = false
-          }
-        }
+            preselect = false,
+          },
+        },
       },
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { "lsp", "path", "snippets", "buffer" },
         providers = {
           ["easy-dotnet"] = {
             name = "easy-dotnet",
@@ -137,19 +149,20 @@ return {
       -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
       --
       -- See the fuzzy documentation for more information
-      fuzzy = { implementation = "prefer_rust_with_warning" }
+      fuzzy = { implementation = "prefer_rust_with_warning" },
     },
-    opts_extend = { "sources.default" }
+    opts_extend = { "sources.default" },
   },
   {
-    'nvim-telescope/telescope.nvim', tag = 'v0.2.0',
+    "nvim-telescope/telescope.nvim",
+    tag = "v0.2.0",
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-ui-select.nvim',
-    }
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
+    },
   },
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-  { 'akinsho/toggleterm.nvim', version = "*", config = true },
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  { "akinsho/toggleterm.nvim", version = "*", config = true },
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
@@ -169,8 +182,8 @@ return {
       window = {
         position = "left",
         width = 30,
-        mappings = {}
-      }
+        mappings = {},
+      },
     },
     lazy = false, -- neo-tree will lazily load itself
   },
@@ -181,12 +194,12 @@ return {
     config = function()
       require("luasnip")
       require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
-    end
+    end,
   },
   {
     "mfussenegger/nvim-dap",
     config = function()
-      local dap = require "dap"
+      local dap = require("dap")
 
       -- Keymaps for controlling the debugger
       vim.keymap.set("n", "<leader>dq", function()
@@ -207,13 +220,13 @@ return {
 
       -- .NET specific setup using `easy-dotnet`
       require("easy-dotnet.netcoredbg").register_dap_variables_viewer() -- special variables viewer specific for .NET
-    end
+    end,
   },
   {
     "folke/trouble.nvim",
     opts = {
       warn_no_results = false,
-      open_no_results = true
+      open_no_results = true,
     }, -- for default options, refer to the configuration section for custom setup.
     cmd = "Trouble",
   },
@@ -229,54 +242,95 @@ return {
     },
   },
   {
-    'rcarriga/nvim-dap-ui',
-    dependencies = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'}
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
   },
   {
-    'romgrk/barbar.nvim',
+    "romgrk/barbar.nvim",
     dependencies = {
-      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+      "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+      "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
     },
-    init = function() vim.g.barbar_auto_setup = false end,
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
     opts = {},
-    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+    version = "^1.0.0", -- optional: only update when a new 1.x version is released
   },
   {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {
+      search = {
+        mode = "search",
+        incremental = true,
+      },
       modes = {
         search = {
-          enabled = true
+          enabled = true,
         },
         char = {
-          autohide = true
-        }
-      }
+          autohide = true,
+        },
+      },
     },
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
     },
   },
   {
-    'stevearc/conform.nvim',
+    "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        lua = { 'stylua' },
-        cs = { 'clang-format' },
-        vue = { 'prettierd' },
-        scss = { 'prettierd' },
-        js = { 'prettierd' }
-      }
-    }
+        lua = { "stylua" },
+        cs = { "clang-format" },
+        vue = { "prettierd" },
+        scss = { "prettierd" },
+        js = { "prettierd" },
+      },
+    },
   },
   {
-    'bkoropoff/clipipe',
+    "bkoropoff/clipipe",
     opts = {
       -- Optional configuration, defaults shown here:
       keep_line_endings = false, -- Set to true to disable \r\n conversion on Windows
@@ -286,7 +340,7 @@ return {
       interval = 50, -- Polling interval for responses (ms)
       download = true, -- Download pre-built binary if needed
       build = true, -- Build from source if needed
-    }
+    },
   },
   {
     "seblyng/roslyn.nvim",
@@ -314,7 +368,7 @@ return {
     },
   },
   {
-    'stevearc/quicker.nvim',
+    "stevearc/quicker.nvim",
     ft = "qf",
     ---@module "quicker"
     ---@type quicker.SetupOptions
@@ -325,11 +379,11 @@ return {
     opts = {
       directories = { "~/code" },
       oneoff_directories = {
-        { path = "~/.local/share/nvim/lazy", alias = "Neovim"},
-        { path = "~/laptop/", alias = "Dotfile Repo"},
-        { path = "~/.config/", alias = "Config"}
+        { path = "~/.local/share/nvim/lazy", alias = "Neovim" },
+        { path = "~/laptop/", alias = "Dotfile Repo" },
+        { path = "~/.config/", alias = "Config" },
       },
-      picker = "telescope"
+      picker = "telescope",
     },
   },
   {
@@ -342,7 +396,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       -- Optional: for themes that use lush (will be notified if a theme requires it)
-      "rktjmp/lush.nvim"
+      "rktjmp/lush.nvim",
     },
     config = function()
       require("theme-hub").setup({
@@ -374,7 +428,7 @@ return {
         end,
         desc = "Toggle inline diff",
       },
-    }
+    },
   },
   {
     "spacedentist/resolve.nvim",
@@ -399,7 +453,7 @@ return {
       {
         "<leader>os",
         function()
-          require("octo.utils").create_base_search_command { include_current_repo = true }
+          require("octo.utils").create_base_search_command({ include_current_repo = true })
         end,
         desc = "Search GitHub",
       },
@@ -438,15 +492,16 @@ return {
   {
     "necrom4/convy.nvim",
     cmd = { "Convy", "ConvySeparator" },
-    opts = {}
+    opts = {},
   },
   {
-    "letieu/jira.nvim",
-    opts = {
-      jira = {
-        limit = 200
-      },
+    "l-lin/jira.nvim",
+    dependencies = {
+      "folke/snacks.nvim",
+      "MeanderingProgrammer/render-markdown.nvim", -- optional
     },
+    cmd = { "Jira" },
+    opts = {},
   },
   {
     "0x-ximon/acario.nvim",
@@ -472,66 +527,66 @@ return {
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" }
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
-    'fguisso/sfer.nvim',
+    "fguisso/sfer.nvim",
     config = function()
-      require('sfer').setup()
-    end
+      require("sfer").setup()
+    end,
   },
   -- noconf
-  'AlexvZyl/nordic.nvim',
-  'EdenEast/nightfox.nvim',
-  'EinfachToll/DidYouMean',
-  'FeiyouG/commander.nvim',
-  'Lokaltog/vim-easymotion',
-  'benfowler/telescope-luasnip.nvim',
-  'christoomey/vim-tmux-navigator',
-  'digitaltoad/vim-jade',
-  'elixir-lang/vim-elixir',
-  'elzr/vim-json',
-  'godlygeek/tabular',
-  'groenewege/vim-less',
-  'janko/vim-test',
-  'jlcrochet/vim-razor',
-  'kana/vim-textobj-user',
-  'kchmck/vim-coffee-script',
-  'kevinhwang91/nvim-bqf',
-  'lambdalisue/suda.vim',
-  'martinda/Jenkinsfile-vim-syntax',
-  'mateuszwieloch/automkdir.nvim',
-  'mattn/gist-vim',
-  'mattn/webapi-vim',
-  'mhartington/oceanic-next',
-  'mhinz/vim-signify',
-  'mhinz/vim-tmuxify',
-  'mrloop/telescope-git-branch.nvim',
-  'mxw/vim-jsx',
-  'nanotee/sqls.nvim',
-  'notalex/vim-run-live',
-  'nvim-tree/nvim-web-devicons',
-  'othree/html5.vim',
-  'pangloss/vim-javascript',
-  'posva/vim-vue',
-  'preservim/vim-colors-pencil',
-  'rebelot/kanagawa.nvim',
-  'rust-lang/rust.vim',
-  'ryanoasis/vim-devicons',
-  'sainnhe/everforest',
-  'shaunsingh/nord.nvim',
-  'slim-template/vim-slim',
-  'terryma/vim-expand-region',
-  'tomtom/tcomment_vim',
-  'tpope/vim-abolish',
-  'tpope/vim-bundler',
-  'tpope/vim-dispatch',
-  'tpope/vim-fugitive',
-  'tpope/vim-haml',
-  'tpope/vim-markdown',
-  'tpope/vim-rails',
-  'tpope/vim-rake',
-  'tpope/vim-surround',
-  'tpope/vim-unimpaired',
-  'vim-ruby/vim-ruby'
+  "AlexvZyl/nordic.nvim",
+  "EdenEast/nightfox.nvim",
+  "EinfachToll/DidYouMean",
+  "FeiyouG/commander.nvim",
+  "Lokaltog/vim-easymotion",
+  "benfowler/telescope-luasnip.nvim",
+  "christoomey/vim-tmux-navigator",
+  "digitaltoad/vim-jade",
+  "elixir-lang/vim-elixir",
+  "elzr/vim-json",
+  "godlygeek/tabular",
+  "groenewege/vim-less",
+  "janko/vim-test",
+  "jlcrochet/vim-razor",
+  "kana/vim-textobj-user",
+  "kchmck/vim-coffee-script",
+  "kevinhwang91/nvim-bqf",
+  "lambdalisue/suda.vim",
+  "martinda/Jenkinsfile-vim-syntax",
+  "mateuszwieloch/automkdir.nvim",
+  "mattn/gist-vim",
+  "mattn/webapi-vim",
+  "mhartington/oceanic-next",
+  "mhinz/vim-signify",
+  "mhinz/vim-tmuxify",
+  "mrloop/telescope-git-branch.nvim",
+  "mxw/vim-jsx",
+  "nanotee/sqls.nvim",
+  "notalex/vim-run-live",
+  "nvim-tree/nvim-web-devicons",
+  "othree/html5.vim",
+  "pangloss/vim-javascript",
+  "posva/vim-vue",
+  "preservim/vim-colors-pencil",
+  "rebelot/kanagawa.nvim",
+  "rust-lang/rust.vim",
+  "ryanoasis/vim-devicons",
+  "sainnhe/everforest",
+  "shaunsingh/nord.nvim",
+  "slim-template/vim-slim",
+  "terryma/vim-expand-region",
+  "tomtom/tcomment_vim",
+  "tpope/vim-abolish",
+  "tpope/vim-bundler",
+  "tpope/vim-dispatch",
+  "tpope/vim-fugitive",
+  "tpope/vim-haml",
+  "tpope/vim-markdown",
+  "tpope/vim-rails",
+  "tpope/vim-rake",
+  "tpope/vim-surround",
+  "tpope/vim-unimpaired",
+  "vim-ruby/vim-ruby",
 }

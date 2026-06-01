@@ -1,5 +1,5 @@
 -- Load Lazy for all plugin management
-require('config.lazy')
+require("config.lazy")
 
 -- Set colo before loading lualine, so that lualine will use it
 -- vim.cmd([[colorscheme kanagawa-wave]])
@@ -8,39 +8,39 @@ require('config.lazy')
 -- vim.cmd([[colorscheme kanso]])
 -- vim.cmd([[colorscheme acario_dark]])
 vim.cmd([[colorscheme minimal-base16]])
-require('lualine').setup {
+require("lualine").setup({
   options = {
-    theme = 'tomorrow_night'
-  }
-}
+    theme = "tomorrow_night",
+  },
+})
 
-require('mason').setup()
-require('toggleterm').setup {
+require("mason").setup()
+require("toggleterm").setup({
   open_mapping = [[<c-\>]],
-  direction = 'float',
+  direction = "float",
   float_opts = {
-    border = 'single'
-  }
-}
-require('luasnip.loaders.from_snipmate').lazy_load({  paths = '~/.config/nvim/snippets/' })
+    border = "single",
+  },
+})
+require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })
 
-local harpoon = require('harpoon')
+local harpoon = require("harpoon")
 harpoon:setup({})
 
-require('telescope').load_extension('luasnip')
-require('telescope').load_extension('ui-select')
-require('telescope').load_extension('git_branch')
-require('telescope').setup{
+require("telescope").load_extension("luasnip")
+require("telescope").load_extension("ui-select")
+require("telescope").load_extension("git_branch")
+require("telescope").setup({
   defaults = {
     vimgrep_arguments = {
       "rg",
-      "--follow",        -- Follow symbolic links
-      "--hidden",        -- Search for hidden files
-      "--no-heading",    -- Don't group matches by each file
+      "--follow", -- Follow symbolic links
+      "--hidden", -- Search for hidden files
+      "--no-heading", -- Don't group matches by each file
       "--with-filename", -- Print the file path with the matched lines
-      "--line-number",   -- Show line numbers
-      "--column",        -- Show column numbers
-      "--smart-case",    -- Smart case search
+      "--line-number", -- Show line numbers
+      "--column", -- Show column numbers
+      "--smart-case", -- Smart case search
 
       -- Exclude some patterns from search
       "--glob=!**/.git/*",
@@ -83,7 +83,7 @@ require('telescope').setup{
       },
     },
   },
-}
+})
 
 local conf = require("telescope.config").values
 local function toggle_telescope(harpoon_files)
@@ -92,22 +92,24 @@ local function toggle_telescope(harpoon_files)
     table.insert(file_paths, item.value)
   end
 
-  require("telescope.pickers").new({}, {
-    prompt_title = "Harpoon",
-    finder = require("telescope.finders").new_table({
-      results = file_paths,
-    }),
-    previewer = conf.file_previewer({}),
-    sorter = conf.generic_sorter({}),
-  }):find()
+  require("telescope.pickers")
+    .new({}, {
+      prompt_title = "Harpoon",
+      finder = require("telescope.finders").new_table({
+        results = file_paths,
+      }),
+      previewer = conf.file_previewer({}),
+      sorter = conf.generic_sorter({}),
+    })
+    :find()
 end
 
-require('lazydev').setup({
-  library = { 'nvim-dap-ui' },
+require("lazydev").setup({
+  library = { "nvim-dap-ui" },
 })
-require('quicker').setup()
+require("quicker").setup()
 
-local dap, dapui = require('dap'), require('dapui')
+local dap, dapui = require("dap"), require("dapui")
 dapui.setup()
 dap.listeners.before.attach.dapui_config = function()
   dapui.open()
@@ -125,17 +127,25 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
-vim.lsp.config('html', {
-  filetypes = { 'razor', 'cshtml', 'html' },
+vim.lsp.config("html", {
+  filetypes = { "razor", "cshtml", "html" },
 })
 
-vim.lsp.config('vue', {
-  filetypes = { 'vue', 'js', 'html' },
+vim.lsp.config("vue", {
+  filetypes = { "vue", "js", "html" },
 })
 
-vim.lsp.config['ts_ls']                 = {
-  filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'vue' },
-  root_markers = { 'package.json' },
+vim.lsp.config["ts_ls"] = {
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+    "vue",
+  },
+  root_markers = { "package.json" },
   single_file_support = false,
 }
 
@@ -152,21 +162,23 @@ local g = vim.g
 -- match OverLength /\%101v./
 
 -- Opts
-opt.filetype = "off"
-opt.showmode = false
-opt.redrawtime = 100000
+
+o.clipboard = o.clipboard .. "unnamedplus"
+o.matchpairs = o.matchpairs .. ",<:>"
+
 opt.encoding = "UTF-8"
 opt.fileformats = "unix"
-o.clipboard = o.clipboard .. 'unnamedplus'
-opt.shortmess = 'ltToOcF'
-opt.wildmode = 'longest,list'
-opt.termguicolors = true
--- Highlight matched HTML tags
-opt.showmatch = true
-o.matchpairs = o.matchpairs .. ",<:>"
+opt.filetype = "off"
 opt.matchtime = 3
-opt.updatetime = 250
+opt.redrawtime = 100000
+opt.shortmess = "ltToOcF"
+opt.showmatch = true
+opt.showmode = false
+opt.smartcase = true
+opt.termguicolors = true
 opt.timeoutlen = 250
+opt.updatetime = 250
+opt.wildmode = "longest,list"
 
 -- Make wildcard completion behave like zsh
 opt.wildmenu = true
@@ -183,18 +195,18 @@ opt.foldenable = false
 opt.hidden = true
 opt.number = true
 opt.ruler = true
-opt.background = 'dark'
+opt.background = "dark"
 opt.fixeol = true
 opt.eol = true
 
 -- Might be nvim-only?
 opt.list = true
-opt.listchars = 'tab:‣-,trail:·'
+opt.listchars = "tab:‣-,trail:·"
 
 -- Tab formatting
-opt.shiftwidth  = 2
+opt.shiftwidth = 2
 opt.softtabstop = 2
-opt.tabstop     = 2
+opt.tabstop = 2
 opt.expandtab = true
 
 -- Wrapping
@@ -202,7 +214,7 @@ opt.wrap = true
 opt.linebreak = true
 
 -- Searching
-opt.incsearch   = true
+opt.incsearch = true
 opt.ttimeoutlen = 0
 opt.hlsearch = false
 
@@ -213,7 +225,7 @@ opt.splitright = true
 opt.autoread = true
 
 opt.ttyfast = true
-opt.mouse = 'a'
+opt.mouse = "a"
 
 -- Use Ag over Grep
 opt.grepprg = "ag --nogroup --nocolor"
@@ -222,24 +234,25 @@ opt.grepprg = "ag --nogroup --nocolor"
 o.clipboard = "unnamed,unnamedplus"
 
 -- Settings
-g.python3_host_prog='/usr/bin/python3'
-g.pymode_python = 'python3'
+g.python3_host_prog = "/usr/bin/python3"
+g.pymode_python = "python3"
 
 g.loaded_perl_provider = 0
 
-g.gist_clip_command = 'pbcopy'
+g.gist_clip_command = "pbcopy"
 g.gist_open_browser_after_post = 1
 
 g.goyo_width = 100
 
-g.ackprg                          = 'ag --nogroup --nocolor --column'
-g.unite_source_rec_async_command  = 'ag -i --nocolor --nogroup'
-g.unite_source_grep_command       = 'ag'
-g.unite_source_grep_default_ops   = [[ --line-numbers --nocolor --nogroup --hidden ignore '.git' --ignore 'tmp' --ignore 'node_modules' ]]
-g.unite_source_grep_recursive_opt = ''
+g.ackprg = "ag --nogroup --nocolor --column"
+g.unite_source_rec_async_command = "ag -i --nocolor --nogroup"
+g.unite_source_grep_command = "ag"
+g.unite_source_grep_default_ops =
+  [[ --line-numbers --nocolor --nogroup --hidden ignore '.git' --ignore 'tmp' --ignore 'node_modules' ]]
+g.unite_source_grep_recursive_opt = ""
 
-g.tmuxify_custom_command = 'tmux split-window -l 16'
-g.tmuxify_map_prefix     = '<space>m'
+g.tmuxify_custom_command = "tmux split-window -l 16"
+g.tmuxify_map_prefix = "<space>m"
 
 g.rust_recommended_style = 0
 
@@ -247,46 +260,64 @@ g.jsx_ext_required = 0 -- Allow JSX in normal JS files
 
 g.netrw_liststyle = 3
 
-g.run_mode_map = '<Leader>rr'
+g.run_mode_map = "<Leader>rr"
 g.tmux_navigator_no_mappings = 1
 
 -- Commands
-vim.api.nvim_create_user_command('W', 'w', {})
-vim.api.nvim_create_user_command('Q', 'q', {})
-vim.api.nvim_create_user_command('Qa', 'qa', {})
-vim.api.nvim_create_user_command('Bd', 'bd', {})
-vim.api.nvim_create_user_command('RS', 'source ~/.vimrc', {})
-vim.api.nvim_create_user_command('LuaSnipEdit', 'lua require("luasnip.loaders").edit_snippet_files()', {})
+vim.api.nvim_create_user_command("W", "w", {})
+vim.api.nvim_create_user_command("Q", "q", {})
+vim.api.nvim_create_user_command("Qa", "qa", {})
+vim.api.nvim_create_user_command("Bd", "bd", {})
+vim.api.nvim_create_user_command("RS", "source ~/.vimrc", {})
+vim.api.nvim_create_user_command("LuaSnipEdit", 'lua require("luasnip.loaders").edit_snippet_files()', {})
 
 -- Autocmds
-local cg = vim.api.nvim_create_augroup('CursorLine', { clear = true })
+local cg = vim.api.nvim_create_augroup("CursorLine", { clear = true })
 vim.api.nvim_create_autocmd(
-  { 'VimEnter', 'WinEnter', 'BufWinEnter' },
-  { pattern = '*', command = 'setlocal cursorline', group = cg }
+  { "VimEnter", "WinEnter", "BufWinEnter" },
+  { pattern = "*", command = "setlocal cursorline", group = cg }
 )
-vim.api.nvim_create_autocmd('WinLeave', {pattern = '*', command = 'setlocal nocursorline', group = cg})
+vim.api.nvim_create_autocmd("WinLeave", { pattern = "*", command = "setlocal nocursorline", group = cg })
 
-vim.api.nvim_create_autocmd('FileType', { pattern = {'css', 'vue'}, command = "setlocal omnifunc=csscomplete#CompleteCSS" })
-vim.api.nvim_create_autocmd('FileType', { pattern = {'html', 'markdown', 'vue'}, command = "setlocal omnifunc=htmlcomplete#CompleteTags" })
-vim.api.nvim_create_autocmd('FileType', { pattern = {'javascript', 'vue'}, command = "setlocal omnifunc=javascriptcomplete#CompleteJS" })
-vim.api.nvim_create_autocmd('FileType', { pattern = 'python', command = "setlocal omnifunc=pythoncomplete#Complete" })
-vim.api.nvim_create_autocmd('FileType', { pattern = 'python', command = "setlocal expandtab shiftwidth=2 softtabstop=2" })
-vim.api.nvim_create_autocmd('FileType', { pattern = 'xml', command = "setlocal omnifunc=xmlcomplete#CompleteTags" })
-vim.api.nvim_create_autocmd('BufReadPost', { pattern = 'quickfix', command = "nnoremap <buffer> <CR> <CR>" })
+vim.api.nvim_create_autocmd(
+  "FileType",
+  { pattern = { "css", "vue" }, command = "setlocal omnifunc=csscomplete#CompleteCSS" }
+)
+vim.api.nvim_create_autocmd(
+  "FileType",
+  { pattern = { "html", "markdown", "vue" }, command = "setlocal omnifunc=htmlcomplete#CompleteTags" }
+)
+vim.api.nvim_create_autocmd(
+  "FileType",
+  { pattern = { "javascript", "vue" }, command = "setlocal omnifunc=javascriptcomplete#CompleteJS" }
+)
+vim.api.nvim_create_autocmd("FileType", { pattern = "python", command = "setlocal omnifunc=pythoncomplete#Complete" })
+vim.api.nvim_create_autocmd(
+  "FileType",
+  { pattern = "python", command = "setlocal expandtab shiftwidth=2 softtabstop=2" }
+)
+vim.api.nvim_create_autocmd("FileType", { pattern = "xml", command = "setlocal omnifunc=xmlcomplete#CompleteTags" })
+vim.api.nvim_create_autocmd("BufReadPost", { pattern = "quickfix", command = "nnoremap <buffer> <CR> <CR>" })
 
 -- Extension to filetype config
 vim.filetype.add({
   extension = {
-    cshtml = 'razor'
-  }
+    cshtml = "razor",
+  },
 })
-vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, { pattern = '*.tex', command = 'setfiletype tex' })
-vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead', 'BufReadPost'}, { pattern = '*.jade.html', command = 'set filetype=jade' })
-vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead', 'BufReadPost'}, { pattern = '*.cshtml', command = 'set filetype=razor' })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.tex", command = "setfiletype tex" })
+vim.api.nvim_create_autocmd(
+  { "BufNewFile", "BufRead", "BufReadPost" },
+  { pattern = "*.jade.html", command = "set filetype=jade" }
+)
+vim.api.nvim_create_autocmd(
+  { "BufNewFile", "BufRead", "BufReadPost" },
+  { pattern = "*.cshtml", command = "set filetype=razor" }
+)
 
-vim.api.nvim_create_autocmd({'BufNewFile', 'BufNewFile'}, {
-  pattern = {'html','javascript', 'css', 'sass', 'ruby'},
-  command = "let w:m2=matchadd('ErrorMsg', '\\%>100v.\\+', -1)"
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufNewFile" }, {
+  pattern = { "html", "javascript", "css", "sass", "ruby" },
+  command = "let w:m2=matchadd('ErrorMsg', '\\%>100v.\\+', -1)",
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -297,4 +328,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- Import key bindings
-require('keys')
+require("keys")
