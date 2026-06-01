@@ -151,6 +151,16 @@ vim.lsp.config["ts_ls"] = {
 
 require("mason-lspconfig").setup()
 
+require("jira").setup({
+  cli = {
+    issues = {
+      args = { "issue", "list" },
+      columns = { "key" },
+      filters = {},
+    },
+  },
+})
+
 local opt = vim.opt
 local o = vim.o
 local g = vim.g
