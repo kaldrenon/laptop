@@ -9,7 +9,7 @@ SUBJECT="%s"
 FORMAT="$RELATIVE_TIME{$HASH{$AUTHOR{$REFS $SUBJECT"
 
 function pretty_git_log() {
-  git log --color=always --pretty="tformat:${FORMAT}" $* |
+  git log $1 --color=always --pretty="tformat:${FORMAT}" $* |
   column -t -s '{' |
   less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
 }
