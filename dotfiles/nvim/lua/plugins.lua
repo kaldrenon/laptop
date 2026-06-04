@@ -270,7 +270,7 @@ return {
           enabled = true,
         },
         char = {
-          autohide = true,
+          enabled = false,
         },
       },
     },
