@@ -172,8 +172,6 @@ local g = vim.g
 -- match OverLength /\%101v./
 
 -- Opts
-
-o.clipboard = o.clipboard .. "unnamedplus"
 o.matchpairs = o.matchpairs .. ",<:>"
 
 opt.encoding = "UTF-8"
@@ -249,7 +247,7 @@ g.pymode_python = "python3"
 
 g.loaded_perl_provider = 0
 
-g.gist_clip_command = "pbcopy"
+g.gist_clip_command = "tmux"
 g.gist_open_browser_after_post = 1
 
 g.goyo_width = 100

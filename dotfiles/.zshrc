@@ -368,7 +368,7 @@ ssh-add -q ~/.ssh/*_key
 # Starcap - dotnet dev
 ######
 alias dn="dotnet"
-alias dnb="dotnet build"
+alias dnb="dotnet build --tl:off"
 alias dnr="dotnet run --no-restore"
 alias dnt="dotnet test"
 alias dnw="dotnet watch --non-interactive"
