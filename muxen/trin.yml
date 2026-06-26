@@ -5,6 +5,6 @@ root: ~/code/trinity/
 
 windows:
   - code: nv Program.cs
-  - server: dnr
+  - server: dnbr
   - shell: git status
   - tests: ls

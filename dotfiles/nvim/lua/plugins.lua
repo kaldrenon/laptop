@@ -587,6 +587,7 @@ return {
   "mxw/vim-jsx",
   "nanotee/sqls.nvim",
   "notalex/vim-run-live",
+  "nvim-pack/nvim-spectre",
   "nvim-tree/nvim-web-devicons",
   "othree/html5.vim",
   "pangloss/vim-javascript",

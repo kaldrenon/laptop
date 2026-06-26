@@ -1,0 +1,8 @@
+#!/bin/bash
+declare -a muxen=(home trin brands trin-win)
+
+for profile in "${muxen[@]}"
+do
+  echo "-- $profile"
+  tmuxinator debug $profile --no-attach
+done

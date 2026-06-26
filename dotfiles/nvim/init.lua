@@ -131,11 +131,19 @@ vim.lsp.config("html", {
   filetypes = { "razor", "cshtml", "html" },
 })
 
-vim.lsp.config("vue", {
-  filetypes = { "vue", "js", "html" },
-})
+local vue_ls_path = vim.fn.expand("$MASON/packages/vue-language-server")
+local vue_ts_plugin_location = vue_ls_path .. "/node_modules/@vue/language-server"
 
 vim.lsp.config["ts_ls"] = {
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = vue_ts_plugin_location,
+        languages = { "javascript", "typescript", "vue" },
+      },
+    },
+  },
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -160,6 +168,8 @@ require("jira").setup({
     },
   },
 })
+
+require("spectre").setup()
 
 local opt = vim.opt
 local o = vim.o

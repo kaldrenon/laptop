@@ -12,11 +12,11 @@ local quicker = require("quicker")
 --
 
 -- Telescope
-vim.keymap.set({ "i", "s" }, "<C-e>", function()
+k.set({ "i", "s" }, "<C-e>", function()
   ls.expand()
 end, { silent = true })
 
-vim.keymap.set({ "i", "s" }, "<C-j>", function()
+k.set({ "i", "s" }, "<C-j>", function()
   if ls.jumpable(1) then
     ls.jump(1)
   else
@@ -24,7 +24,7 @@ vim.keymap.set({ "i", "s" }, "<C-j>", function()
   end
 end, { silent = true })
 
-vim.keymap.set({ "i", "s" }, "<C-k>", function()
+k.set({ "i", "s" }, "<C-k>", function()
   if ls.jumpable(-1) then
     ls.jump(-1)
   else
@@ -66,6 +66,20 @@ k.set("n", "<leader>t", ":Trouble diagnostics toggle focus=true<cr>", { silent =
 k.set("n", "<leader>tl", ":Trouble loclist toggle focus=true<cr>", { silent = true })
 k.set("n", "<leader>tq", ":Trouble qflist toggle focus=true<cr>", { silent = true })
 
+-- Spectre
+k.set("n", "<leader>fr", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
+k.set(
+  "n",
+  "<leader>fw",
+  '<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+  { desc = "Search current word" }
+)
+k.set(
+  "n",
+  "<leader>ff",
+  '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+  { desc = "Search on current file" }
+)
 --
 -- Spacemaps
 --

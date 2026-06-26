@@ -370,6 +370,7 @@ ssh-add -q ~/.ssh/*_key
 alias dn="dotnet"
 alias dnb="dotnet build --tl:off"
 alias dnr="dotnet run --no-restore"
+alias dnbr="dotnet build --tl:off && dotnet run --no-restore"
 alias dnt="dotnet test"
 alias dnw="dotnet watch --non-interactive"
 alias starcap="cd /mnt/c/Users/Andrew\ Fallows/starcap/"
