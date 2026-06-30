@@ -1,8 +1,8 @@
 #!/bin/bash
-declare -a muxen=(home trin brands trin-win)
+declare -a muxen=(home trin brands win)
 
 for profile in "${muxen[@]}"
 do
   echo "-- $profile"
-  tmuxinator debug $profile --no-attach
+  tmuxinator start $profile --skip-attach
 done
