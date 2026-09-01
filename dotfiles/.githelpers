@@ -13,3 +13,10 @@ function pretty_git_log() {
   column -t -s '{' |
   less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
 }
+
+function log_branch_heads() {
+  for branch in $(git for-each-ref --shell refs/heads/ --format='%(refname:lstrip=2)')
+  do
+    eval "git log --oneline -1 $branch"
+  done
+}
