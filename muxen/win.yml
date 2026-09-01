@@ -1,6 +1,6 @@
 # /home/afallows/.config/tmuxinator/trn-win.yml
 
-name: trin-win
+name: win-trin
 root: /mnt/c/Users/Andrew Fallows/starcap/
 
 windows:

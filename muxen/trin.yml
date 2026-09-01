@@ -7,4 +7,4 @@ windows:
   - code: nv Program.cs
   - server: dnbr
   - shell: git status
-  - tests: ls
+  - tests: nv ../trinity-test/
