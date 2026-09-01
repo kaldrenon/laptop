@@ -392,6 +392,7 @@ PATH="$PATH:/.dotnet/tools"
 PATH="$PATH:$HOME/.dotnet/tools"
 PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
 PATH="$PATH:/opt/mssql-tools18/bin"
+PATH="$PATH:$HOME/laptop/scripts/"
 # Windows includes - interop turned off because it's hard to control PATH otherwise
 PATH="$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/"
 PATH="$PATH:/mnt/c/Windows/System32/"
