@@ -4,6 +4,18 @@
 
 extends html, javascript, css
 
+#
+# Original snippets
+#
+snippet sss 'style scss scoped'
+  <style lang="scss" scoped>
+
+  </style>
+
+#
+# Imported
+#
+
 # These snippets form a port of Sarah Drasner's vue-sublime-snippets
 
 # some html-like snippets
@@ -11,28 +23,28 @@ extends html, javascript, css
 snippet slot
   <slot></slot>
 
-snippet template
+snippet tmp
   <template></template>
 
-snippet transition
+snippet trans
   <transition></transition>
 
 # The following snippets create more complex boilerplate code.
 
 snippet vbase
-  <template>
-    <div>
-
-    </div>
-  </template>
-
   <script>
     export default{
       ${0}
     }
   </script>
 
-  <style scoped>
+  <template>
+    <div>
+
+    </div>
+  </template>
+
+  <style lang="scss" scoped>
 
   </style>
 
@@ -195,13 +207,3 @@ snippet vstore
       ${1:key}: ${2:value}
     }
   });
-
-
-# vue-i18n snippets https://github.com/kazupon/vue-i18n
-snippet trans
-  $t('$1')
-
-# Translation with parameter
-snippet transc
-  $t('$1', { $2: $3 })
-
