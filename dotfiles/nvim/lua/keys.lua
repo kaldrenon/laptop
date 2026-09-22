@@ -53,6 +53,9 @@ k.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 k.set("n", "<leader>fs", ":Telescope luasnip<cr>", { desc = "Telescope luasnip" })
 k.set("n", "<leader>fm", ":Telescope keymaps<cr>", { desc = "Telescope keymaps" })
 
+-- Notifier
+k.set("n", "<leader>h", ":lua Snacks.notifier.show_history()<cr>", { desc = "Notifier history" })
+
 -- Jira
 k.set("n", "<leader>ja", ":Jira create TRN<cr>", { desc = "Add new Jira card" })
 k.set("n", "<leader>je", ":Jira edit TRN-", { desc = "Edit Jira issue" })
