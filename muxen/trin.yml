@@ -5,6 +5,11 @@ root: ~/code/trinity/
 
 windows:
   - code: nv Program.cs
-  - server: dnbr
+  - server:
+      layout: main-vertical
+      panes:
+        - dnbr
+        - npx vite
+        - cd ../trinity-test && dotnet test
   - shell: git status
-  - tests: nv ../trinity-test/
+  - tests: cd ../trinity-test/ && nv

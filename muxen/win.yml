@@ -5,7 +5,8 @@ root: /mnt/c/Users/Andrew Fallows/starcap/
 
 windows:
   - code:
-      layout: even-horizontal
+      layout: main-vertical
       panes:
         - cd trinity; git status
         - cd database; git status
+        - cd brands; git status
