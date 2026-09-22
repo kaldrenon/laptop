@@ -404,3 +404,10 @@ export DOTNET_ROOT="$HOME/.asdf/installs/dotnet/10.0.100"
 
 eval "$(dotnet completions script zsh)"
 eval "$(starship init zsh)"
+
+# bun completions
+[ -s "/home/kaldrenon/.bun/_bun" ] && source "/home/kaldrenon/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
