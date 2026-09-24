@@ -68,7 +68,7 @@ style = 'cyan dimmed'
 disabled = false
 
 [git_status]
-stashed = 'ⓢ'
+stashed = '⧆'
 style = 'cyan'
 
 [hostname]
