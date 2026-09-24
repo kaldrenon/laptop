@@ -18,7 +18,7 @@ $nodejs\
 $ruby\
 $fill\
 $cmd_duration\
-$jobs\
+$jobs \
 $battery\
 $line_break\
 $character"""
@@ -27,7 +27,7 @@ $character"""
 add_newline = true
 
 [[battery.display]]
-threshold = 80
+threshold = 100
 style = 'green dimmed'
 
 [[battery.display]]
