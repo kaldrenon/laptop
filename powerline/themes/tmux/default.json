@@ -26,14 +26,6 @@
         "function": "powerline.segments.common.net.external_ip"
       },
       {
-        "function": "powerline.segments.common.wthr.weather",
-        "name": "weather",
-        "args": {
-          "unit": "f",
-          "location_query": "King of Prussia, PA"
-        }
-      },
-      {
         "function": "powerline.segments.common.net.hostname",
         "args": {
           "only_if_ssh": "True"
