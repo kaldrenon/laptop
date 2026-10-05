@@ -552,6 +552,12 @@ return {
     "mikemcbride/telescope-mru.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
+  {
+    "lmgraf/wsl-clipboard.nvim",
+    opts = {
+      mode = "sync", -- options: "system", "sync", "focus"
+    },
+  },
   -- noconf
   "AlexvZyl/nordic.nvim",
   "EdenEast/nightfox.nvim",
