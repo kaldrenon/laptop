@@ -396,6 +396,7 @@ PATH="$PATH:$HOME/laptop/scripts/"
 # Windows includes - interop turned off because it's hard to control PATH otherwise
 PATH="$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/"
 PATH="$PATH:/mnt/c/Windows/System32/"
+PATH="$PATH:/mnt/c/bin"
 export PATH="$HOME/.bin:$PATH"
 
 # needs to be after asdf so shims are in PATH
