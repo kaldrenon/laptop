@@ -1,5 +1,5 @@
 #!/bin/bash
-declare -a muxen=(home trin brands win)
+declare -a muxen=(home trin test win brands)
 
 for profile in "${muxen[@]}"
 do

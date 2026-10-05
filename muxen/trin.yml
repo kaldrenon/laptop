@@ -12,4 +12,3 @@ windows:
         - npx vite
         - cd ../trinity-test && dotnet test
   - shell: git status
-  - tests: cd ../trinity-test/ && nv

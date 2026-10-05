@@ -1,8 +1,11 @@
 # /home/afallows/.config/tmuxinator/trin.yml
 
-name: trinity8-tests
+name: tests
 root: ~/code/trinity-test/
 
 windows:
   - code: nv
   - shell: git status
+  - runner: scripts/test.sh
+  - coverage: minicover report
+
