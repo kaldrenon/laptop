@@ -34,6 +34,8 @@ end, { silent = true })
 
 k.set("n", "<C-o>", builtin.find_files, { desc = "Telescope find files" })
 k.set("n", "<C-p>", builtin.live_grep, { desc = "Telescope live grep" })
+k.set("n", "<leader>fw", ':lua require("telescope.builtin").grep_string({search = vim.fn.expand("<cword>")})<cr>', {})
+k.set("n", "<leader>fr", ":Telescope mru_files<cr>", {})
 
 --
 -- Leadermaps

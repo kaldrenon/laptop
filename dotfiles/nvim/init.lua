@@ -2,12 +2,9 @@
 require("config.lazy")
 
 -- Set colo before loading lualine, so that lualine will use it
--- vim.cmd([[colorscheme kanagawa-wave]])
--- vim.cmd([[colorscheme nordic]])
--- vim.cmd([[colorscheme nightfox]])
--- vim.cmd([[colorscheme kanso]])
--- vim.cmd([[colorscheme acario_dark]])
 vim.cmd([[colorscheme minimal-base16]])
+
+-- Plugin Setup calls
 require("lualine").setup({
   options = {
     theme = "tomorrow_night",
@@ -30,6 +27,7 @@ harpoon:setup({})
 require("telescope").load_extension("luasnip")
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("git_branch")
+require("telescope").load_extension("mru_files")
 require("telescope").setup({
   defaults = {
     vimgrep_arguments = {
@@ -127,6 +125,7 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
+-- Configs
 vim.lsp.config("html", {
   filetypes = { "razor", "cshtml", "html" },
 })
@@ -249,7 +248,37 @@ opt.mouse = "a"
 opt.grepprg = "ag --nogroup --nocolor"
 
 -- remove CR on paste
-o.clipboard = "unnamed,unnamedplus"
+o.clipboard = "unnamedplus"
+
+vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+
+-- -- Set wsl-clipboard for vim clipboard if running WSL
+-- -- Check if the current linux kernal is microsoft WSL version
+-- local function is_wsl()
+--   local version_file = io.open("/proc/version", "rb")
+--   if version_file ~= nil and string.find(version_file:read("*a"), "microsoft") then
+--     version_file:close()
+--     return true
+--   end
+--   return false
+-- end
+--
+-- -- If current linux is under WSL then use wclip.exe
+-- -- More info: https://github.com/memoryInject/wsl-clipboard
+-- if is_wsl() then
+--   vim.g.clipboard = {
+--     name = "wsl-clipboard",
+--     copy = {
+--       ["+"] = "wcopy",
+--       ["*"] = "wcopy",
+--     },
+--     paste = {
+--       ["+"] = "wpaste",
+--       ["*"] = "wpaste",
+--     },
+--     cache_enabled = true,
+--   }
+-- end
 
 -- Settings
 g.python3_host_prog = "/usr/bin/python3"

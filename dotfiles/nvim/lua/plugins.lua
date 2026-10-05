@@ -322,28 +322,15 @@ return {
     opts = {
       formatters_by_ft = {
         cs = { "clang-format" },
-        html = { "prettierd" },
-        js = { "prettierd" },
-        json = { "prettierd" },
+        html = { "prettier" },
+        js = { "prettier" },
+        json = { "prettier" },
         lua = { "stylua" },
-        scss = { "prettierd" },
-        ts = { "prettierd" },
-        vue = { "prettierd" },
+        scss = { "prettier" },
+        ts = { "prettier" },
+        vue = { "prettier" },
         xml = { "xmlformatter" },
       },
-    },
-  },
-  {
-    "bkoropoff/clipipe",
-    opts = {
-      -- Optional configuration, defaults shown here:
-      keep_line_endings = false, -- Set to true to disable \r\n conversion on Windows
-      enable = true, -- Automatically set g:clipboard to enable clipipe
-      start_timeout = 5000, -- Timeout for starting background process (ms)
-      timeout = 500, -- Timeout for responses from background process (ms)
-      interval = 50, -- Polling interval for responses (ms)
-      download = true, -- Download pre-built binary if needed
-      build = true, -- Build from source if needed
     },
   },
   {
@@ -560,6 +547,10 @@ return {
       statuscolumn = { enabled = true },
       words = { enabled = true },
     },
+  },
+  {
+    "mikemcbride/telescope-mru.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
   -- noconf
   "AlexvZyl/nordic.nvim",
