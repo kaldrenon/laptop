@@ -125,6 +125,11 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
+require("persistent-breakpoints").setup({
+  load_breakpoints_event = { "BufReadPost" },
+})
+require("dap-breakpoints").setup()
+
 -- Configs
 vim.lsp.config("html", {
   filetypes = { "razor", "cshtml", "html" },
@@ -376,3 +381,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- Import key bindings
 require("keys")
+require("switchboard-config")

@@ -6,6 +6,8 @@ local ls = require("luasnip")
 local harpoon = require("harpoon")
 harpoon:setup()
 local quicker = require("quicker")
+local dap = require("dap")
+local dap_pb = require("persistent-breakpoints.api")
 
 --
 -- Modmaps (Ctrl/Shift/Alt)
@@ -32,11 +34,6 @@ k.set({ "i", "s" }, "<C-k>", function()
   end
 end, { silent = true })
 
-k.set("n", "<C-o>", builtin.find_files, { desc = "Telescope find files" })
-k.set("n", "<C-p>", builtin.live_grep, { desc = "Telescope live grep" })
-k.set("n", "<leader>fw", ':lua require("telescope.builtin").grep_string({search = vim.fn.expand("<cword>")})<cr>', {})
-k.set("n", "<leader>fr", ":Telescope mru_files<cr>", {})
-
 --
 -- Leadermaps
 --
@@ -51,6 +48,10 @@ k.set("n", "<Leader>a:", ":Tabularize /:\zs<CR>")
 k.set("v", "<Leader>a:", ":Tabularize /:\zs<CR>")
 
 -- Telescope
+k.set("n", "<C-o>", builtin.find_files, { desc = "Telescope find files" })
+k.set("n", "<C-p>", builtin.live_grep, { desc = "Telescope live grep" })
+k.set("n", "<leader>fw", ':lua require("telescope.builtin").grep_string({search = vim.fn.expand("<cword>")})<cr>', {})
+k.set("n", "<leader>fr", ":Telescope mru_files<cr>", {})
 k.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 k.set("n", "<leader>fs", ":Telescope luasnip<cr>", { desc = "Telescope luasnip" })
 k.set("n", "<leader>fm", ":Telescope keymaps<cr>", { desc = "Telescope keymaps" })
@@ -85,15 +86,27 @@ k.set(
   '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
   { desc = "Search on current file" }
 )
+
 --
 -- Spacemaps
 --
 
--- EasyDotnet
-k.set("n", "<space>db", ":Dotnet build<cr>", { silent = true })
-k.set("n", "<space>dr", ":Dotnet run<cr>", { silent = true })
-k.set("n", "<space>dt", ":Dotnet testrunner<cr>", { silent = true })
-k.set("n", "<space>dlr", ":Dotnet lsp restart<cr>", { silent = true })
+-- DAP / Breakpoints
+k.set("n", "<leader>dq", function()
+  dap.terminate()
+  dap.clear_breakpoints()
+end, { desc = "Terminate and clear breakpoints" })
+
+k.set("n", "<F5>", dap.continue, { desc = "Start/continue debugging" })
+k.set("n", "<F10>", dap.step_over, { desc = "Step over" })
+k.set("n", "<F11>", dap.step_into, { desc = "Step into" })
+k.set("n", "<F12>", dap.step_out, { desc = "Step out" })
+k.set("n", "<leader>b", dap_pb.toggle_breakpoint, { desc = "Toggle breakpoint" })
+k.set("n", "<leader>dO", dap.step_over, { desc = "Step over (alt)" })
+k.set("n", "<leader>dC", dap.run_to_cursor, { desc = "Run to cursor" })
+k.set("n", "<leader>dr", dap.repl.toggle, { desc = "Toggle DAP REPL" })
+k.set("n", "<leader>dj", dap.down, { desc = "Go down stack frame" })
+k.set("n", "<leader>dk", dap.up, { desc = "Go up stack frame" })
 
 -- LSP
 k.set("n", "<space>gd", ":lua vim.lsp.buf.definition()<cr>", { silent = true })
@@ -104,6 +117,12 @@ k.set("n", "<space>gr", ":lua vim.lsp.buf.rename()<cr>", { silent = true })
 k.set("n", "<space>ll", ":Lazy<cr>", { silent = true })
 k.set("n", "<space>lu", ":Lazy update<cr>", { silent = true })
 k.set("n", "<space>lx", ":Lazy clean<cr>", { silent = true })
+
+-- Switchboard
+k.set("n", "<space>sr", ":Switchboard overlay run<cr>", { silent = true })
+k.set("n", "<space>sc", ":Switchboard overlay test_with_coverage<cr>", { silent = true })
+k.set("n", "<space>st", ":Switchboard overlay test<cr>", { silent = true })
+k.set("n", "<space>sb", ":Switchboard overlay build<cr>", { silent = true })
 
 --
 -- nmaps

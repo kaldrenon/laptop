@@ -1,9 +1,12 @@
 # Custom
+snippet map 'leader map'
+  k.set("n", "$1", "$2", { desc = "$3", silent = true })
+
 snippet lmap 'leader map'
-  k.set('n', '<leader>$1', '$2', { desc = '$3' })
+  k.set("n", "<leader>$1", "$2", { desc = "$3", silent = true })
 
 snippet smap 'space map'
-  k.set('n', '<space>$1', '$2', { desc = '$3' })
+  k.set("n", "<space>$1", "$2", { desc = "$3, silent = true })
 
 # Predefined
 snippet #!

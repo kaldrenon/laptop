@@ -199,25 +199,6 @@ return {
   {
     "mfussenegger/nvim-dap",
     config = function()
-      local dap = require("dap")
-
-      -- Keymaps for controlling the debugger
-      vim.keymap.set("n", "<leader>dq", function()
-        dap.terminate()
-        dap.clear_breakpoints()
-      end, { desc = "Terminate and clear breakpoints" })
-
-      vim.keymap.set("n", "<F5>", dap.continue, { desc = "Start/continue debugging" })
-      vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Step over" })
-      vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Step into" })
-      vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Step out" })
-      vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
-      vim.keymap.set("n", "<leader>dO", dap.step_over, { desc = "Step over (alt)" })
-      vim.keymap.set("n", "<leader>dC", dap.run_to_cursor, { desc = "Run to cursor" })
-      vim.keymap.set("n", "<leader>dr", dap.repl.toggle, { desc = "Toggle DAP REPL" })
-      vim.keymap.set("n", "<leader>dj", dap.down, { desc = "Go down stack frame" })
-      vim.keymap.set("n", "<leader>dk", dap.up, { desc = "Go up stack frame" })
-
       -- .NET specific setup using `easy-dotnet`
       require("easy-dotnet.netcoredbg").register_dap_variables_viewer() -- special variables viewer specific for .NET
     end,
@@ -501,21 +482,6 @@ return {
     priority = 1000,
   },
   {
-    "kndndrj/nvim-dbee",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    },
-    build = function()
-      -- Install tries to automatically detect the install method.
-      -- if it fails, try calling it with one of these parameters:
-      --    "curl", "wget", "bitsadmin", "go"
-      require("dbee").install()
-    end,
-    config = function()
-      require("dbee").setup(--[[optional config]])
-    end,
-  },
-  {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -560,10 +526,12 @@ return {
   },
   -- noconf
   "AlexvZyl/nordic.nvim",
+  "Carcuis/dap-breakpoints.nvim",
   "EdenEast/nightfox.nvim",
   "EinfachToll/DidYouMean",
   "FeiyouG/commander.nvim",
   "Lokaltog/vim-easymotion",
+  "Weissle/persistent-breakpoints.nvim",
   "benfowler/telescope-luasnip.nvim",
   "christoomey/vim-tmux-navigator",
   "digitaltoad/vim-jade",
@@ -571,9 +539,9 @@ return {
   "elzr/vim-json",
   "godlygeek/tabular",
   "groenewege/vim-less",
-  "janko/vim-test",
   "jlcrochet/vim-razor",
   "kana/vim-textobj-user",
+  "karnull/switchboard.nvim",
   "kchmck/vim-coffee-script",
   "kevinhwang91/nvim-bqf",
   "lambdalisue/suda.vim",
@@ -613,4 +581,5 @@ return {
   "tpope/vim-surround",
   "tpope/vim-unimpaired",
   "vim-ruby/vim-ruby",
+  "vim-test/vim-test",
 }
