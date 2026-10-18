@@ -32,9 +32,6 @@
         "args": {
           "only_if_ssh": "True"
         }
-      },
-      {
-        "function": "powerline.segments.common.bat.battery"
       }
     ]
   }
