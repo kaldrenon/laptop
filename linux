@@ -214,3 +214,11 @@ append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
 
 # install starship
 curl -sS https://starship.rs/install.sh | sh
+
+# symlink powerline
+ln -s $(pwd)/powerline $HOME/.config/powerline
+
+# fonts
+fnt update
+fnt -i fonts-firacode
+fnt -i fonts-nerd-symbols
