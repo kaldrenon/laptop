@@ -126,22 +126,16 @@ if [[ $HOST_OS = 'Linux' ]]; then
   }
 fi
 
-# Mac OS only
-if [[ $HOST_OS = 'Darwin' ]]; then
-  alias agi="brew install -y"
-
-  # Voices
-  alert() {
-    (say -v 'Victoria' "$@" </dev/null &>/dev/null &)
-  }
-
-  alias bsl="brew services list"
-  alias bsr="brew services restart"
-fi
-
 # PostgreSQL
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
+
+# JiraTUI
+js () {
+  jiratui issues search -k trn-$1
+}
+
+alias j="jiratui"
 
 ####
 # Vim and NeoVim
