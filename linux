@@ -51,9 +51,10 @@ if [ ! -d "$HOME/.asdf" ]; then
   wget https://go.dev/dl/go1.25.4.linux-amd64.tar.gz
   sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.25.4.linux-amd64.tar.gz
   wget https://github.com/asdf-vm/asdf/releases/download/v0.19.0/asdf-v0.19.0-linux-amd64.tar.gz
-  gunzip
-  tar -xf asdf-v0.19.0-linux-amd64.tar.gz
-  rm asdf-v0.19.0-linux-amd64.tar.gz
+  gunzip asdf-v0.19.0-linux-amd64.tar.gz
+  tar -xf asdf-v0.19.0-linux-amd64.tar
+  rm asdf-v0.19.0-linux-amd64.tar go1.25.4.linux-amd64.tar.gz
+  mkdir -p ~/.bin
   mv asdf ~/.bin
 fi
 
@@ -62,15 +63,14 @@ add_or_update_asdf_plugin() {
   local name="$1"
   local url="$2"
 
-  if ! asdf plugin-list | grep -Fq "$name"; then
-    asdf plugin-add "$name" "$url"
+  if ! $HOME/.bin/asdf plugin list | grep -Fq "$name"; then
+    $HOME/.bin/asdf plugin add "$name" "$url"
   else
-    asdf plugin-update "$name"
+    $HOME/.bin/asdf plugin update "$name"
   fi
 }
 
 # shellcheck disable=SC1090
-source "$HOME/.asdf/asdf.sh"
 add_or_update_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
 add_or_update_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 
@@ -78,8 +78,8 @@ install_asdf_language() {
   local language="$1"
   local version
 
-  asdf install "$language" latest
-  asdf "set" --home "$language" latest
+  $HOME/.bin/asdf install "$language" latest
+  $HOME/.bin/asdf "set" --home "$language" latest
 }
 
 #
@@ -87,7 +87,7 @@ install_asdf_language() {
 #
 fancy_echo "Installing latest Ruby..."
 install_asdf_language "ruby"
-asdf set -u ruby latest
+$HOME/.bin/asdf set -u ruby latest
 
 # Install common ruby tools
 gem update --system
@@ -171,7 +171,6 @@ bob install stable
 cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
 
 # install support packages
-pip3 install neovim
 npm install -g neovim
 gem install neovim
 
@@ -179,6 +178,8 @@ gem install neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
 chmod a+x nvim-linux-x86_64.appimage
 sudo mv nvim-linux-x86_64.appimage /usr/bin/nvim
+
+# symlink nvim config
 
 #
 # Update PATH
@@ -210,3 +211,14 @@ fi
 
 # shellcheck disable=SC2016
 append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
+
+# install starship
+curl -sS https://starship.rs/install.sh | sh
+
+# symlink powerline
+ln -s $(pwd)/powerline $HOME/.config/powerline
+
+# fonts
+fnt update
+fnt -i fonts-firacode
+fnt -i fonts-nerd-symbols
