@@ -179,6 +179,8 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x8
 chmod a+x nvim-linux-x86_64.appimage
 sudo mv nvim-linux-x86_64.appimage /usr/bin/nvim
 
+# symlink nvim config
+
 #
 # Update PATH
 #
