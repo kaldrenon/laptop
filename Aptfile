@@ -37,8 +37,10 @@ ncurses-bin
 neovim
 net-tools
 openssl
+pipx
 postgresql
 postgresql-contrib
+powerline
 python3
 python3-pip
 redis
