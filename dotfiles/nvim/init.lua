@@ -186,12 +186,17 @@ local g = vim.g
 -- match OverLength /\%101v./
 
 -- Opts
+o.clipboard = "unnamedplus"
 o.matchpairs = o.matchpairs .. ",<:>"
 
+opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 opt.encoding = "UTF-8"
 opt.fileformats = "unix"
 opt.filetype = "off"
+opt.list = true
+opt.listchars = "tab:‣-,trail:·"
 opt.matchtime = 3
+opt.mouse = "a"
 opt.redrawtime = 100000
 opt.shortmess = "ltToOcF"
 opt.showmatch = true
@@ -199,6 +204,7 @@ opt.showmode = false
 opt.smartcase = true
 opt.termguicolors = true
 opt.timeoutlen = 250
+opt.ttyfast = true
 opt.updatetime = 250
 opt.wildmode = "longest,list"
 
@@ -207,83 +213,44 @@ opt.wildmenu = true
 
 -- Prevent the use of .swp, ~, and other backup files.
 opt.backup = false
-opt.writebackup = false
 opt.swapfile = false
+opt.writebackup = false
 
 -- No code folding
 opt.foldenable = false
 
 -- Basic color and format defaults
+opt.background = "dark"
+opt.eol = true
+opt.fixeol = true
 opt.hidden = true
 opt.number = true
 opt.ruler = true
-opt.background = "dark"
-opt.fixeol = true
-opt.eol = true
-
--- Might be nvim-only?
-opt.list = true
-opt.listchars = "tab:‣-,trail:·"
 
 -- Tab formatting
+opt.expandtab = true
 opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.tabstop = 2
-opt.expandtab = true
 
 -- Wrapping
-opt.wrap = true
 opt.linebreak = true
+opt.wrap = true
 
 -- Searching
+opt.hlsearch = false
+opt.ignorecase = true
 opt.incsearch = true
 opt.ttimeoutlen = 0
-opt.hlsearch = false
 
 -- Prevent window stack from evening out when one closes
-opt.equalalways = false
-opt.winminheight = 0 -- No max height on windows.
-opt.splitright = true
 opt.autoread = true
-
-opt.ttyfast = true
-opt.mouse = "a"
+opt.equalalways = false
+opt.splitright = true
+opt.winminheight = 0
 
 -- Use Ag over Grep
 opt.grepprg = "ag --nogroup --nocolor"
-
--- remove CR on paste
-o.clipboard = "unnamedplus"
-
-vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
-
--- -- Set wsl-clipboard for vim clipboard if running WSL
--- -- Check if the current linux kernal is microsoft WSL version
--- local function is_wsl()
---   local version_file = io.open("/proc/version", "rb")
---   if version_file ~= nil and string.find(version_file:read("*a"), "microsoft") then
---     version_file:close()
---     return true
---   end
---   return false
--- end
---
--- -- If current linux is under WSL then use wclip.exe
--- -- More info: https://github.com/memoryInject/wsl-clipboard
--- if is_wsl() then
---   vim.g.clipboard = {
---     name = "wsl-clipboard",
---     copy = {
---       ["+"] = "wcopy",
---       ["*"] = "wcopy",
---     },
---     paste = {
---       ["+"] = "wpaste",
---       ["*"] = "wpaste",
---     },
---     cache_enabled = true,
---   }
--- end
 
 -- Settings
 g.python3_host_prog = "/usr/bin/python3"
@@ -294,25 +261,13 @@ g.loaded_perl_provider = 0
 g.gist_clip_command = "tmux"
 g.gist_open_browser_after_post = 1
 
-g.goyo_width = 100
-
 g.ackprg = "ag --nogroup --nocolor --column"
-g.unite_source_rec_async_command = "ag -i --nocolor --nogroup"
-g.unite_source_grep_command = "ag"
-g.unite_source_grep_default_ops =
-  [[ --line-numbers --nocolor --nogroup --hidden ignore '.git' --ignore 'tmp' --ignore 'node_modules' ]]
-g.unite_source_grep_recursive_opt = ""
-
-g.tmuxify_custom_command = "tmux split-window -l 16"
-g.tmuxify_map_prefix = "<space>m"
 
 g.rust_recommended_style = 0
-
 g.jsx_ext_required = 0 -- Allow JSX in normal JS files
 
 g.netrw_liststyle = 3
 
-g.run_mode_map = "<Leader>rr"
 g.tmux_navigator_no_mappings = 1
 
 -- Commands
@@ -321,9 +276,12 @@ vim.api.nvim_create_user_command("Q", "q", {})
 vim.api.nvim_create_user_command("Qa", "qa", {})
 vim.api.nvim_create_user_command("Bd", "bd", {})
 vim.api.nvim_create_user_command("RS", "source ~/.vimrc", {})
-vim.api.nvim_create_user_command("LuaSnipEdit", 'lua require("luasnip.loaders").edit_snippet_files()', {})
+vim.api.nvim_create_user_command("LuaSnpEdit", 'lua require("luasnip.loaders").edit_snippet_files()', {})
 
+--
 -- Autocmds
+--
+
 local cg = vim.api.nvim_create_augroup("CursorLine", { clear = true })
 vim.api.nvim_create_autocmd(
   { "VimEnter", "WinEnter", "BufWinEnter" },
