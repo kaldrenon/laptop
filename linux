@@ -222,3 +222,15 @@ ln -s $(pwd)/powerline $HOME/.config/powerline
 fnt update
 fnt -i fonts-firacode
 fnt -i fonts-nerd-symbols
+
+# espanso
+if [ ! -d "$HOME/.config/espanso" ]; then
+  git clone https://github.com/kaldrenon/espanso $HOME/espanso
+  rm -rf $HOME/.config/espanso
+  ln -s $HOME/espanso $HOME/.config/espanso
+
+  wget https://github.com/espanso/espanso/releases/latest/download/espanso-debian-x11-amd64.deb
+  sudo apt install ./espanso-debian-x11-amd64.deb
+  espanso service register
+  espanso start
+fi
