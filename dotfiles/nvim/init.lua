@@ -174,6 +174,7 @@ require("jira").setup({
 })
 
 require("spectre").setup()
+require("oil").setup()
 
 local opt = vim.opt
 local o = vim.o

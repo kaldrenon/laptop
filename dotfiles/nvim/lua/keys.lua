@@ -128,6 +128,7 @@ k.set("n", "<space>sb", ":Switchboard overlay build<cr>", { silent = true })
 -- nmaps
 --
 k.set("n", "-", ":Neotree toggle reveal left<CR>", { silent = true })
+k.set("n", "<C-`>", ":Oil<CR>", { silent = true })
 
 -- Swap j/k with gj/gk for normal, visual, and select modes
 k.set({ "n", "x", "v" }, "j", "gj")
