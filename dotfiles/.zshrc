@@ -397,7 +397,7 @@ export PATH="$HOME/.bin:$PATH"
 export DOTNET_ROOT_X64="$HOME/.asdf/installs/dotnet/10.0.100"
 export DOTNET_ROOT="$HOME/.asdf/installs/dotnet/10.0.100"
 
-if $(dotnet completions 2>&/dev/null); then
+if $(dotnet completions 2>/dev/null 1>&2); then
   eval "$(dotnet completions script zsh)"
 fi
 eval "$(starship init zsh)"
