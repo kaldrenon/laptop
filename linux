@@ -212,8 +212,18 @@ fi
 # shellcheck disable=SC2016
 append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
 
-# install starship
+#
+# Additional Installs
+#
+
+# install starship - command line prompt kit
 curl -sS https://starship.rs/install.sh | sh
+
+# install bun - js package manager
+curl -fsSL https://bun.sh/install | bash
+
+# install uv - python package manager
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # symlink powerline
 ln -s $(pwd)/powerline $HOME/.config/powerline
@@ -223,12 +233,14 @@ fnt update
 fnt -i fonts-firacode
 fnt -i fonts-nerd-symbols
 
-# espanso
+# espanso - text expander
 if [ ! -d "$HOME/.config/espanso" ]; then
+  # clone my config repo
   git clone https://github.com/kaldrenon/espanso $HOME/espanso
   rm -rf $HOME/.config/espanso
   ln -s $HOME/espanso $HOME/.config/espanso
 
+  # install and start the client
   wget https://github.com/espanso/espanso/releases/latest/download/espanso-debian-x11-amd64.deb
   sudo apt install ./espanso-debian-x11-amd64.deb
   espanso service register
