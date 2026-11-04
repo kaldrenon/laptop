@@ -162,17 +162,6 @@ vim.lsp.config["ts_ls"] = {
 }
 
 require("mason-lspconfig").setup()
-
-require("jira").setup({
-  cli = {
-    issues = {
-      args = { "issue", "list" },
-      columns = { "key" },
-      filters = {},
-    },
-  },
-})
-
 require("spectre").setup()
 require("oil").setup()
 
@@ -251,24 +240,16 @@ opt.splitright = true
 opt.winminheight = 0
 
 -- Use Ag over Grep
-opt.grepprg = "ag --nogroup --nocolor"
+opt.grepprg = "rg"
 
 -- Settings
-g.python3_host_prog = "/usr/bin/python3"
-g.pymode_python = "python3"
-
-g.loaded_perl_provider = 0
-
-g.gist_clip_command = "tmux"
-g.gist_open_browser_after_post = 1
-
-g.ackprg = "ag --nogroup --nocolor --column"
-
-g.rust_recommended_style = 0
+g.ackprg = "rg"
 g.jsx_ext_required = 0 -- Allow JSX in normal JS files
-
+g.loaded_perl_provider = 0
 g.netrw_liststyle = 3
-
+g.pymode_python = "python3"
+g.python3_host_prog = "/usr/bin/python3"
+g.rust_recommended_style = 0
 g.tmux_navigator_no_mappings = 1
 
 -- Commands
@@ -278,6 +259,7 @@ vim.api.nvim_create_user_command("Qa", "qa", {})
 vim.api.nvim_create_user_command("Bd", "bd", {})
 vim.api.nvim_create_user_command("RS", "source ~/.vimrc", {})
 vim.api.nvim_create_user_command("LuaSnpEdit", 'lua require("luasnip.loaders").edit_snippet_files()', {})
+vim.api.nvim_create_user_command("BufOnly", 'execute "%bd|e#|bd#"', {})
 
 --
 -- Autocmds
@@ -340,4 +322,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- Import key bindings
 require("keys")
+require("starcap")
 require("switchboard-config")

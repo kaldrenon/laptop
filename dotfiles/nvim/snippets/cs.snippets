@@ -2,7 +2,7 @@
 # Basic CS snips
 #
 snippet li 'logger info'
-  Logger.Info($"${1:message}});
+  Logger.Info($"{${1:message}}");
 
 snippet le 'logger error'
   Logger.Error($"${1:message}");
@@ -57,7 +57,7 @@ snippet flagp 'flag for production'
   }
 
 # xunit tests
-snippet xfact
+snippet xf
   [Fact]
   public void ${1}() {
     ${0}
