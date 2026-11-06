@@ -238,6 +238,16 @@ return {
   --
   -- Learning/setting up now
   --
+  {
+    "aserowy/tmux.nvim",
+    config = function()
+      return require("tmux").setup({
+        copy_sync = {
+          redirect_to_clipboard = true,
+        },
+      })
+    end,
+  },
   "mrloop/telescope-git-branch.nvim",
   "terryma/vim-expand-region",
   "mhinz/vim-tmuxify",
@@ -521,7 +531,6 @@ return {
     },
   },
   "EinfachToll/DidYouMean",
-  "alexghergh/nvim-tmux-navigation",
   "benfowler/telescope-luasnip.nvim",
   "mhinz/vim-signify",
   "nvim-tree/nvim-web-devicons",

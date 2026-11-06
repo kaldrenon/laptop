@@ -149,10 +149,10 @@ k.set("n", "K", "kJ")
 k.set("n", "Y", "y$")
 k.set("n", "gy", '"+y')
 
-k.set("n", "<A-h>", ":NvimTmuxNavigateLeft<cr>", { silent = true })
-k.set("n", "<A-l>", ":NvimTmuxNavigateRight<cr>", { silent = true })
-k.set("n", "<A-j>", ":NvimTmuxNavigateDown<cr>", { silent = true })
-k.set("n", "<A-k>", ":NvimTmuxNavigateUp<cr>", { silent = true })
+k.set("n", "<A-h>", ":lua require('tmux').move_left()<cr>", { silent = true })
+k.set("n", "<A-l>", ":lua require('tmux').move_right()<cr>", { silent = true })
+k.set("n", "<A-j>", ":lua require('tmux').move_bottom()<cr>", { silent = true })
+k.set("n", "<A-k>", ":lua require('tmux').move_top()<cr>", { silent = true })
 
 -- Harpoon
 k.set("n", "<C-e>", function()
