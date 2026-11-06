@@ -1,17 +1,6 @@
 return {
   --
-  -- Dedupe?
-  --
-  "kevinhwang91/nvim-bqf",
-  {
-    "stevearc/quicker.nvim",
-    ft = "qf",
-    ---@module "quicker"
-    ---@type quicker.SetupOptions
-    opts = {},
-  },
-  --
-  -- Using regularly
+  -- @@ Using regularly
   --
   {
     "nvim-lualine/lualine.nvim",
@@ -235,9 +224,6 @@ return {
     },
   },
   "tomtom/tcomment_vim",
-  --
-  -- Learning/setting up now
-  --
   {
     "aserowy/tmux.nvim",
     config = function()
@@ -248,6 +234,18 @@ return {
       })
     end,
   },
+  "kevinhwang91/nvim-bqf",
+  {
+    "stevearc/quicker.nvim",
+    ft = "qf",
+    ---@module "quicker"
+    ---@type quicker.SetupOptions
+    opts = {},
+  },
+
+  --
+  -- @@ Learning/setting up now
+  --
   "mrloop/telescope-git-branch.nvim",
   "terryma/vim-expand-region",
   "mhinz/vim-tmuxify",
@@ -267,7 +265,7 @@ return {
   "tpope/vim-surround",
 
   --
-  -- Learn soon
+  -- @@ Learn soon
   --
   "FeiyouG/commander.nvim",
   "nvim-pack/nvim-spectre",
@@ -358,7 +356,7 @@ return {
   },
   "karnull/switchboard.nvim",
   --
-  -- Backlog / Low priority
+  -- @@ Backlog / Low priority
   --
   "tpope/vim-unimpaired",
   {
@@ -537,7 +535,7 @@ return {
   "ryanoasis/vim-devicons",
   "tpope/vim-abolish",
 
-  -- Language support
+  -- @@ Language support
   "digitaltoad/vim-jade",
   "elixir-lang/vim-elixir",
   "elzr/vim-json",
@@ -561,7 +559,7 @@ return {
   "tpope/vim-rake",
   "vim-ruby/vim-ruby",
 
-  -- Colorschemes
+  -- @@ Colorschemes
   "AlexvZyl/nordic.nvim",
   "EdenEast/nightfox.nvim",
   "mhartington/oceanic-next",

@@ -250,7 +250,6 @@ g.netrw_liststyle = 3
 g.pymode_python = "python3"
 g.python3_host_prog = "/usr/bin/python3"
 g.rust_recommended_style = 0
-g.tmux_navigator_no_mappings = 1
 
 -- Commands
 vim.api.nvim_create_user_command("W", "w", {})
