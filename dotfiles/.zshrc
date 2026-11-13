@@ -64,7 +64,7 @@ tic ~/$TERM.ti
 alias grep="grep --color"
 alias c="clear;"
 alias td="echo \`date +'%m/%d/%Y'\`"
-alias ag='ag --path-to-ignore ~/.ignore'
+alias ag='rg --path-to-ignore ~/.ignore'
 
 alias srv='http-server'
 alias htp='http-prompt'
@@ -108,7 +108,7 @@ alias kc="kubectl"
 alias mk="minikube"
 
 # Process search
-alias pax="ps ax | ag"
+alias pax="ps ax | rg"
 
 alias p='python3'
 alias pip='pip3'
@@ -165,7 +165,7 @@ fi
 
 # Search power
 vimag() {
-  eval ${VIM_BIN} -- `ag -l $1 $2`
+  eval ${VIM_BIN} -- `rg -l $1 $2`
 }
 
 # Open last commit's files
@@ -245,11 +245,11 @@ usage(){
 }
 
 # multiple silver-search
-agg() {
+rgg() {
   echo "-- Files"
-  noglob ag -g $*
+  noglob rg -g $*
   echo "\n-- Lines"
-  noglob ag $*
+  noglob rg $*
   echo ""
 }
 
@@ -367,6 +367,7 @@ alias dnbr="dotnet build --tl:off && dotnet run --no-restore"
 alias dnt="dotnet test"
 alias dnw="dotnet watch --non-interactive"
 alias starcap="cd /mnt/c/Users/Andrew\ Fallows/starcap/"
+alias trt="$HOME/code/trinity/test/scripts/test.sh"
 
 
 #

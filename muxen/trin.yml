@@ -10,5 +10,9 @@ windows:
       panes:
         - dnbr
         - npx vite
-        - cd ../trinity-test && dotnet test
   - shell: git status
+  - tests:
+      layout: even-vertical
+      panes:
+        - nv test/metrics/complexity.md test/metrics/churn.md
+        - ./test/scripts/test.sh

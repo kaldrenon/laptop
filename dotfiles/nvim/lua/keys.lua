@@ -10,6 +10,17 @@ local dap = require("dap")
 local dap_pb = require("persistent-breakpoints.api")
 
 --
+-- Windows and Buffers
+--
+
+k.set("n", "<C-j>", ":BufferNext<cr>", { silent = true })
+k.set("n", "<C-k>", ":BufferPrevious<cr>", { silent = true })
+
+-- kill buffer without closing window
+k.set("n", "<space>bk", ":bp<bar>sp<bar>bn<bar>bd<CR>", { silent = true })
+k.set("n", "<space>bo", ":BufOnly<cr>", { silent = true })
+
+--
 -- Modmaps (Ctrl/Shift/Alt)
 --
 
@@ -41,15 +52,10 @@ k.set("n", "<leader>a", function()
   harpoon:list():add()
 end)
 
--- Mappings for common Tabularizations
-k.set("n", "<Leader>a=", ":Tabularize /=<CR>")
-k.set("v", "<Leader>a=", ":Tabularize /=<CR>")
-k.set("n", "<Leader>a:", ":Tabularize /:\zs<CR>")
-k.set("v", "<Leader>a:", ":Tabularize /:\zs<CR>")
-
 -- Telescope
 k.set("n", "<C-o>", builtin.find_files, { desc = "Telescope find files" })
 k.set("n", "<C-p>", builtin.live_grep, { desc = "Telescope live grep" })
+k.set("n", "<C-g>", ':lua require("git_branch").files()<cr>', { desc = "Telescope git_branch" })
 k.set("n", "<leader>fw", ':lua require("telescope.builtin").grep_string({search = vim.fn.expand("<cword>")})<cr>', {})
 k.set("n", "<leader>fr", ":Telescope mru_files<cr>", {})
 k.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
@@ -143,12 +149,10 @@ k.set("n", "K", "kJ")
 k.set("n", "Y", "y$")
 k.set("n", "gy", '"+y')
 
-k.set("n", "<C-b>", ":BufferPick<cr>", { silent = true })
-k.set("n", "<C-j>", ":BufferNext<cr>", { silent = true })
-k.set("n", "<C-k>", ":BufferPrevious<cr>", { silent = true })
-
-k.set("n", "<C-h>", ":TmuxNavigateLeft<cr>", { silent = true })
-k.set("n", "<C-l>", ":TmuxNavigateRight<cr>", { silent = true })
+k.set("n", "<A-h>", ":lua require('tmux').move_left()<cr>", { silent = true })
+k.set("n", "<A-l>", ":lua require('tmux').move_right()<cr>", { silent = true })
+k.set("n", "<A-j>", ":lua require('tmux').move_bottom()<cr>", { silent = true })
+k.set("n", "<A-k>", ":lua require('tmux').move_top()<cr>", { silent = true })
 
 -- Harpoon
 k.set("n", "<C-e>", function()
