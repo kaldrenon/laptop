@@ -1,0 +1,16 @@
+[user]
+  name = Andrew Fallows
+  email = kaldrenon@gmail.com
+  signingkey = ~/.ssh/kaldrenon_key
+
+[credential "https://github.com"]
+  user = kaldrenon
+
+[credential "http://github.com"]
+  user = kaldrenon
+
+[commit]
+    gpgsign = true
+
+[gpg]
+    format = ssh

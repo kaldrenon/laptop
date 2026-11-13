@@ -1,0 +1,16 @@
+[user]
+  name = Andrew Fallows
+  email = afallows@captivecorp.com
+  signingkey = ~/.ssh/afallows_key
+
+[credential "https://github.com"]
+  user = afallowscc
+
+[credential "http://github.com"]
+  user = afallowscc
+
+[commit]
+    gpgsign = true
+
+[gpg]
+    format = ssh

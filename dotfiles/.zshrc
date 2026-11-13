@@ -7,13 +7,12 @@ ZSH_CACHE_DIR=$HOME/.cache
 source ~/antigen.zsh
 
 antigen bundle bobthecow/git-flow-completion
-#antigen bundle docker
 antigen bundle emallson/gulp-zsh-completion
-#antigen bundle felixr/docker-zsh-completion
 antigen bundle git
 antigen bundle gitfast
 antigen bundle mollifier/cd-gitroot
 antigen bundle olivierverdier/zsh-git-prompt
+antigen bundle zpm-zsh/zshmarks
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
