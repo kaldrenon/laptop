@@ -79,19 +79,19 @@ k.set("n", "<leader>tl", ":Trouble loclist toggle focus=true<cr>", { silent = tr
 k.set("n", "<leader>tq", ":Trouble qflist toggle focus=true<cr>", { silent = true })
 
 -- Spectre
-k.set("n", "<leader>fr", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
-k.set(
-  "n",
-  "<leader>fw",
-  '<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
-  { desc = "Search current word" }
-)
-k.set(
-  "n",
-  "<leader>ff",
-  '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
-  { desc = "Search on current file" }
-)
+--k.set("n", "<leader>fr", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
+-- k.set(
+--   "n",
+--   "<leader>fw",
+--   '<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+--   { desc = "Search current word" }
+-- )
+-- k.set(
+--   "n",
+--   "<leader>ff",
+--   '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+--   { desc = "Search on current file" }
+-- )
 
 --
 -- Spacemaps
