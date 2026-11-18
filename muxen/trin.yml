@@ -8,7 +8,7 @@ windows:
   - server:
       layout: main-vertical
       panes:
-        - dnbr
+        - gs
         - npx vite
   - shell: git status
   - tests:
