@@ -141,7 +141,7 @@ fancy_echo "Symlink scripts"
 
 # antigen
 if [ ! -L ~/antigen.zsh ]; then
-  curl -L git.io/antigen > antigen.zsh
+  curl -L git.io/antigen > $HOME/antigen.zsh
 fi
 
 # tmuxinator

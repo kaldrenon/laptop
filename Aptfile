@@ -10,10 +10,10 @@ crawl
 curl
 dash
 diffutils
-dotnet-sdk-8.0
 fd-find
 findutils
 fish
+fnt
 freetds-bin
 freetds-dev
 fzf

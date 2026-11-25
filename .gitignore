@@ -1,5 +1,5 @@
 *.swp
 laptop.log
 
-dotfiles/nvim/pack
-dotfiles/nvim/lazy-lock.json
+nvim/pack
+nvim/lazy-lock.json
