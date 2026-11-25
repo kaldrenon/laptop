@@ -1,3 +1,4 @@
+
 -- Load Lazy for all plugin management
 require("config.lazy")
 
